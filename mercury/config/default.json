@@ -3,6 +3,12 @@
     "user": "mercury",
     "password": "INSECURE"
   },
+  "Redis": {
+    "port": 6379,
+    "password": "INSECURE",
+    "host": "localhost",
+    "keyPrefix": "MERC:"
+  },
   "Session": {
     "port": 6379,
     "secret": "INSECURE",
