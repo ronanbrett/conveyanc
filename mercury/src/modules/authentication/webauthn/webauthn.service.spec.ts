@@ -153,8 +153,6 @@ describe('WebauthnService', () => {
       });
 
       it('should fail verification if challenge is wrong dont match', async () => {
-        service.db['internalUserId'].currentChallenge = '123';
-
         await expect(
           service.verifyRegistration(
             REGISTER_POST_REQUEST_PAYLOAD,
@@ -220,15 +218,6 @@ describe('WebauthnService', () => {
         devices: [],
         save: () => true,
       } as any);
-
-      service.db['internalUserId'].devices = [
-        {
-          publicKey:
-            'BJU0lgL2Xla_AazDUA3i3SOZg54E3jMOkJogpmPxc14entfM4NkDBtLpYUVE_4LU22F0I2IAdPPo8XrziziqdG8',
-          credentialID: '32434',
-          counter: 1597252111,
-        },
-      ];
 
       await expect(
         service.verifyLogin(LOGIN_POST_REQUEST_PAYLOAD, 'jacobmarley'),
