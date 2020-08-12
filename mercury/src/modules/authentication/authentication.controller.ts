@@ -8,6 +8,11 @@ import { Request } from 'express';
 import { User } from '../identification/identification.model';
 import { WebauthnService } from './webauthn/webauthn.service';
 
+/**
+ * TODO
+ * Implement this using strategies instead of locking it to Webauthn
+ */
+
 @Controller('auth')
 export class AuthenticationController {
   constructor(private readonly webauthnService: WebauthnService) {}

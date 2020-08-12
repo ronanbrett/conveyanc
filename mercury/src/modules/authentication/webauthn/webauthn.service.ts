@@ -26,28 +26,6 @@ const loggedInUserId = 'internalUserId';
 export class WebauthnService {
   readonly config: WebauthnConfig = get('Webauthn');
 
-  db = {
-    [loggedInUserId]: {
-      id: loggedInUserId,
-      username: `user@${this.config.rpID}`,
-      devices: [
-        /**
-         * {
-         *   credentialID: string,
-         *   publicKey: string,
-         *   counter: number,
-         * }
-         */
-      ],
-      /**
-       * A simple way of storing a user's current challenge being signed by attestation or assertion.
-       * It should be expired after `timeout` milliseconds (optional argument for `generate` methods,
-       * defaults to 60000ms)
-       */
-      currentChallenge: undefined,
-    },
-  };
-
   constructor(
     @Inject(REDIS_CLIENT) private client: Redis,
     private identificationService: IdentificationService,
@@ -216,5 +194,11 @@ export class WebauthnService {
     }
 
     return { verified, user: { username: user.username } };
+  }
+
+  async logout(username: string): Promise<boolean> {
+    await this.client.del(`CHALLENGE_${username}`);
+
+    return true;
   }
 }

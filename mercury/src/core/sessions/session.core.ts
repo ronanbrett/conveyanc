@@ -8,7 +8,7 @@ import { SessionConfig } from '../config/session.config';
 const config: SessionConfig = configGet('Session');
 
 const redisStore = connectRedis(session);
-const redisClient = redis(config.port, 'localhost', {
+const redisClient = new redis(config.port, 'localhost', {
   password: config.redisSecret,
 });
 

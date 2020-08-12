@@ -59,7 +59,7 @@ export async function login() {
 export async function health() {
   const resp = await fetch('/api/health');
 
-  console.log(resp);
+  console.log(await resp.json());
 }
 
 export default {

@@ -1,9 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('health')
 export class HealthController {
   @Get()
-  checkHealth(): boolean {
-    return true;
+  checkHealth(@Req() req: Request): any {
+    if (req.session.isLoggedIn) {
+      return {
+        user: req.session.user,
+        loggedIn: true,
+      };
+    }
+    return {
+      loggedIn: false,
+    };
   }
 }
