@@ -8,6 +8,10 @@
     },
     {
       "path": "vulcan"
+    },
+    {
+      "path": "mongo"
     }
-  ]
+  ],
+  "settings": {}
 }

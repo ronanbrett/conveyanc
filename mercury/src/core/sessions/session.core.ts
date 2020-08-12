@@ -1,17 +1,15 @@
 import { INestApplication } from '@nestjs/common';
 import { get as configGet } from 'config';
-
-import { createClient } from 'redis';
-import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
+import * as session from 'express-session';
+import * as redis from 'ioredis';
 import { SessionConfig } from '../config/session.config';
 
 const config: SessionConfig = configGet('Session');
 
 const redisStore = connectRedis(session);
-const redisClient = createClient({
+const redisClient = redis(config.port, 'localhost', {
   password: config.redisSecret,
-  port: config.port,
 });
 
 export function setupSessions(app: INestApplication): void {
@@ -20,6 +18,7 @@ export function setupSessions(app: INestApplication): void {
       name: config.name,
       store: new redisStore({ client: redisClient }),
       secret: config.secret,
+      saveUninitialized: false,
       resave: true,
       cookie: {
         httpOnly: true,

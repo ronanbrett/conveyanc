@@ -1,45 +1,68 @@
-import { Controller, Get, Post, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Query, Req } from '@nestjs/common';
 import {
   AttestationCredentialJSON,
   PublicKeyCredentialCreationOptionsJSON,
   PublicKeyCredentialRequestOptionsJSON,
 } from '@simplewebauthn/typescript-types';
-import { Request, Response } from 'express';
+import { Request } from 'express';
+import { User } from '../identification/identification.model';
 import { WebauthnService } from './webauthn/webauthn.service';
 
 @Controller('auth')
 export class AuthenticationController {
   constructor(private readonly webauthnService: WebauthnService) {}
+
+  @Get('register/user')
+  async registerUser(
+    @Req() req: Request,
+    @Query('username') username: string,
+  ): Promise<User> {
+    req.session.user = { username };
+    return await this.webauthnService.registerUser(username);
+  }
+
   // WebAuthn
   @Get('register')
-  register(): PublicKeyCredentialCreationOptionsJSON {
-    return this.webauthnService.register();
+  async register(
+    @Req() req: Request,
+  ): Promise<PublicKeyCredentialCreationOptionsJSON> {
+    const username = req.session.user.username;
+    return await this.webauthnService.register(username);
   }
 
   @Post('register')
   async verifyRegistration(
-    @Req() res: Request,
+    @Req() req: Request,
   ): Promise<{ verified: boolean }> {
-    const credentials = res.body;
+    const credentials = req.body;
+    const username = req.session.user.username;
 
     return await this.webauthnService.verifyRegistration(
       credentials as AttestationCredentialJSON,
+      username,
     );
   }
 
   @Get('login')
-  login(): PublicKeyCredentialRequestOptionsJSON {
-    return this.webauthnService.login();
+  async login(
+    @Query('username') username: string,
+  ): Promise<PublicKeyCredentialRequestOptionsJSON> {
+    return this.webauthnService.login(username);
   }
 
   @Post('login')
   async verifyLogin(@Req() req: Request): Promise<{ verified: boolean }> {
     const credential = req.body;
+    const username = req.session.user.username;
 
-    const { verified } = await this.webauthnService.verifyLogin(credential);
+    const { verified, user } = await this.webauthnService.verifyLogin(
+      credential,
+      username,
+    );
 
     if (verified) {
       req.session.isLoggedIn = true;
+      req.session.user = user;
     }
 
     return { verified };

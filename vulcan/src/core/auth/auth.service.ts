@@ -1,6 +1,8 @@
 import { startAttestation, startAssertion, supportsWebauthn } from '@simplewebauthn/browser';
 
 export async function register() {
+  const rg = await fetch('/api/auth/register/user?username=ronan');
+
   const resp = await fetch('/api/auth/register');
 
   let attResp;
@@ -27,12 +29,10 @@ export async function register() {
   });
 
   const verificationJSON = await verificationResp.json();
-
-  console.log(verificationJSON);
 }
 
 export async function login() {
-  const resp = await fetch('/api/auth/login');
+  const resp = await fetch('/api/auth/login?username=ronan');
 
   let asseResp;
   try {

@@ -1,11 +1,9 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('health')
 export class HealthController {
   @Get()
-  checkHealth(@Req() req: Request): boolean {
-    console.log(req.session);
+  checkHealth(): boolean {
     return true;
   }
 }

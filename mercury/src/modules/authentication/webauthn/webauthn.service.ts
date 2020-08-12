@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, Req } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import {
   generateAssertionOptions,
   generateAttestationOptions,
@@ -9,14 +9,16 @@ import { VerifiedAttestation } from '@simplewebauthn/server/dist/attestation/ver
 import {
   AssertionCredentialJSON,
   AttestationCredentialJSON,
-  AuthenticatorAttestationResponseJSON,
   PublicKeyCredentialCreationOptionsJSON,
   PublicKeyCredentialRequestOptionsJSON,
 } from '@simplewebauthn/typescript-types';
 import { get } from 'config';
-import { Request } from 'express';
+import { Redis } from 'ioredis';
 import { Logger } from 'nestjs-pino';
-import { WebauthnConfig } from 'src/core/config/webauth.config';
+import { WebauthnConfig } from '../../../core/config/webauth.config';
+import { REDIS_CLIENT } from '../../../core/connections/redis.connection';
+import { User } from '../../identification/identification.model';
+import { IdentificationService } from '../../identification/identification.service';
 
 const loggedInUserId = 'internalUserId';
 
@@ -46,10 +48,29 @@ export class WebauthnService {
     },
   };
 
-  constructor(private logger: Logger) {}
+  constructor(
+    @Inject(REDIS_CLIENT) private client: Redis,
+    private identificationService: IdentificationService,
+    private logger: Logger,
+  ) {}
 
-  register(): PublicKeyCredentialCreationOptionsJSON {
-    const user = this.db[loggedInUserId];
+  async registerUser(username: string): Promise<User> {
+    const doesUserExist = await this.identificationService.findOne(username);
+
+    if (doesUserExist) {
+      throw new BadRequestException('This user already exists.');
+    }
+
+    return this.identificationService.save({ username });
+  }
+
+  async register(id: string): Promise<PublicKeyCredentialCreationOptionsJSON> {
+    let user;
+    try {
+      user = await this.identificationService.findOne(id);
+    } catch (err) {
+      throw new BadRequestException('Username doesnt exist');
+    }
 
     const { username, devices } = user;
 
@@ -77,17 +98,18 @@ export class WebauthnService {
       },
     });
 
-    // eslint-disable-next-line security/detect-object-injection
-    this.db[loggedInUserId].currentChallenge = options.challenge;
+    await this.client.set(`CHALLENGE_${username}`, options.challenge);
+    await this.client.expire(`CHALLENGE_${username}`, 60000);
 
     return options;
   }
 
   async verifyRegistration(
     credential: AttestationCredentialJSON,
+    username: string,
   ): Promise<{ verified: boolean }> {
-    const user = this.db[loggedInUserId];
-    const expectedChallenge = user.currentChallenge;
+    const user = await this.identificationService.findOne(username);
+    const expectedChallenge = await this.client.get(`CHALLENGE_${username}`);
 
     let verification;
     try {
@@ -124,14 +146,18 @@ export class WebauthnService {
           credentialID: base64CredentialID,
           counter,
         });
+
+        await user.save();
       }
     }
 
     return { verified };
   }
 
-  login(): PublicKeyCredentialRequestOptionsJSON {
-    const user = this.db[loggedInUserId];
+  async login(
+    username: string,
+  ): Promise<PublicKeyCredentialRequestOptionsJSON> {
+    const user = await this.identificationService.findOne(username);
     const options = generateAssertionOptions({
       timeout: 60000,
       allowedCredentialIDs: user.devices.map(data => data.credentialID),
@@ -142,17 +168,19 @@ export class WebauthnService {
       userVerification: 'preferred',
     });
 
-    this.db[loggedInUserId].currentChallenge = options.challenge;
+    await this.client.set(`CHALLENGE_${username}`, options.challenge);
+    await this.client.expire(`CHALLENGE_${username}`, 60000);
 
     return options;
   }
 
   async verifyLogin(
     credential: AssertionCredentialJSON,
-  ): Promise<{ verified: boolean }> {
-    const user = this.db[loggedInUserId];
+    username: string,
+  ): Promise<{ verified: boolean; user: any }> {
+    const user = await this.identificationService.findOne(username);
+    const expectedChallenge = await this.client.get(`CHALLENGE_${username}`);
 
-    const expectedChallenge = user.currentChallenge;
     let dbAuthenticator;
     // "Query the DB" here for an authenticator matching `credentialID`
     for (const dev of user.devices) {
@@ -187,6 +215,6 @@ export class WebauthnService {
       dbAuthenticator.counter = authenticatorInfo.counter;
     }
 
-    return { verified };
+    return { verified, user: { username: user.username } };
   }
 }

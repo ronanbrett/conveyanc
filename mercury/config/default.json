@@ -1,4 +1,8 @@
 {
+  "Mongo": {
+    "user": "mercury",
+    "password": "INSECURE"
+  },
   "Session": {
     "port": 6379,
     "secret": "INSECURE",
