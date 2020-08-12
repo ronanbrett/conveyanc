@@ -1,0 +1,19 @@
+{
+  "Session": {
+    "port": 6379,
+    "secret": "INSECURE",
+    "redisSecret": "INSECURE",
+    "name": "merc-session"
+  },
+  "User": {
+    "dbConfig": {
+      "port": 4300,
+      "dbName": "users"
+    }
+  },
+  "Webauthn": {
+    "rpID": "localhost",
+    "origin": "https://localhost:5000",
+    "serviceName": "mercury"
+  }
+}

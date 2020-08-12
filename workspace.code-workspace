@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "mercury"
+    },
+    {
+      "path": "redis"
+    },
+    {
+      "path": "vulcan"
+    }
+  ]
+}
