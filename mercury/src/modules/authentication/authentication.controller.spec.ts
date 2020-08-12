@@ -74,7 +74,10 @@ describe('Authentication Controller', () => {
         challenge: 'Al-Q4l9IEiBAGIMgsT4aTBPS8831qzfrtDfh2yrgFV8',
       });
 
-      const response = await controller.login('jacob');
+      const response = await controller.login(
+        { session: { user: {} } } as any,
+        'jacob',
+      );
 
       expect(response).toEqual({
         challenge: 'Al-Q4l9IEiBAGIMgsT4aTBPS8831qzfrtDfh2yrgFV8',

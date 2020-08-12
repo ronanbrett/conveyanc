@@ -50,8 +50,11 @@ export class AuthenticationController {
 
   @Get('login')
   async login(
+    @Req() req: Request,
     @Query('username') username: string,
   ): Promise<PublicKeyCredentialRequestOptionsJSON> {
+    req.session.user = { username };
+
     return this.webauthnService.login(username);
   }
 
@@ -71,5 +74,14 @@ export class AuthenticationController {
     }
 
     return { verified };
+  }
+
+  @Get('logout')
+  async logout(@Req() req: Request): Promise<boolean> {
+    const username = req.session.user.username;
+    req.session.destroy(err => {
+      console.log(err);
+    });
+    return await this.webauthnService.logout(username);
   }
 }
