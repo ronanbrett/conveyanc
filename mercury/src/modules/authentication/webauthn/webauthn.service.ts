@@ -20,8 +20,6 @@ import { REDIS_CLIENT } from '../../../core/connections/redis.connection';
 import { User } from '../../identification/identification.model';
 import { IdentificationService } from '../../identification/identification.service';
 
-const loggedInUserId = 'internalUserId';
-
 @Injectable()
 export class WebauthnService {
   readonly config: WebauthnConfig = get('Webauthn');
@@ -43,19 +41,20 @@ export class WebauthnService {
   }
 
   async register(id: string): Promise<PublicKeyCredentialCreationOptionsJSON> {
-    let user;
+    let user: User;
     try {
       user = await this.identificationService.findOne(id);
     } catch (err) {
       throw new BadRequestException('Username doesnt exist');
     }
 
-    const { username, devices } = user;
+    const { username, devices, _id } = user;
 
     const options = generateAttestationOptions({
       serviceName: this.config.serviceName,
       rpID: this.config.rpID,
-      userID: loggedInUserId,
+      userID: _id,
+      userDisplayName: username,
       userName: username,
       timeout: 60000,
       attestationType: 'direct',

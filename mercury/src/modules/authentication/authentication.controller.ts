@@ -10,7 +10,9 @@ import { WebauthnService } from './webauthn/webauthn.service';
 
 /**
  * TODO
- * Implement this using strategies instead of locking it to Webauthn
+ * Abstract the methods of authentications out into strategies instead of locking it to Webauthn
+ * - Google
+ * - Facebok
  */
 
 @Controller('auth')
