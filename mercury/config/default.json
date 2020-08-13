@@ -2,7 +2,8 @@
   "env": "dev",
   "Mongo": {
     "user": "mercury",
-    "password": "INSECURE"
+    "password": "INSECURE",
+    "host": "localhost"
   },
   "Redis": {
     "port": 6379,

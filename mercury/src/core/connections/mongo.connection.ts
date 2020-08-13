@@ -7,7 +7,7 @@ const config: MongoConfig = configGet('Mongo');
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/users', {
+    MongooseModule.forRoot(`mongodb://${config.host}/users`, {
       connectionName: 'users',
       user: config.user,
       pass: config.password,
