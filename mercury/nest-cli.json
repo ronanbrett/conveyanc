@@ -1,4 +1,21 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "apps/mercury/src",
+  "monorepo": true,
+  "root": "apps/mercury",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/mercury/tsconfig.app.json"
+  },
+  "projects": {
+    "mercury": {
+      "type": "application",
+      "root": "apps/mercury",
+      "entryFile": "main",
+      "sourceRoot": "apps/mercury/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/mercury/tsconfig.app.json"
+      }
+    }
+  }
 }
