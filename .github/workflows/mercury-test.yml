@@ -8,11 +8,11 @@ on:
   push:
     branches: [ develop ]
     paths: 
-      - 'mercury/src/*'
+      - 'mercury/src/**/*'
   pull_request:
     branches: [ develop ]
     paths: 
-      - 'mercury/src/*'
+      - 'mercury/src/**/*'
 
 jobs:
   build:
