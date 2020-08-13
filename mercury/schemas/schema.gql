@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Property {
+  _id: ID!
+  propertyType: PropertyType
+}
+
+enum PropertyType {
+  APPARTMENT
+  COOPERATIVE
+  HOUSE
+  MOBILE
+  SITE
+}
+
+type Query {
+  property(id: String!): Property!
+}

@@ -1,5 +1,9 @@
 {
   "env": "dev",
+  "Graphql": {
+    "debug": true,
+    "playground": true
+  },
   "Mongo": {
     "user": "mercury",
     "password": "INSECURE",

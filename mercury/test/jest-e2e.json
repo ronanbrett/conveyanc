@@ -1,9 +1,19 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@libs/mammon/(.*)": "<rootDir>/../libs/mammon/src/$1",
+    "@libs/mammon": "<rootDir>/../libs/mammon/src",
+    "@utils/s3-storage/(.*)": "<rootDir>/../libs/s3-storage/src/$1",
+    "@utils/s3-storage": "<rootDir>/../libs/s3-storage/src"
   }
 }

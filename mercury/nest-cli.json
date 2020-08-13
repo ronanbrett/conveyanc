@@ -5,7 +5,10 @@
   "root": "apps/mercury",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/mercury/tsconfig.app.json"
+    "tsConfigPath": "apps/mercury/tsconfig.app.json",
+    "plugins": [
+      "@nestjs/graphql/plugin"
+    ]
   },
   "projects": {
     "mercury": {
@@ -15,6 +18,24 @@
       "sourceRoot": "apps/mercury/src",
       "compilerOptions": {
         "tsConfigPath": "apps/mercury/tsconfig.app.json"
+      }
+    },
+    "mammon": {
+      "type": "library",
+      "root": "libs/mammon",
+      "entryFile": "index",
+      "sourceRoot": "libs/mammon/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mammon/tsconfig.lib.json"
+      }
+    },
+    "s3-storage": {
+      "type": "library",
+      "root": "libs/s3-storage",
+      "entryFile": "index",
+      "sourceRoot": "libs/s3-storage/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/s3-storage/tsconfig.lib.json"
       }
     }
   }
