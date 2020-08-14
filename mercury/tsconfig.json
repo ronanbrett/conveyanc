@@ -23,6 +23,12 @@
       ],
       "@utils/s3-storage/*": [
         "libs/s3-storage/src/*"
+      ],
+      "@utils/redis-connection": [
+        "libs/redis-connection/src"
+      ],
+      "@utils/redis-connection/*": [
+        "libs/redis-connection/src/*"
       ]
     }
   }

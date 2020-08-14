@@ -37,6 +37,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/s3-storage/tsconfig.lib.json"
       }
+    },
+    "redis-connection": {
+      "type": "library",
+      "root": "libs/redis-connection",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis-connection/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis-connection/tsconfig.lib.json"
+      }
     }
   }
 }

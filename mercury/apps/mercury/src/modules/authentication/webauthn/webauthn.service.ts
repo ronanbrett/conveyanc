@@ -16,7 +16,7 @@ import { get } from 'config';
 import { Redis } from 'ioredis';
 import { Logger } from 'nestjs-pino';
 import { WebauthnConfig } from '../../../core/config/webauth.config';
-import { REDIS_CLIENT } from '../../../core/connections/redis.connection';
+import { REDIS_CLIENT } from '@utils/redis-connection';
 import { User } from '../../identification/identification.model';
 import { IdentificationService } from '../../identification/identification.service';
 

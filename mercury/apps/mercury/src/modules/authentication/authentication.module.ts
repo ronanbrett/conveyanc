@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { REDIS_CLIENT_PROVIDER } from '../../core/connections/redis.connection';
+import { RedisConnectionModule } from '@utils/redis-connection';
 import { IdentificationModule } from '../identification/identification.module';
 import { AuthenticationController } from './authentication.controller';
 import { WebauthnService } from './webauthn/webauthn.service';
 
 @Module({
-  imports: [IdentificationModule],
+  imports: [IdentificationModule, RedisConnectionModule],
   controllers: [AuthenticationController],
-  providers: [WebauthnService, REDIS_CLIENT_PROVIDER],
+  providers: [WebauthnService],
 })
 export class AuthenticationModule {}

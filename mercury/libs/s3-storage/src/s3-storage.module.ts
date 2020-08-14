@@ -13,20 +13,13 @@ const s3Client = new S3({
   endpoint: 'http://localhost:4572',
 });
 
+const S3_CLIENT_PROVIDER = {
+  provide: S3_CLIENT,
+  useValue: s3Client,
+};
+
 @Module({
-  providers: [
-    S3StorageService,
-    {
-      provide: S3_CLIENT,
-      useValue: s3Client,
-    },
-  ],
-  exports: [
-    S3StorageService,
-    {
-      provide: S3_CLIENT,
-      useValue: s3Client,
-    },
-  ],
+  providers: [S3StorageService, S3_CLIENT_PROVIDER],
+  exports: [S3StorageService, S3_CLIENT_PROVIDER],
 })
 export class S3StorageModule {}

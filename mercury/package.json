@@ -96,7 +96,9 @@
       "@libs/mammon/(.*)": "<rootDir>/libs/mammon/src/$1",
       "@libs/mammon": "<rootDir>/libs/mammon/src",
       "@utils/s3-storage/(.*)": "<rootDir>/libs/s3-storage/src/$1",
-      "@utils/s3-storage": "<rootDir>/libs/s3-storage/src"
+      "@utils/s3-storage": "<rootDir>/libs/s3-storage/src",
+      "@utils/redis-connection/(.*)": "<rootDir>/libs/redis-connection/src/$1",
+      "@utils/redis-connection": "<rootDir>/libs/redis-connection/src"
     }
   }
 }
