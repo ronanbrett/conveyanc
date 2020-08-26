@@ -46,6 +46,24 @@
       "compilerOptions": {
         "tsConfigPath": "libs/redis-connection/tsconfig.lib.json"
       }
+    },
+    "caching": {
+      "type": "library",
+      "root": "libs/caching",
+      "entryFile": "index",
+      "sourceRoot": "libs/caching/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/caching/tsconfig.lib.json"
+      }
+    },
+    "base-models": {
+      "type": "library",
+      "root": "libs/base-models",
+      "entryFile": "index",
+      "sourceRoot": "libs/base-models/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/base-models/tsconfig.lib.json"
+      }
     }
   }
 }

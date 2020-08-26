@@ -1,0 +1,54 @@
+input PropertyInputArgs {
+  _id: ID
+  createdBy: String
+  createdDate: DateTime
+
+  """
+  Rich text JSON of the Property description
+  """
+  description: JSONObject
+  lastUpdatedBy: String
+
+  lastUpdatedDate: DateTime
+  type: PropertyType!
+
+  dimensions: DimensionsInput
+}
+
+type PropertyOutput {
+  _id: ID!
+
+  address: AddressOutput!
+  createdBy: String
+  createdDate: DateTime
+
+  """
+  Rich text JSON of the Property description
+  """
+  description: JSONObject
+  dimensions: Dimensions
+  facilities: PropertyFacility
+  lastUpdatedBy: String
+  lastUpdatedDate: DateTime
+  qualifications: PropertyQualification
+  """
+  Type of Property
+  """
+  type: PropertyType!
+}
+
+enum PropertyType {
+  APPARTMENT
+  COOPERATIVE
+  HOUSE
+  MOBILE
+  SITE
+}
+
+type Query {
+  property(id: Int!): PropertyOutput!
+}
+
+type Mutation {
+  createProperty(property: PropertyInputArgs): PropertyOutput
+}

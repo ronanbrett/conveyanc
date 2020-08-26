@@ -1,7 +1,8 @@
 import { Injectable, Global } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { UserModel } from '@utils/base-models';
 import { Model } from 'mongoose';
-import { User, UserI } from './identification.model';
+import { User } from './identification.model';
 
 @Global()
 @Injectable()
@@ -12,7 +13,7 @@ export class IdentificationService {
     return await this.model.findOne({ username });
   }
 
-  async save(user?: UserI): Promise<User> {
+  async save(user?: UserModel): Promise<User> {
     const userToUpdate = await this.model.findOne({ username: user.username });
 
     if (!userToUpdate) {

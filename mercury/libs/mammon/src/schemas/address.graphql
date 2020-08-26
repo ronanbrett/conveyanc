@@ -1,0 +1,17 @@
+type AddressComponentOutput {
+  types: [String!]!
+}
+
+type AddressOutput {
+  addressComponents: AddressComponentOutput!
+
+  """
+  Readable string of the address
+  """
+  formattedAddress: String!
+
+  """
+  Id of the address
+  """
+  id: ID!
+}

@@ -1,0 +1,26 @@
+enum Facility {
+  ALARM
+  HEATING
+  INTERNET
+  TV
+  WHEELCHAIR_ACCESS
+}
+
+enum FacilitySubtype {
+  GAS_FIRED_HEATING_SYSTEM
+  INTERNET_CABLE_WIRED
+  INTERNET_FIBRE_WIRED
+  INTERNET_SAT_WIRED
+  OIL_FIRED_HEATING_SYSTEM
+  TV_CABLE_WIRED
+  TV_SAT_WIRED
+}
+
+type PropertyFacility {
+  """
+  Rich text JSON of the Property Qualification
+  """
+  description: JSONObject
+  subType: FacilitySubtype!
+  type: Facility!
+}

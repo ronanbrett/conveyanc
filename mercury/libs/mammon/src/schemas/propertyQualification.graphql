@@ -1,0 +1,13 @@
+type PropertyQualification {
+  """
+  Rich text JSON of the Property Qualification
+  """
+  description: JSONObject
+  type: PropertyQualificationType!
+  value: String!
+}
+
+enum PropertyQualificationType {
+  BER_RATING_IE
+  TAX_DESIGNATION_IE
+}

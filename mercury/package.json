@@ -29,12 +29,16 @@
     "@nestjs/mongoose": "^7.0.2",
     "@nestjs/platform-express": "^7.0.0",
     "@simplewebauthn/server": "^0.8.2",
+    "@type-cacheable/core": "^8.0.3",
+    "@type-cacheable/ioredis-adapter": "^8.0.3",
     "apollo-server-express": "^2.16.1",
+    "cache-manager": "^3.3.0",
     "config": "^3.3.1",
     "connect-redis": "^5.0.0",
     "express-session": "^1.17.1",
     "graphql": "^15.3.0",
     "graphql-tools": "^6.0.18",
+    "graphql-type-json": "^0.3.2",
     "graphql-upload": "^11.0.0",
     "ioredis": "^4.17.3",
     "mongoose": "^5.9.28",
@@ -98,7 +102,11 @@
       "@utils/s3-storage/(.*)": "<rootDir>/libs/s3-storage/src/$1",
       "@utils/s3-storage": "<rootDir>/libs/s3-storage/src",
       "@utils/redis-connection/(.*)": "<rootDir>/libs/redis-connection/src/$1",
-      "@utils/redis-connection": "<rootDir>/libs/redis-connection/src"
+      "@utils/redis-connection": "<rootDir>/libs/redis-connection/src",
+      "@utils/caching/(.*)": "<rootDir>/libs/caching/src/$1",
+      "@utils/caching": "<rootDir>/libs/caching/src",
+      "@utils/base-models/(.*)": "<rootDir>/libs/base-models/src/$1",
+      "@utils/base-models": "<rootDir>/libs/base-models/src"
     }
   }
 }

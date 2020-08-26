@@ -12,24 +12,17 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
-      "@libs/mammon": [
-        "libs/mammon/src"
-      ],
-      "@libs/mammon/*": [
-        "libs/mammon/src/*"
-      ],
-      "@utils/s3-storage": [
-        "libs/s3-storage/src"
-      ],
-      "@utils/s3-storage/*": [
-        "libs/s3-storage/src/*"
-      ],
-      "@utils/redis-connection": [
-        "libs/redis-connection/src"
-      ],
-      "@utils/redis-connection/*": [
-        "libs/redis-connection/src/*"
-      ]
+      "@schemas/*": ["schemas/*"],
+      "@libs/mammon": ["libs/mammon/src"],
+      "@libs/mammon/*": ["libs/mammon/src/*"],
+      "@utils/s3-storage": ["libs/s3-storage/src"],
+      "@utils/s3-storage/*": ["libs/s3-storage/src/*"],
+      "@utils/redis-connection": ["libs/redis-connection/src"],
+      "@utils/redis-connection/*": ["libs/redis-connection/src/*"],
+      "@utils/caching": ["libs/caching/src"],
+      "@utils/caching/*": ["libs/caching/src/*"],
+      "@utils/base-models": ["libs/base-models/src"],
+      "@utils/base-models/*": ["libs/base-models/src/*"]
     }
   }
 }

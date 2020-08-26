@@ -1,0 +1,18 @@
+input DimensionsInput {
+  height: Float!
+  length: Float!
+  type: DimensionType!
+  width: Float!
+}
+
+type Dimensions {
+  height: Float!
+  length: Float!
+  type: DimensionType!
+  width: Float!
+}
+
+enum DimensionType {
+  IMPERIAL
+  METRIC
+}
