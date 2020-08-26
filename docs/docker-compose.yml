@@ -6,8 +6,8 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - $PWD/redis/data:/var/lib/redis
-      - $PWD/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - $PWD/../redis/data:/var/lib/redis
+      - $PWD/../redis/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
       - REDIS_REPLICATION_MODE=master
   mongo:
@@ -18,7 +18,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=mongoadmin
       - MONGO_INITDB_ROOT_PASSWORD=INSECURE
     volumes:
-      - $PWD/mongo/data:/data/db
+      - $PWD/../mongo/data:/data/db
   mongo-express:
     image: mongo-express
     depends_on:
