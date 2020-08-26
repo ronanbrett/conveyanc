@@ -18,7 +18,7 @@ input PropertyInputArgs {
 type PropertyOutput {
   _id: ID!
 
-  address: AddressOutput!
+  address: AddressOutput
   createdBy: String
   createdDate: DateTime
 
@@ -27,10 +27,10 @@ type PropertyOutput {
   """
   description: JSONObject
   dimensions: Dimensions
-  facilities: PropertyFacility
+  facilities: [PropertyFacility]
   lastUpdatedBy: String
   lastUpdatedDate: DateTime
-  qualifications: PropertyQualification
+  qualifications: [PropertyQualification]
   """
   Type of Property
   """
@@ -46,7 +46,8 @@ enum PropertyType {
 }
 
 type Query {
-  property(id: Int!): PropertyOutput!
+  property(id: ID!): PropertyOutput!
+  properties: [PropertyOutput]
 }
 
 type Mutation {

@@ -15,6 +15,8 @@ async function bootstrap() {
 
   await app.listen(6001);
 
+  console.log('loaded!');
+
   setupGraphQLSDL(app);
 }
 

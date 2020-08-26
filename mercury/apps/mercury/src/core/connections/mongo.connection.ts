@@ -12,6 +12,11 @@ const config: MongoConfig = configGet('Mongo');
       user: config.user,
       pass: config.password,
     }),
+    MongooseModule.forRoot(`mongodb://${config.host}/property`, {
+      connectionName: 'property',
+      user: config.user,
+      pass: config.password,
+    }),
   ],
 })
 export class MongoConnectionModule {}

@@ -42,14 +42,14 @@ export enum PropertyQualificationType {
     TAX_DESIGNATION_IE = "TAX_DESIGNATION_IE"
 }
 
-export interface DimensionsInput {
+export class DimensionsInput {
     height: number;
     length: number;
     type: DimensionType;
     width: number;
 }
 
-export interface PropertyInputArgs {
+export class PropertyInputArgs {
     _id?: string;
     createdBy?: string;
     createdDate?: DateTime;
@@ -60,52 +60,64 @@ export interface PropertyInputArgs {
     dimensions?: DimensionsInput;
 }
 
-export interface AddressComponentOutput {
+export class AddressComponentOutput {
     types: string[];
 }
 
-export interface AddressOutput {
+export class AddressOutput {
     addressComponents: AddressComponentOutput;
     formattedAddress: string;
     id: string;
 }
 
-export interface Dimensions {
+export class Dimensions {
     height: number;
     length: number;
     type: DimensionType;
     width: number;
 }
 
-export interface PropertyOutput {
+export class Listing {
+    _id?: string;
+    propertyIds?: string[];
+    description?: JSONObject;
+    createdBy?: string;
+    createdDate?: DateTime;
+    lastUpdatedBy?: string;
+    lastUpdatedDate?: DateTime;
+}
+
+export class PropertyOutput {
     _id: string;
-    address: AddressOutput;
+    address?: AddressOutput;
     createdBy?: string;
     createdDate?: DateTime;
     description?: JSONObject;
     dimensions?: Dimensions;
-    facilities?: PropertyFacility;
+    facilities?: PropertyFacility[];
     lastUpdatedBy?: string;
     lastUpdatedDate?: DateTime;
-    qualifications?: PropertyQualification;
+    qualifications?: PropertyQualification[];
     type: PropertyType;
 }
 
-export interface IQuery {
-    property(id: number): PropertyOutput | Promise<PropertyOutput>;
+export abstract class IQuery {
+    abstract property(id: string): PropertyOutput | Promise<PropertyOutput>;
+
+    abstract properties(): PropertyOutput[] | Promise<PropertyOutput[]>;
 }
 
-export interface IMutation {
-    createProperty(property?: PropertyInputArgs): PropertyOutput | Promise<PropertyOutput>;
+export abstract class IMutation {
+    abstract createProperty(property?: PropertyInputArgs): PropertyOutput | Promise<PropertyOutput>;
 }
 
-export interface PropertyFacility {
+export class PropertyFacility {
     description?: JSONObject;
     subType: FacilitySubtype;
     type: Facility;
 }
 
-export interface PropertyQualification {
+export class PropertyQualification {
     description?: JSONObject;
     type: PropertyQualificationType;
     value: string;

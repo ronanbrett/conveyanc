@@ -13,10 +13,15 @@ export class PropertyResolver {
     return this.propertyService.getOne(id);
   }
 
+  @Query()
+  async properties(): Promise<PropertyOutput[]> {
+    return this.propertyService.getAll();
+  }
+
   @Mutation()
   async createProperty(
     @Args('property') property: PropertyInputArgs,
   ): Promise<PropertyOutput> {
-    return this.propertyService.getOne('123');
+    return this.propertyService.create(property);
   }
 }

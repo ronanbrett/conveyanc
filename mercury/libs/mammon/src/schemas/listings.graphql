@@ -1,0 +1,11 @@
+type Listing {
+  _id: ID
+
+  propertyIds: [String]
+  description: JSONObject
+
+  createdBy: String
+  createdDate: DateTime
+  lastUpdatedBy: String
+  lastUpdatedDate: DateTime
+}

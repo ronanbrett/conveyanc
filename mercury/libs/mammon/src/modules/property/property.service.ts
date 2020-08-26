@@ -6,6 +6,9 @@ import {
   PropertyType,
   PropertyInputArgs,
 } from '@schemas/graphql';
+import { InjectModel } from '@nestjs/mongoose';
+import { PropertyDocument } from './property.model';
+import { Model } from 'mongoose';
 
 const MOCK_DATA: any = {
   _id: 'test',
@@ -22,13 +25,27 @@ const MOCK_DATA: any = {
 
 @Injectable()
 export class PropertyService {
-  constructor(@Inject(S3_CLIENT) private s3Client: S3) {}
+  constructor(
+    @InjectModel(PropertyDocument.name)
+    private propertyModel: Model<PropertyDocument>,
+    @Inject(S3_CLIENT) private s3Client: S3,
+  ) {}
 
-  async create(property: PropertyInputArgs): Promise<PropertyOutput> {
-    return property as PropertyOutput;
+  async create({
+    type,
+    description,
+  }: PropertyInputArgs): Promise<PropertyOutput> {
+    const prop = await this.propertyModel.create({ type, description });
+    return prop as PropertyOutput;
   }
 
   async getOne(id: string): Promise<PropertyOutput> {
-    return MOCK_DATA;
+    const res = await this.propertyModel.findById(id);
+    return res;
+  }
+
+  async getAll(): Promise<PropertyOutput[]> {
+    const prop = await this.propertyModel.find();
+    return prop as PropertyOutput[];
   }
 }
