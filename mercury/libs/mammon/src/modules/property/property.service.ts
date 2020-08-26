@@ -9,9 +9,10 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { PropertyDocument } from './property.model';
 import { Model } from 'mongoose';
+import { v4 } from 'uuid';
 
 const MOCK_DATA: any = {
-  _id: 'test',
+  id: 'test',
   type: PropertyType.HOUSE,
   address: {
     formattedAddress: '123',
@@ -32,16 +33,23 @@ export class PropertyService {
   ) {}
 
   async create({
+    id,
     type,
     description,
   }: PropertyInputArgs): Promise<PropertyOutput> {
-    const prop = await this.propertyModel.create({ type, description });
+    const prop = await this.propertyModel.findOneAndUpdate(
+      { id: id },
+      { type, description, id: id ?? v4() },
+      { upsert: true, new: true },
+    );
+
+    console.log(prop);
     return prop as PropertyOutput;
   }
 
   async getOne(id: string): Promise<PropertyOutput> {
     const res = await this.propertyModel.findById(id);
-    return res;
+    return res as PropertyOutput;
   }
 
   async getAll(): Promise<PropertyOutput[]> {

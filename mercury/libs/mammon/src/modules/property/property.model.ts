@@ -11,6 +11,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class PropertyDocument extends Document implements PropertyOutput {
   @Prop()
+  id: string;
+
+  @Prop()
   address?: AddressOutput;
 
   @Prop()
