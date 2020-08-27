@@ -1,0 +1,11 @@
+@mixin type-header-l() {
+  font-size: ms(7);
+}
+
+@mixin type-header-m() {
+  font-size: ms(4);
+}
+
+@mixin type-header-s {
+  font-size: ms(1);
+}

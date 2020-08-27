@@ -1,0 +1,21 @@
+.media {
+  display: flex;
+  align-items: flex-start;
+  background: #333;
+  padding: 1rem;
+  max-width: 20rem;
+  margin: 0 0 1rem 0;
+
+  & > img {
+    flex: 0;
+    margin: 0 1rem 0 0;
+  }
+
+  & > .media__content {
+    flex: 1;
+  }
+
+  h1 {
+    margin: 0;
+  }
+}

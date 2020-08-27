@@ -45,7 +45,7 @@ module.exports = plop => {
       },
       {
         type: 'add',
-        path: `{{cwd}}/{{pascalCase name}}/{{pascalCase name}}.test.ts`,
+        path: `{{cwd}}/{{pascalCase name}}/__tests__/{{pascalCase name}}.test.ts`,
         templateFile: '.plops/Component/Component.test.ts.hbs',
       },
     ],

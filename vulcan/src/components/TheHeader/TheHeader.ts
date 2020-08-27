@@ -1,19 +1,22 @@
 import { defineComponent } from 'vue';
 
-import { register, login, health } from '@/core/auth/auth.service';
-
-const TheHeader = defineComponent({
+const Component = defineComponent({
+  props: {
+    title: String,
+    subTitle: String,
+  },
+  computed: {},
   methods: {
-    async register() {
-      await register();
-    },
-    async login() {
-      await login();
-    },
-    async healthCheck() {
-      await health();
-    },
+    // async register() {
+    //   await register();
+    // },
+    // async login() {
+    //   await login();
+    // },
+    // async healthCheck() {
+    //   await health();
+    // },
   },
 });
 
-export default TheHeader;
+export default Component;
