@@ -6,6 +6,7 @@ import { Module } from '@nestjs/common';
   imports: [
     LoggerModule.forRoot({
       pinoHttp: {
+        level: 'warn',
         prettyPrint:
           get('env') !== 'prod'
             ? {

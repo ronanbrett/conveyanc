@@ -50,7 +50,7 @@ export class DimensionsInput {
 }
 
 export class PropertyInputArgs {
-    id?: string;
+    propertyId?: string;
     createdBy?: string;
     createdDate?: DateTime;
     description?: JSONObject;
@@ -88,7 +88,8 @@ export class Listing {
 }
 
 export class PropertyOutput {
-    id: string;
+    propertyId: string;
+    _id: string;
     address?: AddressOutput;
     createdBy?: string;
     createdDate?: DateTime;

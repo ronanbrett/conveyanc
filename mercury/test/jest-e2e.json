@@ -1,9 +1,5 @@
 {
-  "moduleFileExtensions": [
-    "js",
-    "json",
-    "ts"
-  ],
+  "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
@@ -11,6 +7,7 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "moduleNameMapper": {
+    "@schemas/(.*)": ["<rootDir>/../schemas/*"],
     "@libs/mammon/(.*)": "<rootDir>/../libs/mammon/src/$1",
     "@libs/mammon": "<rootDir>/../libs/mammon/src",
     "@utils/s3-storage/(.*)": "<rootDir>/../libs/s3-storage/src/$1",
@@ -19,7 +16,7 @@
     "@utils/redis-connection": "<rootDir>/../libs/redis-connection/src",
     "@utils/caching/(.*)": "<rootDir>/../libs/caching/src/$1",
     "@utils/caching": "<rootDir>/../libs/caching/src",
-    "@utils/base-models/(.*)": "<rootDir>/../libs/base-models/src/$1",
-    "@utils/base-models": "<rootDir>/../libs/base-models/src"
+    "@utils/base/(.*)": "<rootDir>/../libs/base/src/$1",
+    "@utils/base": "<rootDir>/../libs/base/src"
   }
 }

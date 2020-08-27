@@ -1,5 +1,5 @@
 input PropertyInputArgs {
-  id: ID
+  propertyId: String
   createdBy: String
   createdDate: DateTime
 
@@ -16,7 +16,8 @@ input PropertyInputArgs {
 }
 
 type PropertyOutput {
-  id: ID!
+  propertyId: ID!
+  _id: ID!
 
   address: AddressOutput
   createdBy: String

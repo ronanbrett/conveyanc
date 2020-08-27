@@ -21,8 +21,8 @@
       "@utils/redis-connection/*": ["libs/redis-connection/src/*"],
       "@utils/caching": ["libs/caching/src"],
       "@utils/caching/*": ["libs/caching/src/*"],
-      "@utils/base-models": ["libs/base-models/src"],
-      "@utils/base-models/*": ["libs/base-models/src/*"]
+      "@utils/base": ["libs/base/src"],
+      "@utils/base/*": ["libs/base/src/*"]
     }
   }
 }

@@ -10,7 +10,7 @@ export class PropertyResolver {
   async property(
     @Args('id', { type: () => String }) id: string,
   ): Promise<PropertyOutput> {
-    return this.propertyService.getOne(id);
+    return this.propertyService.get(id);
   }
 
   @Query()
@@ -22,6 +22,6 @@ export class PropertyResolver {
   async createProperty(
     @Args('property') property: PropertyInputArgs,
   ): Promise<PropertyOutput> {
-    return this.propertyService.create(property);
+    return this.propertyService.save(property, property.propertyId);
   }
 }

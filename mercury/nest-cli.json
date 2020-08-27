@@ -6,9 +6,7 @@
   "compilerOptions": {
     "webpack": true,
     "tsConfigPath": "apps/mercury/tsconfig.app.json",
-    "plugins": [
-      "@nestjs/graphql/plugin"
-    ]
+    "plugins": ["@nestjs/graphql/plugin"]
   },
   "projects": {
     "mercury": {
@@ -56,13 +54,13 @@
         "tsConfigPath": "libs/caching/tsconfig.lib.json"
       }
     },
-    "base-models": {
+    "base": {
       "type": "library",
-      "root": "libs/base-models",
+      "root": "libs/base",
       "entryFile": "index",
-      "sourceRoot": "libs/base-models/src",
+      "sourceRoot": "libs/base/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/base-models/tsconfig.lib.json"
+        "tsConfigPath": "libs/base/tsconfig.lib.json"
       }
     }
   }

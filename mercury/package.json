@@ -108,8 +108,8 @@
       "@utils/redis-connection": "<rootDir>/libs/redis-connection/src",
       "@utils/caching/(.*)": "<rootDir>/libs/caching/src/$1",
       "@utils/caching": "<rootDir>/libs/caching/src",
-      "@utils/base-models/(.*)": "<rootDir>/libs/base-models/src/$1",
-      "@utils/base-models": "<rootDir>/libs/base-models/src"
+      "@utils/base/(.*)": "<rootDir>/libs/base/src/$1",
+      "@utils/base": "<rootDir>/libs/base/src"
     }
   }
 }

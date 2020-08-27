@@ -1,6 +1,6 @@
 import { Injectable, Global } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserModel } from '@utils/base-models';
+import { UserModel } from '@utils/base';
 import { Model } from 'mongoose';
 import { User } from './identification.model';
 
