@@ -1,7 +1,8 @@
 type Listing {
   _id: ID
 
-  propertyIds: [String]
+  property: [PropertyDTO]
+
   description: JSONObject
 
   createdBy: String

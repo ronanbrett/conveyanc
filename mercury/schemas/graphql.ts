@@ -79,7 +79,7 @@ export class Dimensions {
 
 export class Listing {
     _id?: string;
-    propertyIds?: string[];
+    property?: PropertyDTO[];
     description?: JSONObject;
     createdBy?: string;
     createdDate?: DateTime;
@@ -87,7 +87,7 @@ export class Listing {
     lastUpdatedDate?: DateTime;
 }
 
-export class PropertyOutput {
+export class PropertyDTO {
     propertyId: string;
     _id: string;
     address?: AddressOutput;
@@ -103,13 +103,13 @@ export class PropertyOutput {
 }
 
 export abstract class IQuery {
-    abstract property(id: string): PropertyOutput | Promise<PropertyOutput>;
+    abstract property(id: string): PropertyDTO | Promise<PropertyDTO>;
 
-    abstract properties(): PropertyOutput[] | Promise<PropertyOutput[]>;
+    abstract properties(): PropertyDTO[] | Promise<PropertyDTO[]>;
 }
 
 export abstract class IMutation {
-    abstract createProperty(property?: PropertyInputArgs): PropertyOutput | Promise<PropertyOutput>;
+    abstract createProperty(property?: PropertyInputArgs): PropertyDTO | Promise<PropertyDTO>;
 }
 
 export class PropertyFacility {

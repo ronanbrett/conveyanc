@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { REDIS_CLIENT } from '@utils/redis-connection';
 import * as redis from 'ioredis';
 import { Logger } from 'nestjs-pino';
-import { REDIS_CLIENT } from '../../../core/connections/redis.connection';
 import { IdentificationService } from '../../identification/identification.service';
 import { WebauthnService } from './webauthn.service';
 

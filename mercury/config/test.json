@@ -1,0 +1,35 @@
+{
+  "env": "test",
+  "Graphql": {
+    "debug": true,
+    "playground": true
+  },
+  "Mongo": {
+    "user": "mercury",
+    "password": "INSECURE",
+    "host": "localhost"
+  },
+  "Redis": {
+    "port": 6379,
+    "password": "INSECURE",
+    "host": "localhost",
+    "keyPrefix": "MERC:"
+  },
+  "Session": {
+    "port": 6379,
+    "secret": "INSECURE",
+    "redisSecret": "INSECURE",
+    "name": "merc-session"
+  },
+  "User": {
+    "dbConfig": {
+      "port": 4300,
+      "dbName": "users"
+    }
+  },
+  "Webauthn": {
+    "rpID": "localhost",
+    "origin": "https://localhost:5000",
+    "serviceName": "mercury"
+  }
+}

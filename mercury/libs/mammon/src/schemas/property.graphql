@@ -15,7 +15,7 @@ input PropertyInputArgs {
   dimensions: DimensionsInput
 }
 
-type PropertyOutput {
+type PropertyDTO {
   propertyId: ID!
   _id: ID!
 
@@ -47,10 +47,10 @@ enum PropertyType {
 }
 
 type Query {
-  property(id: ID!): PropertyOutput!
-  properties: [PropertyOutput]
+  property(id: ID!): PropertyDTO!
+  properties: [PropertyDTO]
 }
 
 type Mutation {
-  createProperty(property: PropertyInputArgs): PropertyOutput
+  createProperty(property: PropertyInputArgs): PropertyDTO
 }

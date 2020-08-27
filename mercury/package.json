@@ -73,6 +73,7 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-security": "^1.4.0",
     "jest": "26.0.1",
+    "mockingoose": "^2.13.2",
     "pino-pretty": "^4.1.0",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
@@ -100,6 +101,12 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
+      "@schemas/(.*)": [
+        "<rootDir>/schemas/$1"
+      ],
+      "@schemas": [
+        "<rootDir>/schemas"
+      ],
       "@libs/mammon/(.*)": "<rootDir>/libs/mammon/src/$1",
       "@libs/mammon": "<rootDir>/libs/mammon/src",
       "@utils/s3-storage/(.*)": "<rootDir>/libs/s3-storage/src/$1",

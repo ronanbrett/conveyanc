@@ -61,7 +61,9 @@ export class AuthenticationController {
   }
 
   @Post('login')
-  async verifyLogin(@Req() req: Request): Promise<{ verified: boolean }> {
+  async verifyLogin(
+    @Req() req: Request,
+  ): Promise<{ verified: boolean; user: any }> {
     const credential = req.body;
     const username = req.session.user.username;
 
@@ -75,7 +77,7 @@ export class AuthenticationController {
       req.session.user = user;
     }
 
-    return { verified };
+    return { verified, user };
   }
 
   @Get('logout')

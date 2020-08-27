@@ -3,7 +3,7 @@ import {
   AddressOutput,
   Dimensions,
   PropertyFacility,
-  PropertyOutput,
+  PropertyDTO,
   PropertyType,
 } from '@schemas/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
@@ -11,7 +11,7 @@ import { BaseModel } from '@utils/base';
 
 @Schema()
 export class PropertyDocument extends Document
-  implements PropertyOutput, BaseModel {
+  implements PropertyDTO, BaseModel {
   @Prop()
   propertyId: string;
 
