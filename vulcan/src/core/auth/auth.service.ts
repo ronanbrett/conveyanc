@@ -1,8 +1,7 @@
 /* eslint-disable */
 
-import { defineComponent, App, shallowRef, ref, inject } from 'vue';
+import { defineComponent, App, shallowRef, ref, inject, reactive } from 'vue';
 import { startAttestation, startAssertion, supportsWebauthn } from '@simplewebauthn/browser';
-import { setup } from 'vue-class-component';
 
 export const AUTH_INJECT_TOKEN = 'AUTH_SERVICE_KEY';
 
@@ -16,7 +15,9 @@ declare module 'vue' {
 export const generateAuthentication = () => {
   let isReady = ref(false);
   let isAuthenticated = ref(true);
-  let user = ref({});
+  let user = reactive({
+    username: 'Test',
+  });
 
   async function register() {
     const rg = await fetch('/api/auth/register/user?username=ronan');
@@ -80,6 +81,12 @@ export const generateAuthentication = () => {
 
   async function checkLogin() {
     const resp = await fetch('/api/health');
+    const body = await resp.json();
+
+    isAuthenticated.value = body.loggedIn;
+    if (body.user) {
+      user.username = body.user.username;
+    }
     return resp;
   }
 
@@ -89,6 +96,7 @@ export const generateAuthentication = () => {
     if (resp.status === 200) {
       isAuthenticated.value = false;
     }
+
     return resp;
   }
 
@@ -108,10 +116,7 @@ export const generateAuthentication = () => {
       app.config.globalProperties.$auth = auth;
 
       const response = await checkLogin();
-      const body = await response.json();
 
-      this.isAuthenticated.value = body.loggedIn;
-      this.user.value = body.user;
       isReady.value = true;
     },
   };

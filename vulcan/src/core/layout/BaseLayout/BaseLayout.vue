@@ -2,11 +2,29 @@
   <div :style="cssVars" id="app">
     <TheHeader title="Listings" subTitle="Renelagh" />
     <TheSideNav />
-    <section class="content"></section>
+    <section class="content">
+      <Suspense>
+        <template #default>
+          <router-view :name="viewName" v-slot="{ Component }">
+            <transition
+              name="fade"
+              mode="out-in"
+              @before-enter="flushWaiter"
+              @before-leave="setupWaiter"
+            >
+              <keep-alive>
+                <component :is="Component" />
+              </keep-alive>
+            </transition>
+          </router-view>
+        </template>
+        <template #fallback>Loading...</template>
+      </Suspense>
+    </section>
   </div>
 </template>
 
-<script src="./App.ts" lang="ts"></script>
+<script src="./BaseLayout.ts" lang="ts"></script>
 
 <!-- Add "scoped" attribute to limit SCSS to this component only -->
 <style lang="scss">
@@ -43,5 +61,6 @@
 .content {
   grid-area: content;
   background-color: white;
+  padding: var(--spacing-xl) var(--spacing-xl);
 }
 </style>

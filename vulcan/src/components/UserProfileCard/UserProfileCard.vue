@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <section v-if="isAuthenticated" class="media">
+    <section v-if="!isAuthenticated" class="media">
+      <canvas @mouseenter="triggerAnimation()" id="ripple"></canvas>
+      <button @click="login()">Login</button>
+    </section>
+
+    <section v-else class="media">
       <img src="@/assets/profile.png" alt />
       <div class="media__content">
         <h1>Hello,</h1>
@@ -8,10 +13,6 @@
 
         <button @click="logout()">Logout</button>
       </div>
-    </section>
-
-    <section v-if="!isAuthenticated" class="media">
-      <button @click="login()">Login</button>
     </section>
   </div>
 </template>
@@ -36,8 +37,12 @@ section {
     margin-bottom: var(--spacing-xxs);
   }
 
+  canvas,
   img {
+    background-color: white;
+    border-radius: 50%;
     width: 45px;
+    height: 45px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
-import App from './layout/App/App.vue';
+import App from './core/layout/BaseLayout/BaseLayout.vue';
 import './registerServiceWorker';
-import router from './router';
+import router from './core/router/index';
 
 import { generateAuthentication } from './core/auth/auth.service';
 

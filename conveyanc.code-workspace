@@ -16,5 +16,8 @@
       "path": "docs"
     }
   ],
-  "settings": {}
+  "settings": {
+    "eslint.validate": ["javascript", "html", "typescript", "vue"],
+    "eslint.workingDirectories": ["./mercury", "./vulcan"]
+  }
 }

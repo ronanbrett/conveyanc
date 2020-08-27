@@ -2,7 +2,7 @@
   <header class="theHeader">
     <h1 class="title">{{ title }}</h1>
     <div class="vertical-spacer vertical-spacer--half"></div>
-    <h2 class="subTitle">{{subTitle}}</h2>
+    <h2 class="subTitle">{{ subTitle }}</h2>
     <!-- <section class="actions">
       <button @click="register">Register</button>
       <button @click="login">Login</button>
