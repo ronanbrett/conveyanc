@@ -1,22 +1,9 @@
 <template>
   <section class="page">
     <h1>Property</h1>
-    <div class="properties">
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
-      <ProperyListCard />
+
+    <div class="properties" v-if="result && result.properties">
+      <ProperyListCard v-for="property of result.properties" :key="property.propertyId" />
     </div>
   </section>
 </template>

@@ -109,7 +109,6 @@ export const generateAuthentication = () => {
     logout,
 
     async install(app: App) {
-      console.log('installing');
       const auth = this;
       app.provide(AUTH_INJECT_TOKEN, auth);
 
