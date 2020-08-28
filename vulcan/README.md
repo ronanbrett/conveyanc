@@ -1,6 +1,6 @@
 # Vulcan
 
-# How to create a Cert
+### How to create a Cert
 
 First Install Brew
 
@@ -20,4 +20,10 @@ mkcert -install
 mkcert -key-file certs/key.pem -cert-file certs/cert.pem vulcan "*.vulcan.com" vulcan.test localhost 192.168.0.192 127.0.0.1 ::1
 ```
 
-# How to generate a component
+### How to generate a component
+
+Run in the folder you want to create a component in
+
+```
+plop
+```

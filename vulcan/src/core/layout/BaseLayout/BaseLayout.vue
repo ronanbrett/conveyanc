@@ -61,6 +61,7 @@
 .content {
   grid-area: content;
   background-color: white;
-  padding: var(--spacing-xl) var(--spacing-xl);
+  height: calc(100vh - 70px);
+  overflow: auto;
 }
 </style>
