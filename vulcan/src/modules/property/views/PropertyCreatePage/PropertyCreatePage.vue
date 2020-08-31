@@ -2,8 +2,9 @@
   <section class="page">
     <h1 class="page__title">Property Details</h1>
     <article class="input-container">
-      <PropertyCreateTypeInput v-model="type" />
-      <p>Message is: {{ type }}</p>
+      <PropertyCreateTypeInput v-model="type" v-model:group="group" />
+      <p>Type is: {{ type }}</p>
+      <p>Group is: {{ group }}</p>
     </article>
   </section>
 </template>

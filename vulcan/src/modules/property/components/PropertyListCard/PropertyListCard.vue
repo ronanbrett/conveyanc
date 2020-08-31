@@ -2,7 +2,13 @@
   <div class="card__container">
     <CardTransitionAnimation :isReady="isReady">
       <article class="card">
-        <img src="@/assets/property/property-1.jpg" alt />
+        <header class="card__header">
+          <img src="@/assets/property/property-1.jpg" alt />
+
+          <div class="card__actions">
+            <IconButton icon="favorite" />
+          </div>
+        </header>
         <div
           v-check-in-viewport="{
             callback: visibilityChanged,
@@ -24,30 +30,23 @@
 <style scoped lang="scss">
 @import './src/styles/vars';
 
-article {
-  display: flex;
-  flex-direction: column;
+.card {
   max-width: 560px;
-
-  box-shadow: 20px 20px 40px 0 rgba(216, 222, 226, 0.67),
-    -20px -20px 40px 0 rgba(255, 255, 255, 0.5);
-  border-radius: var(--border-radius);
 }
 
-.card__info {
-  margin: 0;
-  padding: var(--spacing-mx);
-  background-color: #f1f2f630;
-  display: flex;
-  flex-direction: column;
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
+.card__actions {
+  button {
+    color: white;
+    // color: var(--highlight-color);
+
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 .card__container {
-  display: flex;
   scroll-snap-align: start;
-  flex-direction: column;
 
   padding-top: var(--spacing-l);
 

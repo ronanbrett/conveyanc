@@ -5,9 +5,11 @@ const PropertyCreatePage = defineComponent({
   components: { PropertyCreateTypeInput },
   setup() {
     const type = ref(null);
+    const group = ref(null);
 
     return {
       type,
+      group,
     };
   },
 });

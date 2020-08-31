@@ -1,5 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import CardTransitionAnimation from '@/core/animations/CardTransitionAnimation/CardTransitionAnimation.vue';
+import IconButton from '@/components/IconButton/IconButton.vue';
 
 const PropertyListCard = defineComponent({
   setup: () => {
@@ -26,6 +27,7 @@ const PropertyListCard = defineComponent({
   },
   components: {
     CardTransitionAnimation,
+    IconButton,
   },
 });
 

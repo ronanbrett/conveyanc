@@ -19,7 +19,9 @@ const getDisplayOption = (props: any, propItem: string) =>
   computed(() => {
     const options = props[propItem];
     const val = props.modelValue;
-    return options.find((opt: any) => opt.value === val)?.label;
+    const label = options.find((opt: any) => opt.value === val)?.label;
+
+    return label;
   });
 
 const PropertyCreateTypeInput = defineComponent({
@@ -27,6 +29,7 @@ const PropertyCreateTypeInput = defineComponent({
     IconButton,
   },
   props: {
+    group: String,
     modelValue: String,
     options: {
       type: Array as PropType<Options[]>,
@@ -42,14 +45,17 @@ const PropertyCreateTypeInput = defineComponent({
     const isOpen = ref(false);
     const groupOpenIndex = ref(0);
     const value = useModelWrapper(props, emit);
+    const groupValue = useModelWrapper(props, emit, 'group');
     const opts = generateOptions(props, 'options', 'group');
 
     const onTrigger = () => {
       isOpen.value = !isOpen.value;
     };
 
-    const swapGroup = (index: number) => {
+    const swapGroup = (index: number, name: string) => {
       groupOpenIndex.value = groupOpenIndex.value === index ? -1 : index;
+      value.value = opts.value[name][0].value;
+      groupValue.value = name;
     };
 
     const displayValue = getDisplayOption(props, 'options');
@@ -62,6 +68,7 @@ const PropertyCreateTypeInput = defineComponent({
       groupOpenIndex,
       displayValue,
       swapGroup,
+      groupValue,
     };
   },
 });

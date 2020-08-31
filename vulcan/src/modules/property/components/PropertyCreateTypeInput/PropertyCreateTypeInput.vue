@@ -5,7 +5,9 @@
     <div class="input">
       <div class="dropdown">
         <div @click.stop="onTrigger()" class="dropdown__trigger">
-          <h1 class="dropdown__trigger-placeholder">{{ displayValue || 'Select an Option' }}</h1>
+          <h1 class="dropdown__trigger-placeholder">
+            {{ displayValue || 'Select the type of property' }}
+          </h1>
           <IconButton
             @click.stop="onTrigger()"
             class="dropdown__trigger-btn"
@@ -15,12 +17,12 @@
 
         <div v-show="isOpen" class="dropdown__options">
           <div class="dropdown__option" v-for="(groups, name, index) in opts" :key="name">
-            <header class="dropdown__option-header" @click.stop="swapGroup(index)">
+            <header class="dropdown__option-header" @click.stop="swapGroup(index, name)">
               <h1>
                 {{ name }}
               </h1>
               <IconButton
-                @click.stop="swapGroup(index)"
+                @click.stop="swapGroup(index, name)"
                 class="dropdown__trigger-btn mini"
                 icon="keyboard_arrow_down"
               />
@@ -98,6 +100,7 @@
 
     &.selected {
       font-weight: 600;
+      // color: var(--highlight-color);
     }
   }
 
