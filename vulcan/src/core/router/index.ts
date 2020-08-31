@@ -6,14 +6,26 @@ export const routerHistory = createWebHistory(process.env.BASE_URL);
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/property',
+    redirect: '/listing',
   },
   {
-    path: '/property',
-    name: 'Property',
+    path: '/listing',
+    name: 'Listings',
+    components: {
+      default: import(
+        /* webpackChunkName: "property" */ '../../modules/property/views/PropertyListPage/PropertyListPage.vue'
+      ),
+      header: import(
+        /* webpackChunkName: "property" */ '../../modules/property/views/PropertyListHeader/PropertyListHeader.vue'
+      ),
+    },
+  },
+  {
+    path: '/listing/create',
+    name: 'Create Listing',
     component: () =>
       import(
-        /* webpackChunkName: "about" */ '../../modules/property/views/PropertyListPage/PropertyListPage.vue'
+        /* webpackChunkName: "property" */ '../../modules/property/views/PropertyCreatePage/PropertyCreatePage.vue'
       ),
   },
   {
@@ -26,9 +38,7 @@ const routes: Array<RouteRecordRaw> = [
   },
 ];
 
-const router = createRouter({
+export const router = createRouter({
   history: routerHistory,
   routes,
 });
-
-export default router;

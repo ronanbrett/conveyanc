@@ -16,6 +16,18 @@
   line-height: 1;
 }
 
+@mixin type-header-xs {
+  font-family: 'Helvetica Neue';
+  font-size: ms(-2);
+  line-height: 1;
+}
+
+@mixin type-header($size: 0) {
+  font-family: 'Helvetica Neue';
+  font-size: ms($size);
+  line-height: 1;
+}
+
 @mixin type-caption {
   font-family: 'Helvetica Neue';
   font-size: ms(1);

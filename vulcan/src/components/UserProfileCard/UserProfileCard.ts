@@ -1,7 +1,6 @@
-import { defineComponent, onMounted, ref, watch } from 'vue';
-import { useAuth } from '@/core/auth/auth.service';
-import { capitalize } from '@/filters/capitalize.filter';
-import { generateParticles } from '@/core/animations/particles.animations';
+import { useAuth } from '@/core/auth/auth.plugin';
+import { capitalize } from '@/core/filters/capitalize.filter';
+import { defineComponent, onMounted } from 'vue';
 
 const UserProfileCard = defineComponent({
   setup() {

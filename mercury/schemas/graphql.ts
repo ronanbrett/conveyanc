@@ -60,6 +60,10 @@ export class PropertyInputArgs {
     dimensions?: DimensionsInput;
 }
 
+export class PageInfo {
+    endCursor?: string;
+}
+
 export class AddressComponentOutput {
     types: string[];
 }
@@ -77,8 +81,8 @@ export class Dimensions {
     width: number;
 }
 
-export class Listing {
-    _id?: string;
+export class ListingDTO {
+    _id: string;
     property?: PropertyDTO[];
     description?: JSONObject;
     createdBy?: string;
@@ -102,10 +106,24 @@ export class PropertyDTO {
     type: PropertyType;
 }
 
+export class PropertyEdge {
+    node?: PropertyDTO;
+    cursor?: string;
+}
+
+export class PropertyPaged {
+    totalCount?: number;
+    edges?: PropertyEdge[];
+    properties?: PropertyDTO[];
+    pageInfo?: PageInfo;
+}
+
 export abstract class IQuery {
     abstract property(id: string): PropertyDTO | Promise<PropertyDTO>;
 
     abstract properties(): PropertyDTO[] | Promise<PropertyDTO[]>;
+
+    abstract propertiesPaged(first?: number, after?: string): PropertyPaged | Promise<PropertyPaged>;
 }
 
 export abstract class IMutation {

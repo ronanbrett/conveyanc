@@ -1,24 +1,15 @@
 import { defineComponent } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
 
 import ProperyListCard from '../../components/PropertyListCard/PropertyListCard.vue';
+import {
+  RETRIEVE_PROPERTIES,
+  RETRIEVE_PROPERTIES_PAGED,
+} from '../../consts/property-queries.const';
 
 const PropertyListPage = defineComponent({
   setup: () => {
-    const { result } = useQuery(gql`
-      query {
-        properties {
-          _id
-          propertyId
-          type
-          description
-          address {
-            formattedAddress
-          }
-        }
-      }
-    `);
+    const { result } = useQuery(RETRIEVE_PROPERTIES_PAGED(10, null));
     return {
       result,
     };

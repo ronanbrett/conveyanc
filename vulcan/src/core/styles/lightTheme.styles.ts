@@ -6,6 +6,7 @@ const LIGHT_THEME_COLORS = {
   whiteColor: '#ffffff',
   highlightColor: '#5BF69F',
   borderColor: '#DADADA',
+  borderLightColor: '#F1F2F6',
 };
 
 export const getLightThemeCSS = () => ({
@@ -13,6 +14,7 @@ export const getLightThemeCSS = () => ({
   '--white-color': LIGHT_THEME_COLORS.whiteColor,
   '--highlight-color': LIGHT_THEME_COLORS.highlightColor,
   '--border-color': LIGHT_THEME_COLORS.borderColor,
+  '--border-light-color': LIGHT_THEME_COLORS.borderLightColor,
   ...getSpacingCSSVars(),
   ...getDefaultCSSVars(),
 });

@@ -4,4 +4,4 @@ import TheSideNav from './TheSideNav.vue';
 test('TheSideNav', () => {
   // render the component
   const wrapper = shallowMount(TheSideNav);
-})
+});

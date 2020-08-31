@@ -3,6 +3,11 @@
     <h1 class="title">{{ title }}</h1>
     <div class="vertical-spacer vertical-spacer--half"></div>
     <h2 class="subTitle">{{ subTitle }}</h2>
+
+    <router-view class="view two" name="header"></router-view>
+
+    <router-link to="/about">/About</router-link>
+    <router-link to="/">/Home</router-link>
     <!-- <section class="actions">
       <button @click="register">Register</button>
       <button @click="login">Login</button>

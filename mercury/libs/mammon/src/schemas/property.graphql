@@ -46,9 +46,22 @@ enum PropertyType {
   SITE
 }
 
+type PropertyEdge {
+  node: PropertyDTO
+  cursor: ID
+}
+
+type PropertyPaged {
+  totalCount: Int
+  edges: [PropertyEdge]
+  properties: [PropertyDTO]
+  pageInfo: PageInfo
+}
+
 type Query {
   property(id: ID!): PropertyDTO!
   properties: [PropertyDTO]
+  propertiesPaged(first: Int, after: String): PropertyPaged
 }
 
 type Mutation {

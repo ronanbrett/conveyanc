@@ -1,0 +1,5 @@
+export enum TTL_DEFAULTS {
+  SEVENDAYS = 604800,
+  ONEDAY = 86400,
+  ONEHOUR = 3600,
+}

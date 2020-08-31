@@ -26,6 +26,7 @@ export default defineComponent({
     }
 
     return {
+      route,
       cssVars,
       currentLocation,
       viewName,

@@ -1,9 +1,10 @@
 <template>
   <section class="page">
-    <h1>Property</h1>
-
-    <div class="properties" v-if="result && result.properties">
-      <ProperyListCard v-for="property of result.properties" :key="property.propertyId" />
+    <div class="properties" v-if="result && result.propertiesPaged.properties">
+      <ProperyListCard
+        v-for="property of result.propertiesPaged.properties"
+        :key="property.propertyId"
+      />
     </div>
   </section>
 </template>
@@ -19,8 +20,8 @@ h1 {
   margin-bottom: var(--spacing-m);
 }
 
-.properties {
-  height: calc(100vh - 190px);
+.page {
+  height: calc(100vh - 70px);
   overflow: auto;
   scroll-snap-type: y mandatory;
 }

@@ -1,6 +1,6 @@
 <template>
   <div :style="cssVars" id="app">
-    <TheHeader title="Listings" subTitle="Renelagh" />
+    <TheHeader :title="route.name" subTitle="Renelagh" />
     <TheSideNav />
     <section class="content">
       <Suspense>

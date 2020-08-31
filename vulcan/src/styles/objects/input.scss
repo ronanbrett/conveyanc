@@ -1,0 +1,13 @@
+.input {
+  display: flex;
+  flex-direction: row;
+  &__title {
+    display: block;
+    @include type-header-xs;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: var(--spacing-m);
+
+    margin-left: var(--spacing-s);
+  }
+}

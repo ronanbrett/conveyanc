@@ -1,2 +1,3 @@
 schema:
   - ./libs/mammon/src/**/*.graphql
+  - ./libs/base/src/schemas/**/*.graphql

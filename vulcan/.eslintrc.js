@@ -5,7 +5,6 @@ module.exports = {
   },
   extends: [
     'plugin:vue/vue3-essential',
-    '@vue/airbnb',
     '@vue/typescript/recommended',
     'prettier/vue',
     'plugin:prettier/recommended',
@@ -18,6 +17,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'import/prefer-default-export': 'off',
     'object-curly-newline': 'off',
+    'lines-between-class-members': 'off',
   },
   plugins: ['prettier'],
   overrides: [

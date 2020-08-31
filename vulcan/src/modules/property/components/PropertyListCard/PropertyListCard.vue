@@ -1,11 +1,21 @@
 <template>
-  <article class="card">
-    <img src="@/assets/property/property-1.jpg" alt />
-    <div class="card__info propery-list-card">
-      <h1>Bellingham, Mountrath Road</h1>
-      <h2>Portlaoise, Co. Laois</h2>
-    </div>
-  </article>
+  <div class="card__container">
+    <CardTransitionAnimation :isReady="isReady">
+      <article class="card">
+        <img src="@/assets/property/property-1.jpg" alt />
+        <div
+          v-check-in-viewport="{
+            callback: visibilityChanged,
+            once: true,
+          }"
+          class="card__info property-list-card"
+        >
+          <h1>Bellingham, Mountrath Road</h1>
+          <h2>Portlaoise, Co. Laois</h2>
+        </div>
+      </article>
+    </CardTransitionAnimation>
+  </div>
 </template>
 
 <script src="./PropertyListCard.ts" lang="ts"></script>
@@ -17,9 +27,11 @@
 article {
   display: flex;
   flex-direction: column;
-  margin-top: var(--spacing-l);
   max-width: 560px;
-  scroll-snap-align: start;
+
+  box-shadow: 20px 20px 40px 0 rgba(216, 222, 226, 0.67),
+    -20px -20px 40px 0 rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius);
 }
 
 .card__info {
@@ -28,9 +40,23 @@ article {
   background-color: #f1f2f630;
   display: flex;
   flex-direction: column;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
-.propery-list-card {
+.card__container {
+  display: flex;
+  scroll-snap-align: start;
+  flex-direction: column;
+
+  padding-top: var(--spacing-l);
+
+  &:last-of-type {
+    padding-bottom: var(--spacing-xl);
+  }
+}
+
+.property-list-card {
   h1 {
     @include type-caption;
     margin-bottom: var(--spacing-s);

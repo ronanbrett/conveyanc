@@ -1,5 +1,5 @@
-type Listing {
-  _id: ID
+type ListingDTO {
+  _id: ID!
 
   property: [PropertyDTO]
 
