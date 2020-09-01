@@ -10,6 +10,7 @@
           </h1>
           <IconButton
             @click.stop="onTrigger()"
+            :class="{ open: isOpen }"
             class="dropdown__trigger-btn"
             icon="keyboard_arrow_down"
           />
@@ -23,6 +24,7 @@
               </h1>
               <IconButton
                 @click.stop="swapGroup(index, name)"
+                :class="{ open: index === groupOpenIndex }"
                 class="dropdown__trigger-btn mini"
                 icon="keyboard_arrow_down"
               />
@@ -118,6 +120,11 @@
 
   &__trigger-btn {
     flex: 0 0;
+
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &.open {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>
