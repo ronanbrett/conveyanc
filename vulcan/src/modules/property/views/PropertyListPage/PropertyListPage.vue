@@ -1,10 +1,7 @@
 <template>
   <section class="page">
-    <div class="properties" v-if="result && result.propertiesPaged.properties">
-      <ProperyListCard
-        v-for="property of result.propertiesPaged.properties"
-        :key="property.propertyId"
-      />
+    <div class="properties" v-if="result && result.properties">
+      <ProperyListCard v-for="property of result.properties" :key="property.propertyId" />
     </div>
   </section>
 </template>

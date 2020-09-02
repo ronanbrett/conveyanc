@@ -1,15 +1,14 @@
-import { defineComponent } from 'vue';
-import { useQuery } from '@vue/apollo-composable';
-
+import { getQueryRXJS } from '@/core/utils/rxjs.utils';
+import { defineComponent, ref } from 'vue';
 import ProperyListCard from '../../components/PropertyListCard/PropertyListCard.vue';
-import {
-  RETRIEVE_PROPERTIES,
-  RETRIEVE_PROPERTIES_PAGED,
-} from '../../consts/property-queries.const';
+import { RETRIEVE_PROPERTIES_PAGED } from '../../consts/property-queries.const';
 
 const PropertyListPage = defineComponent({
-  setup: () => {
-    const { result } = useQuery(RETRIEVE_PROPERTIES_PAGED(10, null));
+  setup: async () => {
+    const result = ref(null);
+    getQueryRXJS(RETRIEVE_PROPERTIES_PAGED(10, null)).subscribe(({ propertiesPaged }) => {
+      result.value = propertiesPaged;
+    });
     return {
       result,
     };

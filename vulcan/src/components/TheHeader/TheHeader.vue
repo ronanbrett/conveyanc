@@ -6,8 +6,8 @@
 
     <router-view class="view two" name="header"></router-view>
 
-    <router-link to="/about">/About</router-link>
-    <router-link to="/">/Home</router-link>
+    <!-- <router-link to="/about">/About</router-link>
+    <router-link to="/">/Home</router-link> -->
     <!-- <section class="actions">
       <button @click="register">Register</button>
       <button @click="login">Login</button>
@@ -28,7 +28,7 @@ header {
   background-color: var(--white-color);
   border-top-left-radius: 45px;
 
-  padding: 0 var(--spacing-xl);
+  padding: 0 var(--spacing-m) 0 var(--spacing-xl);
   display: flex;
   align-items: center;
 
@@ -43,16 +43,5 @@ h1 {
 h2 {
   @include type-header-s;
   margin: 5px var(--spacing-l) 0 var(--spacing-mx);
-}
-
-.actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  & > button {
-    flex: 0 0 auto;
-    margin-right: 8px;
-  }
 }
 </style>

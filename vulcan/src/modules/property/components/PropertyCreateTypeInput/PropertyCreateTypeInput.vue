@@ -1,7 +1,5 @@
 <template>
-  <div class="input__container">
-    <label class="input__title">Type</label>
-
+  <div ref="elref">
     <div class="input">
       <div class="dropdown">
         <div @click.stop="onTrigger()" class="dropdown__trigger">
@@ -18,12 +16,12 @@
 
         <div v-show="isOpen" class="dropdown__options">
           <div class="dropdown__option" v-for="(groups, name, index) in opts" :key="name">
-            <header class="dropdown__option-header" @click.stop="swapGroup(index, name)">
+            <header class="dropdown__option-header" @click.stop="swapTab(index, name)">
               <h1>
                 {{ name }}
               </h1>
               <IconButton
-                @click.stop="swapGroup(index, name)"
+                @click.stop="swapTab(index, name)"
                 :class="{ open: index === groupOpenIndex }"
                 class="dropdown__trigger-btn mini"
                 icon="keyboard_arrow_down"
@@ -34,8 +32,8 @@
                 class="dropdown__option-list-item"
                 v-for="item in groups"
                 :key="item.value"
-                :class="{ selected: item.value === value }"
-                @click="value = item.value"
+                :class="{ selected: item.value === value?.subType }"
+                @click="setValue(item.value)"
               >
                 {{ item.label }}
               </li>

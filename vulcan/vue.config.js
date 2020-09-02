@@ -2,6 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
+  pluginOptions: {
+    webpackBundleAnalyzer: {
+      openAnalyzer: false,
+    },
+  },
   devServer: {
     port: 5000,
     https: true,

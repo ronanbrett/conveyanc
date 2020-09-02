@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable no-underscore-dangle */
 import { VNode, Directive, DirectiveBinding, nextTick } from 'vue';
-import { isEqual } from 'lodash';
+import { isEqual } from 'lodash-es';
 
 interface HtmlElementWithCheck extends HTMLElement {
   _vue_visibilityState?: VisiblityChecker;

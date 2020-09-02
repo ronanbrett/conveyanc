@@ -5,6 +5,7 @@ import { getSpacingCSSVars } from '@/core/styles/spacings.styles';
 import { getLightThemeCSS } from '@/core/styles/lightTheme.styles';
 import { computed, defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useAuth } from '@/core/auth/auth.plugin';
 
 export default defineComponent({
   setup: () => {

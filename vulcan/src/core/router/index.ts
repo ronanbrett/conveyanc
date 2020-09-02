@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import About from '@/views/About.vue';
+import { isAuthenticatedGuard } from './isAuthenticated.guard';
 
 export const routerHistory = createWebHistory(process.env.BASE_URL);
 
@@ -11,21 +12,25 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/listing',
     name: 'Listings',
+    beforeEnter: isAuthenticatedGuard,
     components: {
-      default: import(
-        /* webpackChunkName: "property" */ '../../modules/property/views/PropertyListPage/PropertyListPage.vue'
-      ),
-      header: import(
-        /* webpackChunkName: "property" */ '../../modules/property/views/PropertyListHeader/PropertyListHeader.vue'
-      ),
+      default: () =>
+        import(
+          /* webpackChunkName: "propertyListing" */ '../../modules/property/views/PropertyListPage/PropertyListPage.vue'
+        ),
+      header: () =>
+        import(
+          /* webpackChunkName: "propertyListing" */ '../../modules/property/views/PropertyListHeader/PropertyListHeader.vue'
+        ),
     },
   },
   {
     path: '/listing/create',
     name: 'Create Listing',
+    beforeEnter: isAuthenticatedGuard,
     component: () =>
       import(
-        /* webpackChunkName: "property" */ '../../modules/property/views/PropertyCreatePage/PropertyCreatePage.vue'
+        /* webpackChunkName: "propertyCreation" */ '../../modules/property/views/PropertyCreatePage/PropertyCreatePage.vue'
       ),
   },
   {

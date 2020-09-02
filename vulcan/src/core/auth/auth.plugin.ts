@@ -2,8 +2,10 @@
 
 import { defineComponent, App, shallowRef, ref, inject, reactive } from 'vue';
 import { startAttestation, startAssertion, supportsWebauthn } from '@simplewebauthn/browser';
+import { BehaviorSubject } from 'rxjs';
 
 export const AUTH_INJECT_TOKEN = 'AUTH_SERVICE_KEY';
+export const isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
 declare module 'vue' {
   // 3. Declare augmentation for Vue
@@ -76,6 +78,7 @@ export const generateAuthentication = () => {
     const verificationJSON = await verificationResp.json();
 
     isAuthenticated.value = true;
+    isAuthenticated$.next(true);
     isReady.value = true;
   }
 
@@ -84,6 +87,8 @@ export const generateAuthentication = () => {
     const body = await resp.json();
 
     isAuthenticated.value = body.loggedIn;
+    isAuthenticated$.next(body.loggedIn);
+
     if (body.user) {
       user.username = body.user.username;
     }
@@ -95,6 +100,7 @@ export const generateAuthentication = () => {
 
     if (resp.status === 200) {
       isAuthenticated.value = false;
+      isAuthenticated$.next(false);
     }
 
     return resp;

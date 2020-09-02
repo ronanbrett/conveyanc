@@ -8,12 +8,6 @@ const PropertyListCard = defineComponent({
 
     const PROPERTIES_CONTAINER = document.querySelector('.content');
 
-    onMounted(() => {
-      // setTimeout(() => {
-      //   isReady.value = true;
-      // }, 500);
-    });
-
     function visibilityChanged(isVisible: boolean) {
       isReady.value = isVisible;
     }

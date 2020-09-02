@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { defineComponent, onMounted, ref, RendererElement, toRefs, watch } from 'vue';
+import {
+  defineComponent,
+  onDeactivated,
+  onMounted,
+  ref,
+  RendererElement,
+  toRefs,
+  watch,
+} from 'vue';
 import anime from 'animejs';
 
 const CardTransitionAnimation = defineComponent({

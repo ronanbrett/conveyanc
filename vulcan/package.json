@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "start": "vue-cli-service serve"
+    "start": "vue-cli-service serve",
+    "generate-api": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@braid/vue-formulate": "^2.4.3",
     "@simplewebauthn/browser": "^0.8.2",
     "@vue/apollo-composable": "^4.0.0-alpha.10",
     "animejs": "^3.2.0",
@@ -17,17 +19,24 @@
     "core-js": "^3.6.5",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
-    "lodash": "^4.17.20",
+    "lodash-es": "^4.17.15",
+    "mitt": "^2.1.0",
     "register-service-worker": "^1.7.1",
     "rxjs": "^6.6.2",
+    "vee-validate": "^4.0.0-alpha.10",
     "vue": "^3.0.0-rc.9",
+    "vue-composable": "^1.0.0-beta.5",
     "vue-observe-visibility": "^0.4.6",
     "vue-router": "^4.0.0-beta.7"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.17.8",
+    "@graphql-codegen/introspection": "1.17.8",
+    "@graphql-codegen/typescript": "^1.17.8",
     "@types/animejs": "^3.1.2",
     "@types/jest": "^24.0.19",
     "@types/lodash": "^4.14.160",
+    "@types/lodash-es": "^4.17.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "^4.5.4",
@@ -52,6 +61,7 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
+    "vue-cli-plugin-webpack-bundle-analyzer": "^2.0.0",
     "vue-jest": "^5.0.0-0"
   }
 }

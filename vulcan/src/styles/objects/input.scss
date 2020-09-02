@@ -1,12 +1,17 @@
-.input {
-  display: flex;
-  flex-direction: row;
+.input,
+.field {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing-m);
+  }
+
   &__title {
     display: block;
     @include type-header-xs;
     text-transform: uppercase;
     font-weight: 600;
-    margin-bottom: var(--spacing-m);
+    margin-bottom: var(--spacing-s);
 
     margin-left: var(--spacing-s);
   }
