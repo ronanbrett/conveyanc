@@ -1,6 +1,11 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PropertyService } from './property.service';
-import { PropertyDTO, PropertyInputArgs } from '@schemas/graphql';
+import {
+  PropertyDTO,
+  PropertyInputArgs,
+  PropertyInfo,
+  PropertyType,
+} from '@schemas/graphql';
 import { Pagination } from '@utils/base/interfaces/pagination.interface';
 
 @Resolver('Property')
@@ -25,6 +30,22 @@ export class PropertyResolver {
     @Args('after', { type: () => String }) after: string,
   ): Promise<Pagination<PropertyDTO>> {
     return this.propertyService.getAllPropertiesPaged({ first, after });
+  }
+
+  @Query()
+  async propertyInfo(): Promise<PropertyInfo> {
+    return {
+      propertyType: [
+        {
+          label: 'Apartment',
+          value: PropertyType.APPARTMENT,
+          group: PropertyType.APPARTMENT,
+        },
+        { label: 'Duplex', value: 'DUPLEX', group: PropertyType.APPARTMENT },
+        { label: 'House', value: 'HOUSE', group: PropertyType.HOUSE },
+        { label: 'Land', value: 'LAND', group: PropertyType.SITE },
+      ],
+    };
   }
 
   @Mutation()

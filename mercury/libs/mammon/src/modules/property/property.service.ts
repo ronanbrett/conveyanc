@@ -9,6 +9,7 @@ import { TTL_DEFAULTS } from '@utils/base/enums/TTL_DEFAULTS.enum';
 import { S3_CLIENT } from '@utils/s3-storage';
 import { Model } from 'mongoose';
 import { PropertyDocument } from './property.model';
+import { PropertyType } from '@schemas/graphql';
 
 @Injectable()
 export class PropertyService extends BaseRepository<

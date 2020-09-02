@@ -60,6 +60,13 @@ export class PropertyInputArgs {
     dimensions?: DimensionsInput;
 }
 
+export class Option {
+    label: string;
+    value: string;
+    group?: string;
+    index?: number;
+}
+
 export class PageInfo {
     endCursor?: string;
 }
@@ -118,12 +125,18 @@ export class PropertyPaged {
     pageInfo?: PageInfo;
 }
 
+export class PropertyInfo {
+    propertyType?: Option[];
+}
+
 export abstract class IQuery {
     abstract property(id: string): PropertyDTO | Promise<PropertyDTO>;
 
     abstract properties(): PropertyDTO[] | Promise<PropertyDTO[]>;
 
     abstract propertiesPaged(first?: number, after?: string): PropertyPaged | Promise<PropertyPaged>;
+
+    abstract propertyInfo(): PropertyInfo | Promise<PropertyInfo>;
 }
 
 export abstract class IMutation {

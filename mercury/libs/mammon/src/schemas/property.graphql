@@ -58,10 +58,15 @@ type PropertyPaged {
   pageInfo: PageInfo
 }
 
+type PropertyInfo {
+  propertyType: [Option]
+}
+
 type Query {
   property(id: ID!): PropertyDTO!
   properties: [PropertyDTO]
   propertiesPaged(first: Int, after: String): PropertyPaged
+  propertyInfo: PropertyInfo
 }
 
 type Mutation {

@@ -1,0 +1,6 @@
+type Option {
+  label: String!
+  value: String!
+  group: String
+  index: Int
+}
