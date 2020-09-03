@@ -1,7 +1,34 @@
 <template>
   <div ref="elref">
     <div class="input">
-      <div class="dropdown">
+      <Collapse v-slot="{ id }">
+        <CollapseItem>
+          <template #header>
+            <h1>{{ displayValue || 'Select the type of property' }}</h1>
+          </template>
+
+          <Collapse>
+            <CollapseItem v-for="(groups, name) in opts" :key="name">
+              <template #header>
+                {{ name }}
+              </template>
+              <ul class="dropdown__option-list">
+                <li
+                  class="dropdown__option-list-item"
+                  v-for="item in groups"
+                  :key="item.value"
+                  :class="{ selected: item.value === value?.subType }"
+                  @click="setValue(item.value)"
+                >
+                  {{ item.label }}
+                </li>
+              </ul>
+            </CollapseItem>
+          </Collapse>
+        </CollapseItem>
+      </Collapse>
+
+      <!-- <div class="dropdown">
         <div @click.stop="onTrigger()" class="dropdown__trigger">
           <h1 class="dropdown__trigger-placeholder">
             {{ displayValue || 'Select the type of property' }}
@@ -40,7 +67,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -50,6 +77,10 @@
 <!-- Add "scoped" attribute to limit SCSS to this component only -->
 <style scoped lang="scss">
 @import './src/styles/vars';
+
+.content {
+  padding: var(--spacing-s) var(--spacing-s) var(--spacing-s) var(--spacing-m);
+}
 
 .dropdown {
   width: 100%;

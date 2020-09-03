@@ -6,9 +6,11 @@ import { RETRIEVE_PROPERTIES_PAGED } from '../../consts/property-queries.const';
 const PropertyListPage = defineComponent({
   setup: async () => {
     const result = ref(null);
-    getQueryRXJS(RETRIEVE_PROPERTIES_PAGED(10, null)).subscribe(({ propertiesPaged }) => {
-      result.value = propertiesPaged;
-    });
+    getQueryRXJS(RETRIEVE_PROPERTIES_PAGED, { first: 10, after: null }).subscribe(
+      ({ propertiesPaged }) => {
+        result.value = propertiesPaged;
+      }
+    );
     return {
       result,
     };

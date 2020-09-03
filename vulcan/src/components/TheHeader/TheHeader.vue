@@ -20,8 +20,6 @@
 
 <!-- Add "scoped" attribute to limit SCSS to this component only -->
 <style scoped lang="scss">
-@import '@/styles/vars';
-
 header {
   width: 100%;
   height: 100%;

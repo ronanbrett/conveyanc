@@ -1,9 +1,8 @@
-.input,
 .field {
   &__container {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--spacing-m);
+    margin-bottom: var(--spacing-l);
   }
 
   &__title {

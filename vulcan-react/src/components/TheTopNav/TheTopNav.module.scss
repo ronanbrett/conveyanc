@@ -1,0 +1,28 @@
+@import "src/styles/vars";
+
+.TheTopNav {
+  grid-area: header;
+
+  header {
+    width: 100%;
+    height: 100%;
+    background-color: var(--white-color);
+    border-top-left-radius: 45px;
+
+    padding: 0 var(--spacing-m) 0 var(--spacing-xl);
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  h1 {
+    @include type-header-s;
+    margin: 5px var(--spacing-mx) 0 0;
+  }
+
+  h2 {
+    @include type-header-s;
+    margin: 5px var(--spacing-l) 0 var(--spacing-mx);
+  }
+}

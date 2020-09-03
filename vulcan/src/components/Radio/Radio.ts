@@ -1,9 +1,13 @@
 import { useModelWrapper } from '@/core/utils/forms.utils';
-import { defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
+
+let radioId = 0;
 
 const Radio = defineComponent({
   props: {
-    modelValue: Boolean,
+    modelValue: String,
+    value: String,
+    name: String,
     label: [String, Number],
     disabled: {
       type: Boolean,
@@ -13,20 +17,39 @@ const Radio = defineComponent({
 
   setup(props, { emit }) {
     const checked = ref(true);
-    const value = useModelWrapper(props, emit);
+    const focused = ref(false);
+    const val = useModelWrapper(props, emit);
 
-    // const handleChange = (e: any) => {
-    //   console.log('change!');
-    //   value.value = true;
-    //   console.log(props.modelValue);
-    // };
+    if (!props.hasOwnProperty('modelValue')) {
+      throw new Error(`Radio must include a value prop on it 
 
-    onMounted(() => {
-      checked.value = props.modelValue ?? false;
-      value.value = props.modelValue;
-    });
+      <Radio v-bind="field" v-model="test" value="testB">Radio Label</Radio>
+      `);
+    }
 
-    return { value, checked };
+    if (!props.hasOwnProperty('value')) {
+      throw new Error(`Radio must include a value prop on it 
+
+      <Radio v-bind="field" v-model="test" value="testB">Radio Label</Radio>
+      `);
+    }
+
+    const id = ref(radioId++);
+
+    const onChange = () => {
+      val.value = props.value;
+    };
+
+    const isChecked = () => {
+      return props.modelValue === props.value;
+    };
+
+    const onBlur = (evt: any) => {
+      focused.value = false;
+      emit('blur', evt);
+    };
+
+    return { id, val, checked, isChecked, focused, onChange, onBlur };
   },
 });
 

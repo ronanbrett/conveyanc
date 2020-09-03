@@ -1,0 +1,10 @@
+@import "src/styles/vars";
+
+.TheSideNav {
+  grid-area: sidenav;
+
+  padding: var(--spacing-l) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

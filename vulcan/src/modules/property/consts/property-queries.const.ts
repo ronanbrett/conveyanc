@@ -26,9 +26,9 @@ export const RETRIEVE_PROPERTIES = gql`
   }
 `;
 
-export const RETRIEVE_PROPERTIES_PAGED = (first: number, after?: string | null) => gql`
-  query {
-    propertiesPaged(first: ${first}, after: ${after}) {
+export const RETRIEVE_PROPERTIES_PAGED = gql`
+  query GET_PROPERTIES_PAGED($first: Int, $after: String) {
+    propertiesPaged(first: $first, after: $after) {
       totalCount
       properties {
         createdDate

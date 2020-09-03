@@ -14,10 +14,17 @@
     },
     {
       "path": "docs"
+    },
+    {
+      "path": "vulcan-react"
     }
   ],
   "settings": {
     "eslint.validate": ["javascript", "html", "typescript", "vue"],
     "eslint.workingDirectories": ["./mercury", "./vulcan"]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": []
   }
 }

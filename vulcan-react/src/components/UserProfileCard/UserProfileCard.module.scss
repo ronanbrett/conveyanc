@@ -1,0 +1,29 @@
+@import "src/styles/vars";
+
+.UserProfileCard {
+  width: 80%;
+  min-height: 60px;
+
+  :global {
+    section {
+      background-color: var(--white-color);
+
+      box-shadow: 20px 20px 60px 0 rgba(216, 222, 226, 0.67),
+        -20px -20px 60px 0 rgba(255, 255, 255, 0.5);
+      border-radius: var(--border-radius);
+
+      h1 {
+        color: var(--highlight-color);
+        margin-bottom: var(--spacing-xxs);
+      }
+
+      canvas,
+      img {
+        background-color: white;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+}

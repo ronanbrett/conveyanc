@@ -1,0 +1,8 @@
+.page {
+  padding: var(--spacing-xl) 0 0 var(--spacing-xl);
+
+  &__title {
+    @include type-header-m;
+    margin-bottom: var(--spacing-l);
+  }
+}

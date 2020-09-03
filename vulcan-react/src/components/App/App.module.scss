@@ -1,0 +1,26 @@
+.App {
+  color: #2c3e50;
+  background-color: #f1f2f6;
+
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+  display: grid;
+
+  grid-template:
+    "sidenav header"
+    "sidenav content";
+
+  grid-template-rows: 70px auto;
+
+  grid-template-columns: 20% auto;
+
+  :global .content {
+    grid-area: content;
+    background-color: white;
+    height: calc(100vh - 70px);
+    overflow: auto;
+  }
+}

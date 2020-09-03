@@ -1,4 +1,4 @@
-import IconButton from '@/components/IconButton/IconButton.vue';
+import { IconButton, Collapse, CollapseItem } from '@/components';
 import { useModelWrapper } from '@/core/utils/forms.utils';
 import {
   getLabelOfModelOptionSimpleValue,
@@ -17,6 +17,8 @@ import { defineComponent, PropType, ref } from 'vue';
 const PropertyCreateTypeInput = defineComponent({
   components: {
     IconButton,
+    Collapse,
+    CollapseItem,
   },
   props: {
     type: {

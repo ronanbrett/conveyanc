@@ -9,27 +9,27 @@ import { map, switchMap, take, tap } from 'rxjs/operators';
 //   protocol: 'graphql-ws',
 // }).pipe(share());
 
-const generateRequest = (query: ASTNode) =>
+const generateRequest = (query: ASTNode, variables?: unknown) =>
   fetch('https://localhost:6001/graphql', {
     method: 'POST',
-    body: JSON.stringify({ query: print(query) }),
+    body: JSON.stringify({ query: print(query), variables }),
     headers: {
       'content-type': 'application/json',
     },
   } as Partial<RequestInit>);
 
-export function getQueryRXJS(query: any) {
-  return from(generateRequest(query)).pipe(
+export function getQueryRXJS(query: any, variables?: any) {
+  return from(generateRequest(query, variables)).pipe(
     switchMap((x) => from(x.json())),
     map((x) => x.data),
     take(1)
   );
 }
 
-export function getEnumQueryRXJS(enumName: string) {
+export function getEnumQueryRXJS(name: string) {
   const query = gql`
-    query {
-      __type(name: "${enumName}") {
+    query GET_ENUM($name: String!) {
+      __type(name: $name) {
         name
         enumValues {
           name
@@ -38,7 +38,7 @@ export function getEnumQueryRXJS(enumName: string) {
     }
   `;
 
-  return from(generateRequest(query)).pipe(
+  return from(generateRequest(query, { name })).pipe(
     switchMap((x) => from(x.json())),
     map(
       (x: { data: { __type: { name: string; enumValues: { name: string }[] } } }) =>
