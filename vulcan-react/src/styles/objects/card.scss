@@ -3,7 +3,17 @@
   flex-direction: column;
 
   box-shadow: 20px 20px 40px 0 rgba(216, 222, 226, 0.67),
+    -10px -10px 40px 0 rgba(216, 222, 226, 0.4),
     -20px -20px 40px 0 rgba(255, 255, 255, 0.5);
+
+  transition: 0.35s box-shadow cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  &:hover {
+    box-shadow: 20px 20px 40px 0 rgba(216, 222, 226, 0.9),
+      -10px -10px 40px 0 rgba(216, 222, 226, 0.7),
+      -20px -20px 40px 0 rgba(255, 255, 255, 0.8);
+  }
+
   border-radius: var(--border-radius);
 
   .card__container {

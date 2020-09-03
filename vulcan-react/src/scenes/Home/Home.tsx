@@ -7,7 +7,7 @@ interface HomeProps {
 
 const Home = (props: HomeProps) => {
   return (
-    <div>
+    <div className="page">
       <h1>Home</h1>
       <Link to="/listings/create">Create Listings</Link>
       <Link to="/listings">Listings</Link>

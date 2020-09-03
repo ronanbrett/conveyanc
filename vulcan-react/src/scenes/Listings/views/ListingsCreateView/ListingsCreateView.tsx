@@ -13,10 +13,10 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
   }
 
   return (
-    <div className={styles.ListingsCreateView}>
-      <TopNavPortal>
+    <div className={`${styles.ListingsCreateView} page`}>
+      {/* <TopNavPortal>
         <Button onClick={activateLasers} label="Create" />
-      </TopNavPortal>
+      </TopNavPortal> */}
       ListingsCreateView
     </div>
   );

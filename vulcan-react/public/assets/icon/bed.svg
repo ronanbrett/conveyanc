@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="16px" viewBox="0 0 32 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/bed</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.176471 0 0 0 0 0.176471 0 0 0 0 0.176471 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Pages-/-Listing-/-List" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy" transform="translate(-325.000000, -621.000000)">
+            <g id="Group-4" transform="translate(291.000000, 201.000000)">
+                <g id="Group-12" transform="translate(16.000000, 409.000000)">
+                    <g id="Group-11" transform="translate(18.000000, 8.000000)">
+                        <g id="icon/bed" transform="translate(0.000000, 3.000000)" filter="url(#filter-1)">
+                            <g id="noun_Bed_2464620" fill="#000000" fill-rule="nonzero">
+                                <rect id="Rectangle" x="19.06" y="6.05" width="5.01" height="1.67"></rect>
+                                <rect id="Rectangle" x="7.92" y="6.05" width="5.01" height="1.67"></rect>
+                                <path d="M7.37,5.77 C7.37,5.62 7.5,5.49 7.65,5.49 L13.22,5.49 C13.37,5.49 13.5,5.62 13.5,5.77 L13.5,7.72 L18.51,7.72 L18.51,5.77 C18.51,5.62 18.64,5.49 18.79,5.49 L24.36,5.49 C24.51,5.49 24.64,5.62 24.64,5.77 L24.64,7.72 L27.42,7.72 L27.42,0.48 L4.58,0.48 L4.58,7.72 L7.36,7.72 L7.36,5.77 L7.37,5.77 Z" id="Path"></path>
+                                <path d="M30.76,10.23 C30.76,9.16 29.89,8.28 28.81,8.28 L3.19,8.28 C2.12,8.28 1.24,9.15 1.24,10.23 L1.24,11.07 L30.76,11.07 L30.76,10.23 Z" id="Path"></path>
+                                <polygon id="Path" points="0.13 11.62 0.13 14.4 1.24 14.4 1.24 15.52 2.91 15.52 2.91 14.4 29.09 14.4 29.09 15.52 30.76 15.52 30.76 14.4 31.87 14.4 31.87 11.62"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

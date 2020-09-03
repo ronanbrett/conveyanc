@@ -1,6 +1,8 @@
+import { Button, TopNavPortal } from "@components";
 import { PropertyDto } from "@core/api/graphql";
 import { ListingStore } from "@scenes/Listings/Listings.store";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ListingCard } from "../../components";
 import styles from "./ListingsView.module.scss";
 
@@ -22,6 +24,11 @@ const ListingsView = (props: ListingsViewProps) => {
 
   return (
     <div className={`${styles.ListingsView} page`}>
+      <TopNavPortal>
+        <Link to="/listings/create">
+          <Button label="Create Listing" />
+        </Link>
+      </TopNavPortal>
       {listingState.data.map((listing: PropertyDto) => (
         <ListingCard key={listing._id} />
       ))}

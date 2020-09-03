@@ -30,6 +30,10 @@ const ListingCard = (props: ListingCardProps) => {
             <h1>Bellingham, Mountrath Road</h1>
             <h2>Portlaoise, Co. Laois</h2>
           </div>
+
+          {/* <div className="card__info-box">
+            <img src="assets/icon/bed.svg" />
+          </div> */}
         </article>
       </div>
     </div>
