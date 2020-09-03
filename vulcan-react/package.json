@@ -8,7 +8,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "generate-api": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -26,16 +27,21 @@
     ]
   },
   "dependencies": {
+    "@graphql-codegen/cli": "^1.17.8",
+    "@graphql-codegen/introspection": "^1.17.8",
+    "@graphql-codegen/typescript": "^1.17.9",
     "@simplewebauthn/browser": "^0.8.2",
     "animejs": "^3.2.0",
     "cra-template-typescript": "1.0.3",
     "craco": "^0.0.3",
+    "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "lodash-es": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "rxjs": "^6.6.2",
     "sass": "^1.26.10",
     "styled-components": "^5.1.1",
     "typescript": "^4.0.2"

@@ -10,4 +10,4 @@ export default {
   component: Listings,
 };
 
-export const Default = () => <Listings routes={[]}></Listings>;
+export const Default = () => <Listings></Listings>;

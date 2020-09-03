@@ -6,8 +6,10 @@ export interface AuthState {
   isLoading: boolean;
   user?: User;
 }
+
+const isLocalLoggedIn = localStorage.getItem("VL_AUTH_IS_LOGGED");
 export const initialAuthState: AuthState = {
-  isAuthenticated: false,
+  isAuthenticated: isLocalLoggedIn ? true : false,
   // In SSR mode the library will never check the session, so loading should be initialised as false
   isLoading: typeof window !== "undefined",
 };

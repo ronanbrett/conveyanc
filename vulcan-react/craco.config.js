@@ -38,6 +38,7 @@ module.exports = {
       "@core": `${path.resolve(__dirname, "src/core/")}`,
       "@components": `${path.resolve(__dirname, "src/components/")}`,
       "@scenes": `${path.resolve(__dirname, "src/scenes/")}`,
+      "@hooks": `${path.resolve(__dirname, "src/hooks/")}`,
       // Another example for using a wildcard character
       "~": `${path.resolve(__dirname, "src/")}/`,
     },
@@ -49,6 +50,7 @@ module.exports = {
         "^@core(.*)$": "<rootDir>/src/config$1",
         "^@components(.*)$": "<rootDir>/src/components$1",
         "^@scenes(.*)$": "<rootDir>/src/scenes$1",
+        "^@hooks(.*)$": "<rootDir>/src/hooks$1",
         // Another example for using a wildcard character
         "^~(.*)$": "<rootDir>/src$1",
       },

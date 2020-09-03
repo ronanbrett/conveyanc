@@ -1,21 +1,19 @@
 import { useAuth } from "@core/auth";
-import Listings from "@scenes/Listings/Listings";
 import React, { lazy } from "react";
 import { Redirect, Route, RouteProps } from "react-router-dom";
 
 export interface RouteMeta {
   title?: string;
+  subTitle?: string;
 }
 export interface AppRoutes extends RouteProps {
   path: string;
   component: any;
+  topnav?: any;
+  breadcrumb?: string;
   isProtected?: boolean;
   routes?: AppRoutes[];
   meta: RouteMeta;
-}
-
-function Sandwiches() {
-  return <h2>Sandwiches</h2>;
 }
 
 export const ROUTES: AppRoutes[] = [
@@ -24,6 +22,7 @@ export const ROUTES: AppRoutes[] = [
     meta: {
       title: "Home",
     },
+    breadcrumb: "Home",
     exact: true,
     isProtected: false,
     component: lazy(() => import("../../scenes/Home")),
@@ -33,17 +32,42 @@ export const ROUTES: AppRoutes[] = [
     meta: {
       title: "Listings",
     },
+    breadcrumb: "Listings",
     exact: false,
     isProtected: true,
-    component: Listings,
+    component: lazy(() =>
+      import(/* webpackChunkName: "Listing" */ "../../scenes/Listings")
+    ),
     routes: [
       {
         path: "/listings",
         meta: {
           title: "Listings",
+          subTitle: "Create",
+        },
+        breadcrumb: "Listings",
+
+        exact: true,
+        component: lazy(() =>
+          import(
+            /* webpackChunkName: "Listing" */ "../../scenes/Listings/views/ListingsView"
+          )
+        ),
+      },
+      {
+        path: "/listings/create",
+        breadcrumb: "Create Listing",
+
+        meta: {
+          title: "Create Listing",
+          subTitle: "Create",
         },
         exact: true,
-        component: Sandwiches,
+        component: lazy(() =>
+          import(
+            /* webpackChunkName: "Listing" */ "../../scenes/Listings/views/ListingsCreateView"
+          )
+        ),
       },
     ],
   },

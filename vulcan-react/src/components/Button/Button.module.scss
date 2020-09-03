@@ -1,0 +1,22 @@
+@import "src/styles/vars";
+
+.Button {
+  border: none;
+  background-color: var(--highlight-color);
+  padding: var(--spacing-s) var(--spacing-m);
+  border: 2px solid white;
+
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border: 2px solid var(--highlight-color);
+    background-color: white;
+  }
+}

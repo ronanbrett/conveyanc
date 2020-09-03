@@ -1,13 +1,9 @@
-import {
-  startAttestation,
-  startAssertion,
-  supportsWebauthn,
-} from "@simplewebauthn/browser";
+import { startAssertion, startAttestation } from "@simplewebauthn/browser";
 import { User } from "./auth.state";
 
 export class AuthClient {
   async register() {
-    const rg = await fetch("/api/auth/register/user?username=ronan");
+    await fetch("/api/auth/register/user?username=ronan");
 
     const resp = await fetch("/api/auth/register");
 
@@ -37,6 +33,8 @@ export class AuthClient {
     });
 
     const verificationJSON = await verificationResp.json();
+
+    return verificationJSON;
   }
 
   async login() {
@@ -60,6 +58,8 @@ export class AuthClient {
       body: JSON.stringify(asseResp),
     });
     const verificationJSON = await verificationResp.json();
+
+    return verificationJSON;
   }
 
   async checkLogin() {

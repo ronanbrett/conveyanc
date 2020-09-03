@@ -1,0 +1,8 @@
+@import "src/styles/vars";
+
+.ListingsView {
+  height: calc(100vh - 70px);
+
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+}

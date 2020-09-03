@@ -1,0 +1,41 @@
+@import "src/styles/vars";
+
+.ListingCard {
+  :global {
+    .card {
+      max-width: 560px;
+    }
+
+    .card__actions {
+      button {
+        color: white;
+        // color: var(--highlight-color);
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .card__container {
+      scroll-snap-align: start;
+
+      padding-top: var(--spacing-l);
+
+      &:last-of-type {
+        padding-bottom: var(--spacing-xl);
+      }
+    }
+
+    .property-list-card {
+      h1 {
+        @include type-caption;
+        margin-bottom: var(--spacing-s);
+      }
+
+      h2 {
+        @include type-caption-s;
+      }
+    }
+  }
+}

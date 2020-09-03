@@ -5,6 +5,7 @@
       "@core/*": ["./core/*"],
       "@components": ["./components/index"],
       "@scenes/*": ["./scenes/*"],
+      "@hooks/*": ["./hooks/*"],
       "~/*": ["src/*"]
     }
   }

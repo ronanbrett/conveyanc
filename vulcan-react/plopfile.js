@@ -14,6 +14,8 @@ const cwd = () => {
 };
 
 module.exports = (plop) => {
+  plop.addHelper("cwd", (p) => process.cwd());
+
   plop.setGenerator("globalComponent", {
     description: "Create a Global component",
     // User input prompts provided as arguments to the template
@@ -104,6 +106,11 @@ module.exports = (plop) => {
       },
       {
         type: "add",
+        path: "{{cwd}}//{{pascalCase name}}/{{pascalCase name}}.module.scss",
+        templateFile: ".plops/Component/Component.scss.hbs",
+      },
+      {
+        type: "add",
         path: "{{cwd}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx",
         templateFile: ".plops/Component/Component.stories.tsx.hbs",
       },
@@ -111,6 +118,33 @@ module.exports = (plop) => {
         type: "add",
         path: "{{cwd}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx",
         templateFile: ".plops/Component/Component.test.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "{{cwd}}/{{pascalCase name}}/index.tsx",
+        templateFile: ".plops/Component/index.tsx.hbs",
+      },
+      {
+        // Adds an index.tsx file if it does not already exist
+        type: "add",
+        path: "{{cwd}}/index.tsx",
+        templateFile: ".plops/injectable-index.tsx.hbs",
+        // If index.tsx already exists in this location, skip this action
+        skipIfExists: true,
+      },
+      {
+        // Action type 'append' injects a template into an existing file
+        type: "append",
+        path: "{{cwd}}/index.tsx",
+        // Pattern tells plop where in the file to inject the template
+        pattern: `/* PLOP_INJECT_IMPORT */`,
+        template: `import {{pascalCase name}} from './{{pascalCase name}}';`,
+      },
+      {
+        type: "append",
+        path: "{{cwd}}/index.tsx",
+        pattern: `/* PLOP_INJECT_EXPORT */`,
+        template: `\t{{pascalCase name}},`,
       },
     ],
   });

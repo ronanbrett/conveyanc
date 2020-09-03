@@ -1,14 +1,28 @@
 import React from 'react';
+import { AppRoutes, RouteWithSubRoutes } from "@core/routes/routes.config";
 
 interface {{pascalCase name}}Props {
   children?: any;
 }
 
+const {{pascalCase name}}Routes: AppRoutes[] = [
+  {
+    path: "/listings",
+    meta: {
+      title: "Listings",
+    },
+    exact: true,
+    component: ListingsView,
+  },
+];
+
 const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
   return (
-    <div>
-      {{pascalCase name}}
-    </div>
+    <Switch>
+      { {{pascalCase name}}Routes.map((route, i) => (
+        <RouteWithSubRoutes key={i} {...route} />
+      ))}
+    </Switch>
   );
 };
 
