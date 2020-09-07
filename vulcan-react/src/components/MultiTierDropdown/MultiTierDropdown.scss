@@ -1,0 +1,58 @@
+@import "src/styles/vars";
+
+.multi-dd {
+  border: 2px solid var(--border-light-color);
+  border-radius: var(--border-radius);
+
+  &__item-trigger,
+  &__trigger {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: var(--spacing-s) var(--spacing-s) var(--spacing-s) var(--spacing-m);
+    align-items: center;
+
+    cursor: pointer;
+  }
+
+  &__item-trigger-content,
+  &__trigger-content {
+    flex: 1 1 auto;
+  }
+  &__trigger-btn {
+    flex: 0 0;
+
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__option-list {
+    display: flex;
+    flex-direction: row;
+    padding: 0 var(--spacing-m) var(--spacing-m);
+  }
+
+  &__option-list-item {
+    margin-right: var(--spacing-m);
+    cursor: pointer;
+
+    &.selected {
+      font-weight: 600;
+      // color: var(--highlight-color);
+    }
+  }
+
+  &__option-content {
+    padding: 0 var(--spacing-m) var(--spacing-m) !important;
+
+    display: flex;
+    flex-direction: row;
+  }
+}

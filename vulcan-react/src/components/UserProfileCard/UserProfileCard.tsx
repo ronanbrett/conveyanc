@@ -2,12 +2,14 @@ import { useAuth } from "@core/auth";
 import React from "react";
 import styles from "./UserProfileCard.module.scss";
 import profileImg from "./profile.png";
+import { di } from "react-magnetic-di/macro";
 
 interface UserProfileCardProps {
   children?: any;
 }
 
 const UserProfileCard = (props: UserProfileCardProps) => {
+  di(useAuth);
   const { logout, login, isAuthenticated, user } = useAuth();
   return (
     <div className={styles.UserProfileCard}>

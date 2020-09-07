@@ -1,18 +1,18 @@
-import React, { FC } from "react";
+import React, { Children, FC } from "react";
 
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   onClick?: () => void;
 
   children?: any;
 }
 
-const Button: FC<ButtonProps> = ({ label, ...props }) => {
+const Button: FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <button className={styles.Button} {...props}>
-      {label}
+      {children}
     </button>
   );
 };

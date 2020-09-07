@@ -30,6 +30,7 @@
     .property-list-card {
       h1 {
         @include type-caption;
+        margin: 0;
         margin-bottom: var(--spacing-s);
       }
 

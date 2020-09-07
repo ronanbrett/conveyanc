@@ -2,13 +2,14 @@
   border: none;
   background-color: transparent;
   padding: 0;
-  margin: 0;
   border-radius: 50%;
+
+  margin: 5px;
 
   border: 2px solid transparent;
 
   &:hover,
-  &:focus {
+  &:active {
     .icon__background {
       transform: scale(0.9);
       opacity: 1;
@@ -41,7 +42,7 @@
     background-color: var(--border-light-color);
     z-index: 0;
 
-    transition: all 1300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
   i {
@@ -50,8 +51,8 @@
 
   .icon__container {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     position: relative;
 
     display: flex;
@@ -59,11 +60,6 @@
     align-items: center;
 
     transition: all 750ms cubic-bezier(0.075, 0.82, 0.165, 1);
-
-    // &:hover,
-    // &:active {
-    //   background-color: var(--border-light-color);
-    // }
   }
 
   &--mini {

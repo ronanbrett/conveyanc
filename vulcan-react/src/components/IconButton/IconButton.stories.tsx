@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import IconButton from './IconButton';
+import IconButton from "./IconButton";
 
-import { action } from '@storybook/addon-actions';
+import { action } from "@storybook/addon-actions";
 
 export default {
-  title: 'Components/IconButton',
+  title: "Components/IconButton",
   decorators: [],
   component: IconButton,
+  args: {
+    icon: "home",
+  },
 };
 
-
-export const Default = () => (
-  <IconButton></IconButton>
-);
+export const Default = (props) => <IconButton {...props}></IconButton>;

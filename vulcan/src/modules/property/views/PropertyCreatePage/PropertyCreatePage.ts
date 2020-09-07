@@ -16,7 +16,6 @@ interface PropertyCreatePageForm {
 const PropertyCreatePage = defineComponent({
   components: { PropertyCreateTypeInput, Radio, Field, Form, Button, Input, ErrorMessage },
   async beforeRouteEnter(to, from, next) {
-    console.log('this in beforeRouteEnter', this);
     next();
   },
   async setup() {

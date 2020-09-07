@@ -1,5 +1,4 @@
-import React from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { CSSProperties } from "react";
 
 const GLOBAL_FONT_SIZE = 16;
 export const DEFAULT_SPACINGS = {
@@ -34,22 +33,43 @@ const LIGHT_THEME_COLORS = {
   borderLightColor: "#F1F2F6",
 };
 
-export const GlobalStyles = createGlobalStyle`
-html {
-    --border-radius: 8px;
-    --bg-color: ${LIGHT_THEME_COLORS.bgColor};
-    --white-color: ${LIGHT_THEME_COLORS.whiteColor};
-    --highlight-color: ${LIGHT_THEME_COLORS.highlightColor};
-    --border-color: ${LIGHT_THEME_COLORS.borderColor};
-    --border-light-color: ${LIGHT_THEME_COLORS.borderLightColor};
-    ${getSpacingCSSVars()}
-}`;
+const lightTheme: { [property: string]: string } = {
+  "--border-radius": "8px",
+  "--bg-color": `${LIGHT_THEME_COLORS.bgColor}`,
+  "--white-color": `${LIGHT_THEME_COLORS.whiteColor}`,
+  "--highlight-color": `${LIGHT_THEME_COLORS.highlightColor}`,
+  "--border-color": `${LIGHT_THEME_COLORS.borderColor}`,
+  "--border-light-color": `${LIGHT_THEME_COLORS.borderLightColor}`,
+  ...getSpacingCSSVars(),
+};
+
+const darkTheme: { [property: string]: string } = {
+  "--border-radius": "8px",
+  "--bg-color": `${LIGHT_THEME_COLORS.bgColor}`,
+  "--white-color": `${LIGHT_THEME_COLORS.whiteColor}`,
+  "--highlight-color": `${LIGHT_THEME_COLORS.highlightColor}`,
+  "--border-color": `${LIGHT_THEME_COLORS.borderColor}`,
+  "--border-light-color": `${LIGHT_THEME_COLORS.borderLightColor}`,
+  ...getSpacingCSSVars(),
+};
+
+const applyTheme = (nextTheme: any) => {
+  const theme = nextTheme === "dark" ? lightTheme : darkTheme;
+  Object.keys(theme).map((key: any) => {
+    const value: any = theme[key];
+    document.documentElement.style.setProperty(key, value);
+  });
+};
 
 export const GlobalStyleProvider = ({ children }: { children: any }) => {
-  return (
-    <div>
-      <GlobalStyles />
-      {children}
-    </div>
-  );
+  const [currentTheme, setTheme] = React.useState("light");
+
+  const swapTheme = () => {
+    const nextTheme = currentTheme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    applyTheme(lightTheme);
+  };
+  applyTheme(lightTheme);
+
+  return <div>{children}</div>;
 };

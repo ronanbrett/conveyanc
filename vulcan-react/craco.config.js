@@ -3,6 +3,8 @@ const path = require("path");
 const { whenDev } = require("@craco/craco");
 
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const TerserPlugin = require("terser-webpack-plugin");
+
 const WebpackBar = require("webpackbar");
 
 module.exports = {

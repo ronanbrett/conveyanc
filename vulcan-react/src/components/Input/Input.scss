@@ -1,0 +1,14 @@
+@import "src/styles/vars";
+
+.Input {
+  padding: var(--spacing-s) var(--spacing-s);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+
+  font-size: 1em;
+
+  &:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+  }
+}

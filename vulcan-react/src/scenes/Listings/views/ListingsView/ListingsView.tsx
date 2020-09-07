@@ -26,7 +26,7 @@ const ListingsView = (props: ListingsViewProps) => {
     <div className={`${styles.ListingsView} page`}>
       <TopNavPortal>
         <Link to="/listings/create">
-          <Button label="Create Listing" />
+          <Button label="Create Listing">Create Listing</Button>
         </Link>
       </TopNavPortal>
       {listingState.data.map((listing: PropertyDto) => (

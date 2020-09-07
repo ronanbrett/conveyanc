@@ -1,16 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import Button from './Button';
+import Button from "./Button";
 
-import { action } from '@storybook/addon-actions';
+import { action } from "@storybook/addon-actions";
 
 export default {
-  title: 'Components/Button',
+  title: "Components/Button",
   decorators: [],
   component: Button,
 };
 
-
-export const Default = () => (
-  <Button></Button>
-);
+export const Default = (props) => <Button {...props}>I am a Button</Button>;
