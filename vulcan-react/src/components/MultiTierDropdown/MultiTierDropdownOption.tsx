@@ -1,32 +1,43 @@
-import { on } from "process";
-import React, { FC, useContext } from "react";
-import { MultiTierDropdownState } from "./MultiTierDropdown";
+import React, { SyntheticEvent, useEffect } from "react";
 
 interface MultiTierDropdownOptionProps {
   activeItem?: string;
+  itemIndex?: number;
   value: string;
+
+  modelValue?: string;
   children?: any;
-  onChange?: (value: string, subValue?: string) => void;
+  onItemChange?: (value: string, index?: number) => void;
 }
 
 const MultiTierDropdownOption = ({
-  onChange,
+  onItemChange,
   activeItem,
+  itemIndex,
   value,
+  modelValue,
   children,
 }: MultiTierDropdownOptionProps) => {
+  const isSelected = value === activeItem;
+
   const setValue = () => {
-    if (!onChange) {
+    if (!onItemChange) {
       return;
     }
-    onChange(value);
+    onItemChange(value, itemIndex);
   };
+
+  useEffect(() => {
+    if (modelValue === value) {
+      setValue();
+    }
+  }, [modelValue, value]);
 
   return (
     <li
-      className={`multi-dd__option-list-item  ${
-        value === activeItem ? "selected" : ""
-      } `}
+      role="option"
+      aria-selected={isSelected}
+      className={`multi-dd__option-list-item ${isSelected ? "selected" : ""} `}
       onClick={setValue}
     >
       {children}

@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropButton close by clicking outside 1`] = `
+<button
+  aria-label="Open Drop"
+  class="Button"
+  type="button"
+>
+  Dropper
+</button>
+`;
+
+exports[`DropButton close by clicking outside 2`] = `
+<div
+  id="drop-contents"
+>
+  Drop Contents
+</div>
+`;
+
+exports[`DropButton closed 1`] = `
+<button
+  aria-label="Open Drop"
+  className="Button"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  type="button"
+/>
+`;
+
+exports[`DropButton disabled 1`] = `
+<button
+  aria-label="Open Drop"
+  class="Button"
+  disabled=""
+  type="button"
+>
+  Dropper
+</button>
+`;
+
+exports[`DropButton open and close 1`] = `
+<button
+  aria-label="Open Drop"
+  class="Button"
+  type="button"
+>
+  Dropper
+</button>
+`;
+
+exports[`DropButton open and close 2`] = `
+<div
+  id="drop-contents"
+>
+  Drop Contents
+</div>
+`;
+
+exports[`DropButton opened 1`] = `
+<button
+  aria-label="Open Drop"
+  className="Button"
+  id="123"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  type="button"
+>
+  Dropper
+</button>
+`;
+
+exports[`DropButton opened ref 1`] = `
+<button
+  aria-label="Open Drop"
+  class="Button"
+  type="button"
+>
+  Dropper
+</button>
+`;
+
+exports[`DropButton opened ref 2`] = `
+<div
+  id="drop-contents"
+>
+  Drop Contents
+</div>
+`;
+
+exports[`DropButton ref function 1`] = `
+<button
+  aria-label="Open Drop"
+  class="Button"
+  type="button"
+>
+  Dropper
+</button>
+`;
+
+exports[`DropButton ref function 2`] = `
+<div
+  id="drop-contents"
+>
+  Drop Contents
+</div>
+`;
+
+exports[`DropButton should have no accessibility violations 1`] = `
+<button
+  aria-label="test"
+  class="Button"
+  type="button"
+/>
+`;

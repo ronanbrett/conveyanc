@@ -6,6 +6,8 @@
       "@components": ["./components/index"],
       "@scenes/*": ["./scenes/*"],
       "@hooks/*": ["./hooks/*"],
+      "@testutils/*": ["../testing/*"],
+      "@testutils": ["../testing/index"],
       "~/*": ["src/*"]
     }
   }

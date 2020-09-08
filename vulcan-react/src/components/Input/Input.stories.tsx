@@ -2,8 +2,6 @@ import React from "react";
 
 import Input from "./Input";
 
-import { action } from "@storybook/addon-actions";
-
 export default {
   title: "Components/Input",
   decorators: [],
@@ -11,3 +9,7 @@ export default {
 };
 
 export const Default = (props) => <Input {...props}></Input>;
+
+export const WithFormikField = (props) => {
+  return <Input {...props}></Input>;
+};

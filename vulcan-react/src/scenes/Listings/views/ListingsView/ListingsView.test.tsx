@@ -1,10 +1,14 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import ListingsView from './ListingsView';
+import React from "react";
+import { render } from "@testing-library/react";
+import ListingsView from "./ListingsView";
+import { MockRouter, createTopNavPortalMock } from "@testutils";
 
-describe('ListingsView', () => {
-   it('renders without error', () => {
-      const { asFragment } = render(<ListingsView />);
-      expect(asFragment()).toMatchSnapshot();
-   });
+createTopNavPortalMock();
+const TestViewComponent = () => <MockRouter component={ListingsView} />;
+
+describe("ListingsView", () => {
+  it("renders without error", () => {
+    const { asFragment } = render(<TestViewComponent />);
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

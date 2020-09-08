@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiTierDropdown renders without error 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="propertyType"
+  >
+    Property Type
+  </label>
+  <div
+    className="multi-dd field--valid"
+  >
+    <header
+      className="multi-dd__trigger"
+      onClick={[Function]}
+    >
+      <div
+        className="multi-dd__trigger-content"
+      >
+        Select Property Type
+      </div>
+      <button
+        className="icon-button icon-button--default mulit-dd__trigger-btn"
+        type="button"
+      >
+        <div
+          className="icon__container"
+        >
+          <i
+            className="material-icons"
+          >
+            keyboard_arrow_down
+          </i>
+          <div
+            className="icon__background"
+          />
+        </div>
+      </button>
+    </header>
+    <div
+      className="multi-dd__content hidden"
+    >
+      <div
+        className="multi-dd__item"
+      >
+        <header
+          className="multi-dd__item-trigger"
+          onClick={[Function]}
+        >
+          <h1
+            className="multi-dd__item-trigger-content"
+          >
+            test
+          </h1>
+          <button
+            className="icon-button icon-button--mini multi-dd__trigger-btn"
+            type="button"
+          >
+            <div
+              className="icon__container"
+            >
+              <i
+                className="material-icons"
+              >
+                keyboard_arrow_down
+              </i>
+              <div
+                className="icon__background"
+              />
+            </div>
+          </button>
+        </header>
+        <ul
+          className="multi-dd__option-content hidden"
+          onKeyDown={[Function]}
+          role="listbox"
+          tabIndex={-1}
+        >
+          <li
+            aria-selected={false}
+            className="multi-dd__option-list-item  "
+            onClick={[Function]}
+            role="option"
+          >
+            Test
+          </li>
+        </ul>
+      </div>
+      <div
+        className="multi-dd__item"
+      >
+        <header
+          className="multi-dd__item-trigger"
+          onClick={[Function]}
+        >
+          <h1
+            className="multi-dd__item-trigger-content"
+          >
+            test
+          </h1>
+          <button
+            className="icon-button icon-button--mini multi-dd__trigger-btn"
+            type="button"
+          >
+            <div
+              className="icon__container"
+            >
+              <i
+                className="material-icons"
+              >
+                keyboard_arrow_down
+              </i>
+              <div
+                className="icon__background"
+              />
+            </div>
+          </button>
+        </header>
+        <ul
+          className="multi-dd__option-content hidden"
+          onKeyDown={[Function]}
+          role="listbox"
+          tabIndex={-1}
+        >
+          <li
+            aria-selected={false}
+            className="multi-dd__option-list-item  "
+            onClick={[Function]}
+            role="option"
+          >
+            Test
+          </li>
+          <li
+            aria-selected={false}
+            className="multi-dd__option-list-item  "
+            onClick={[Function]}
+            role="option"
+          >
+            Test
+          </li>
+          <li
+            aria-selected={false}
+            className="multi-dd__option-list-item  "
+            onClick={[Function]}
+            role="option"
+          >
+            Test
+          </li>
+        </ul>
+      </div>
+      <div
+        className="multi-dd__item"
+      >
+        <header
+          className="multi-dd__item-trigger"
+          onClick={[Function]}
+        >
+          <h1
+            className="multi-dd__item-trigger-content"
+          >
+            test
+          </h1>
+          <button
+            className="icon-button icon-button--mini multi-dd__trigger-btn"
+            type="button"
+          >
+            <div
+              className="icon__container"
+            >
+              <i
+                className="material-icons"
+              >
+                keyboard_arrow_down
+              </i>
+              <div
+                className="icon__background"
+              />
+            </div>
+          </button>
+        </header>
+        <ul
+          className="multi-dd__option-content hidden"
+          onKeyDown={[Function]}
+          role="listbox"
+          tabIndex={-1}
+        >
+          <li
+            aria-selected={false}
+            className="multi-dd__option-list-item  "
+            onClick={[Function]}
+            role="option"
+          >
+            Test
+          </li>
+          <li
+            aria-selected={false}
+            className="multi-dd__option-list-item  "
+            onClick={[Function]}
+            role="option"
+          >
+            Test
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</form>
+`;

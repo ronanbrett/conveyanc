@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListingCreateForm renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="ListingCreateForm"
+  >
+    <form
+      action="#"
+      class="form"
+    >
+      <div
+        class="field__container"
+      >
+        <label
+          class="field__label"
+          for="propertyType"
+        >
+          Name
+        </label>
+        <div
+          class="multi-dd field--valid"
+        >
+          <header
+            class="multi-dd__trigger"
+          >
+            <div
+              class="multi-dd__trigger-content"
+            >
+              Select Property Type
+            </div>
+            <button
+              class="icon-button icon-button--default mulit-dd__trigger-btn"
+              type="button"
+            >
+              <div
+                class="icon__container"
+              >
+                <i
+                  class="material-icons"
+                >
+                  keyboard_arrow_down
+                </i>
+                <div
+                  class="icon__background"
+                />
+              </div>
+            </button>
+          </header>
+          <div
+            class="multi-dd__content hidden"
+          />
+        </div>
+      </div>
+      <div
+        class="field__container"
+      >
+        <label
+          class="field__label"
+          for="propertyType"
+        >
+          Name
+        </label>
+        <input
+          autocomplete="off"
+          class="Input Input-large field--valid"
+          id="name"
+          name="name"
+          placeholder="John"
+          type="text"
+          value=""
+        />
+      </div>
+      <button
+        type="submit"
+      >
+        Submit
+      </button>
+      <button
+        type="reset"
+      >
+        Reset
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

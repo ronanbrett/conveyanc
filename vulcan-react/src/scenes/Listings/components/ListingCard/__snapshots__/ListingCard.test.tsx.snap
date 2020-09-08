@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListingCard renders without error 1`] = `
+<DocumentFragment>
+  <div
+    class="ListingCard"
+  >
+    <div
+      class="card__container"
+    >
+      <article
+        class="card"
+      >
+        <header
+          class="card__header"
+        >
+          <img
+            alt="Logo"
+            src="property-1.jpg"
+          />
+          <div
+            class="card__actions"
+          >
+            <button
+              class="icon-button icon-button--default undefined"
+              type="button"
+            >
+              <div
+                class="icon__container"
+              >
+                <i
+                  class="material-icons"
+                >
+                  favorite
+                </i>
+                <div
+                  class="icon__background"
+                />
+              </div>
+            </button>
+          </div>
+        </header>
+        <div
+          class="card__info property-list-card"
+          v-check-in-viewport="{ callback: visibilityChanged, once: true, }"
+        >
+          <h1>
+            Bellingham, Mountrath Road
+          </h1>
+          <h2>
+            Portlaoise, Co. Laois
+          </h2>
+        </div>
+      </article>
+    </div>
+  </div>
+</DocumentFragment>
+`;

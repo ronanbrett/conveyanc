@@ -2,7 +2,10 @@
 
 .multi-dd {
   border: 2px solid var(--border-light-color);
-  border-radius: var(--border-radius);
+
+  &.field--invalid {
+    border: 2px solid var(--warn-color);
+  }
 
   &__item-trigger,
   &__trigger {
@@ -15,10 +18,29 @@
     cursor: pointer;
   }
 
+  &__item {
+    border-bottom: 1px solid var(--border-light-color);
+
+    &:first-of-type {
+      border-top: 1px solid var(--border-light-color);
+    }
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
   &__item-trigger-content,
   &__trigger-content {
     flex: 1 1 auto;
   }
+
+  &__item-trigger-content {
+    @include type-header-s;
+  }
+  &__trigger-content {
+    @include type-header-m;
+  }
+
   &__trigger-btn {
     flex: 0 0;
 
@@ -27,6 +49,7 @@
       transform: rotate(180deg);
     }
   }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -42,6 +65,7 @@
   &__option-list-item {
     margin-right: var(--spacing-m);
     cursor: pointer;
+    @include type-header-s;
 
     &.selected {
       font-weight: 600;

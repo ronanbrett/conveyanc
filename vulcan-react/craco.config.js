@@ -45,14 +45,33 @@ module.exports = {
       "~": `${path.resolve(__dirname, "src/")}/`,
     },
   },
+  overrideJestConfig: ({
+    jestConfig,
+    cracoConfig,
+    pluginOptions,
+    context: { env, paths, resolve, rootDir },
+  }) => {
+    console.log(JSON.stringify(jestConfig, null, 4));
+
+    // Always return the config object.
+    return jestConfig;
+  },
   jest: {
-    coreure: {
+    configure: {
+      globals: {
+        "ts-jest": {
+          tsConfig: "tsconfig.test.json",
+        },
+      },
+
       moduleNameMapper: {
         // Jest module mapper which will detect our absolute imports.
-        "^@core(.*)$": "<rootDir>/src/config$1",
+        "^@core(.*)$": "<rootDir>/src/core$1",
         "^@components(.*)$": "<rootDir>/src/components$1",
+        "^@testutils(.*)$": "<rootDir>/testing$1",
         "^@scenes(.*)$": "<rootDir>/src/scenes$1",
         "^@hooks(.*)$": "<rootDir>/src/hooks$1",
+        "^lodash-es$": "lodash",
         // Another example for using a wildcard character
         "^~(.*)$": "<rootDir>/src$1",
       },

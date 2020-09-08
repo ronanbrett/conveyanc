@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton renders without error 1`] = `
+<DocumentFragment>
+  <button
+    class="icon-button icon-button--default undefined"
+    type="button"
+  >
+    <div
+      class="icon__container"
+    >
+      <i
+        class="material-icons"
+      />
+      <div
+        class="icon__background"
+      />
+    </div>
+  </button>
+</DocumentFragment>
+`;

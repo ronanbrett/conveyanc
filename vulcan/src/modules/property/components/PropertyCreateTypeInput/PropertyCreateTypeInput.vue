@@ -1,7 +1,7 @@
 <template>
   <div ref="elref">
     <div class="input">
-      <Collapse v-slot="{ id }">
+      <Collapse v-slot="{}">
         <CollapseItem>
           <template #header>
             <h1>{{ displayValue || 'Select the type of property' }}</h1>

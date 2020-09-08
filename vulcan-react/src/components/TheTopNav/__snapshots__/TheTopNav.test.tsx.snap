@@ -7,17 +7,16 @@ exports[`TheTopNav renders without error 1`] = `
     data-testid="TheTopNav"
   >
     <header>
-      <h1>
-        Title
-      </h1>
       <div
-        class="vertical-spacer vertical-spacer--half"
-      />
-      <h2
-        class="subTitle"
+        class="title"
       >
-        Subtitle
-      </h2>
+        <h1>
+          Home
+        </h1>
+      </div>
+      <div
+        id="topNavPortal"
+      />
     </header>
   </div>
 </DocumentFragment>

@@ -1,0 +1,36 @@
+@import "src/styles/vars";
+
+@keyframes openDrop {
+  0% {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+}
+
+.DropContainer {
+  max-width: 100%;
+  min-width: 0px;
+  min-height: 0px;
+
+  border-radius: var(--border-radius);
+  position: fixed;
+  z-index: 20;
+  outline: none;
+  opacity: 0;
+  flex-direction: column;
+  overflow: auto;
+  display: flex;
+
+  animation: openDrop 0.1s forwards;
+  animation-delay: 0.01s;
+
+
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    display: flex;
+    align-items: stretch;
+  }
+}

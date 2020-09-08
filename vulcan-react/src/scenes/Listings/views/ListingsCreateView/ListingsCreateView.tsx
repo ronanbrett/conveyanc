@@ -27,11 +27,6 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
   }
 
   useEffect(() => {
-    // const info = async () =>
-    //   await getQueryRXJS(RETRIEVE_PROPERTY_INFO).pipe(take(1)).toPromise();
-
-    // info();
-
     const fetchData = async () => {
       const result = await getQueryRXJS(RETRIEVE_PROPERTY_INFO)
         .pipe(

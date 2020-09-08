@@ -1,12 +1,21 @@
 import {
+  Input,
   MultiTierDropdown,
   MultiTierDropdownItem,
   MultiTierDropdownOption,
 } from "@components";
 import { PropertyInfo } from "@core/api/graphql";
-import React, { FC } from "react";
-
+import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
+import { groupBy } from "lodash-es";
+import React, { FC, ReactElement } from "react";
 import styles from "./ListingCreateForm.module.scss";
+
+import { object, string } from "yup";
+
+const ListingCreateFormSchema = object().shape({
+  propertyType: string().required("You must select a type"),
+  name: string().required("You must add a name"),
+});
 
 interface ListingCreateFormProps {
   fieldData?: PropertyInfo;
@@ -17,22 +26,75 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
   fieldData,
   ...props
 }) => {
+  const propertyTypeOptions = groupBy(fieldData?.propertyType, "group");
+
+  const getPropertyTypeOptions = (items: any[]) => {
+    let content: ReactElement[] = [];
+    items.forEach((item, index) =>
+      content.push(
+        <MultiTierDropdownOption key={index} value={item.value}>
+          {item.label}
+        </MultiTierDropdownOption>
+      )
+    );
+
+    return content;
+  };
+
+  const getPropertyTypeItems = () => {
+    let content: ReactElement[] = [];
+    for (let key in propertyTypeOptions) {
+      const items: any[] = propertyTypeOptions[key];
+      content.push(
+        <MultiTierDropdownItem key={key} value={key} label={key}>
+          {getPropertyTypeOptions(items)}
+        </MultiTierDropdownItem>
+      );
+    }
+    return content;
+  };
+
+  const onSubmit = (formValues: any) => {
+    console.log(formValues);
+  };
+
   return (
     <div className={styles.ListingCreateForm}>
-      <MultiTierDropdown triggerLabel="Select Property Type">
-        <MultiTierDropdownItem value="Group2" triggerLabel="test">
-          <MultiTierDropdownOption value="TestA">Test</MultiTierDropdownOption>
-        </MultiTierDropdownItem>
-        <MultiTierDropdownItem value="Group1" triggerLabel="test">
-          <MultiTierDropdownOption value="TestB">Test</MultiTierDropdownOption>
-          <MultiTierDropdownOption value="TestC">Test</MultiTierDropdownOption>
-          <MultiTierDropdownOption value="TestD">Test</MultiTierDropdownOption>
-        </MultiTierDropdownItem>
-        <MultiTierDropdownItem value="Group3" triggerLabel="test">
-          <MultiTierDropdownOption value="TestE">Test</MultiTierDropdownOption>
-          <MultiTierDropdownOption value="TestF">Test</MultiTierDropdownOption>
-        </MultiTierDropdownItem>
-      </MultiTierDropdown>
+      <Formik
+        validationSchema={ListingCreateFormSchema}
+        onSubmit={onSubmit}
+        initialValues={{ propertyType: "DUPLEX", name: "" }}
+      >
+        <Form className="form">
+          <div className="field__container">
+            <label className="field__label" htmlFor="propertyType">
+              Name
+            </label>
+            <MultiTierDropdown
+              placeholder="Select Property Type"
+              name="propertyType"
+            >
+              {getPropertyTypeItems()}
+            </MultiTierDropdown>
+            <ErrorMessage name="propertyType">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
+          </div>
+
+          <div className="field__container">
+            <label className="field__label" htmlFor="propertyType">
+              Name
+            </label>
+
+            <Input id="name" name="name" placeholder="John" />
+
+            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
+          </div>
+
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </Form>
+      </Formik>
     </div>
   );
 };

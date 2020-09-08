@@ -1,4 +1,10 @@
 /* PLOP_INJECT_IMPORT */
+import FocusedContainer from "./FocusedContainer";
+import Drop from "./Drop";
+import DropButton from "./DropButton";
+import Keyboard from "./Keyboard";
+import InfiniteScroll from "./InfiniteScroll";
+import Select from "./Select";
 import {
   MultiTierDropdown,
   MultiTierDropdownItem,
@@ -14,6 +20,12 @@ import TheTopNav from "./TheTopNav";
 
 export {
   /* PLOP_INJECT_EXPORT */
+  FocusedContainer,
+  Drop,
+  DropButton,
+  Keyboard,
+  InfiniteScroll,
+  Select,
   MultiTierDropdown,
   MultiTierDropdownOption,
   MultiTierDropdownItem,

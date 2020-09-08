@@ -7,9 +7,6 @@
       "path": "redis"
     },
     {
-      "path": "vulcan"
-    },
-    {
       "path": "mongo"
     },
     {

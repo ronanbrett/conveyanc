@@ -34,12 +34,12 @@ header {
 }
 
 h1 {
-  @include type-header-s;
+  // @include type-header-s;
   margin: 5px var(--spacing-mx) 0 0;
 }
 
 h2 {
-  @include type-header-s;
+  // @include type-header-s;
   margin: 5px var(--spacing-l) 0 var(--spacing-mx);
 }
 </style>

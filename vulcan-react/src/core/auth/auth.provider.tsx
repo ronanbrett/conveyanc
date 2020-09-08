@@ -13,11 +13,10 @@ export const AuthProvider = (opts: AuthProviderOptions): JSX.Element => {
 
   const [client] = useState(() => new AuthClient());
   const [state, dispatch] = useReducer(reducer, initialAuthState);
-
   const [loggedIn, setLoggedIn] = useLocalStorage("VL_AUTH_IS_LOGGED");
 
   useEffect(() => {
-    (async (): Promise<void> => {
+    async function checkIsLoggedIn() {
       try {
         const { user, loggedIn } = await client.checkLogin();
 
@@ -25,10 +24,13 @@ export const AuthProvider = (opts: AuthProviderOptions): JSX.Element => {
           dispatch({ type: "INITIALISED", isAuthenticated: loggedIn, user });
         }
       } catch (error) {
+        dispatch({ type: "LOGOUT" });
         dispatch({ type: "ERROR", error: new Error(error) });
       }
-    })();
-  }, [client, loggedIn]);
+    }
+
+    checkIsLoggedIn();
+  }, [client]);
 
   const register = async () => {
     try {
@@ -53,9 +55,9 @@ export const AuthProvider = (opts: AuthProviderOptions): JSX.Element => {
     dispatch({ type: "LOGIN_POPUP_COMPLETE", isAuthenticated: loggedIn, user });
   };
 
-  const logout = (opts: any = {}): void => {
-    client.logout();
-
+  const logout = async (opts: any = {}) => {
+    await client.logout();
+    console.log("loggout");
     setLoggedIn(null);
 
     dispatch({

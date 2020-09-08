@@ -22,7 +22,8 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "testing"
   ],
   "exclude": [
     "src/**/*.stories.tsx"
