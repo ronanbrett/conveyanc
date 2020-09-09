@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import Keyboard from './Keyboard';
+import Keyboard from "./Keyboard";
 
-import { action } from '@storybook/addon-actions';
+import { action } from "@storybook/addon-actions";
 
 export default {
-  title: 'Components/Keyboard',
+  title: "Components/Keyboard",
   decorators: [],
   component: Keyboard,
-  argTypes: { onEsc: { action: 'clicked' } },
-
+  argTypes: { onEsc: { action: "clicked" } },
 };
 
-
 export const Default = (props) => (
-  <Keyboard onEsc={}>
+  <Keyboard>
     <input type="text" />
   </Keyboard>
 );

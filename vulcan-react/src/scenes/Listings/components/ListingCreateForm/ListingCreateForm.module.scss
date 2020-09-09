@@ -1,6 +1,10 @@
 @import "src/styles/vars";
 
 .ListingCreateForm {
-  width: 50%;
-  padding: 0 var(--spacing-m);
+  padding: var(--spacing-xl) var(--spacing-xl);
+  overflow-y: auto;
+  :global .title {
+    @include type-header-l;
+    margin-bottom: var(--spacing-m);
+  }
 }

@@ -1,10 +1,12 @@
 import React, { forwardRef, SyntheticEvent, useState } from "react";
-import styles from "./Button.module.scss";
+import "./Button.scss";
+import classNames from "classnames";
 
 interface ButtonProps {
   a11yTitle?: any;
-
+  buttonType?: "primary" | "outline";
   label?: string;
+  size?: "small" | "medium" | "large";
   onClick?: (event?: any) => void;
   children?: any;
   [id: string]: any;
@@ -16,6 +18,7 @@ const Button = forwardRef(
       a11yTitle,
       active,
       align = "center",
+      buttonType = "primary",
       color, // munged to avoid styled-components putting it in the DOM
       children,
       disabled,
@@ -36,7 +39,7 @@ const Button = forwardRef(
       reverse,
       secondary,
       selected,
-      size,
+      size = "medium",
       type = "button",
       as,
       ...rest
@@ -60,21 +63,25 @@ const Button = forwardRef(
       }
     };
 
-    const domTag = !as && href ? "a" : as;
-
     if ((icon || label) && children) {
       console.warn(
         "Button should not have children if icon or label is provided"
       );
     }
 
-    const wrappedClasses = `${styles.Button}  ${active ? "active" : ""} ${
-      focus ? "focused" : ""
-    } ${hover ? "hover" : ""}`.trim();
+    const wrappedClasses = classNames({
+      Button: true,
+      [`Button--${buttonType}`]: true,
+      [`Button--${size}`]: true,
+      active,
+      focus: "focused",
+      hover,
+      selected,
+    });
 
     return (
       <button
-        className={`${wrappedClasses}`}
+        className={wrappedClasses}
         onClick={onClick}
         ref={ref as any}
         aria-label={a11yTitle}

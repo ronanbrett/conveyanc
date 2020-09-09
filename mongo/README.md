@@ -33,3 +33,11 @@ db.updateUser(
   }
 )
 ```
+
+# Empty Property
+
+```
+use property
+db.propertydocuments.find()
+db.propertydocuments.remove({})
+```

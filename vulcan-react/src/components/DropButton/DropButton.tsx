@@ -37,7 +37,7 @@ const DropButton = forwardRef(
     {
       a11yTitle = "Open Drop",
       disabled,
-      dropAlign = { top: "top", left: "left" },
+      dropAlign = { top: "bottom", left: "left" },
       dropProps,
       dropContent,
       dropTarget,
@@ -50,6 +50,8 @@ const DropButton = forwardRef(
     }: DropButtonProps,
     ref
   ) => {
+
+    console.log(dropAlign);
 
     const buttonRef = useForwardedRef(ref) as MutableRefObject<any>;
     const [show, setShow] = useState<boolean>();

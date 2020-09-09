@@ -7,6 +7,8 @@ interface MultiTierDropdownOptionProps {
 
   modelValue?: string;
   children?: any;
+
+  onComplete?: () => void;
   onItemChange?: (value: string, index?: number) => void;
 }
 
@@ -15,6 +17,7 @@ const MultiTierDropdownOption = ({
   activeItem,
   itemIndex,
   value,
+  onComplete,
   modelValue,
   children,
 }: MultiTierDropdownOptionProps) => {
@@ -38,7 +41,10 @@ const MultiTierDropdownOption = ({
       role="option"
       aria-selected={isSelected}
       className={`multi-dd__option-list-item ${isSelected ? "selected" : ""} `}
-      onClick={setValue}
+      onClick={() => {
+        setValue();
+        onComplete();
+      }}
     >
       {children}
     </li>

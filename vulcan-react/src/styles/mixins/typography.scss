@@ -1,43 +1,56 @@
 @mixin type-header-l() {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms(7);
   line-height: 1.5;
 }
 
 @mixin type-header-m() {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms(4);
   line-height: 1;
 }
 
 @mixin type-header-s {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms(1);
   line-height: 1;
 }
 
 @mixin type-header-xs {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms(-2);
   line-height: 1;
 }
 
 @mixin type-header($size: 0) {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms($size);
   line-height: 1;
 }
 
+@mixin type-body {
+  font-family: "Helvetica Neue";
+  font-size: ms(0);
+  line-height: 1.5;
+}
+
 @mixin type-caption {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms(1);
   line-height: 1;
   font-weight: 600;
 }
 
 @mixin type-caption-s {
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
   font-size: ms(0);
+  line-height: 1;
+  font-weight: 400;
+}
+
+@mixin type-caption-xs {
+  font-family: "Helvetica Neue";
+  font-size: ms(-3);
   line-height: 1;
   font-weight: 400;
 }

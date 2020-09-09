@@ -213,7 +213,7 @@ const InfiniteScroll = ({
       <div
         key="above"
         style={{
-          minHeight: `${beginPage * pageHeight}px`,
+          height: `${beginPage * pageHeight}px`,
           flex: "none",
         }}
       />

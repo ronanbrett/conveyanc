@@ -1,0 +1,14 @@
+@import "src/styles/vars";
+
+.Icon {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 750ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}

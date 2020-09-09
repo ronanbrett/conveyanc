@@ -1,0 +1,84 @@
+@import "src/styles/vars";
+
+.Select {
+
+  &__select-drop {
+    display: flex;
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0px;
+    min-height: 0px;
+    flex-direction: column;
+    max-height: inherit;
+  }
+
+  &__select-options {
+    position: relative;
+    scroll-behavior: smooth;
+    overflow: auto;
+    outline: none;
+    background-color: white;;
+  }
+  
+  &__option-btn {
+    display: block;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    font: inherit;
+    text-decoration: none;
+    margin: 0px;
+    background: transparent;
+    overflow: visible;
+    text-transform: none;
+    color: inherit;
+    outline: none;
+    border: none;
+    padding: 0px;
+    text-align: inherit;
+
+  }
+
+  &__option {
+    display: flex;
+    box-sizing: border-box;
+    max-width: 100%;
+    align-items: flex-start;
+    min-width: 0px;
+    min-height: 0px;
+    flex-direction: column;
+    padding: 12px;
+    border-bottom: 1px solid black;
+  }
+
+  &__search {
+    flex: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__text-input {
+
+  }
+  &__options {
+    position: relative;
+    scroll-behavior: smooth;
+    overflow: auto;
+    outline: none;
+  }
+
+  &__option {
+  }
+
+  &__option-btn {
+    display: block;
+    width: 100%;
+  }
+
+  &__option-empty {
+    width: 100%;
+  }
+}

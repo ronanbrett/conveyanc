@@ -53,11 +53,12 @@ export class PropertyInputArgs {
     propertyId?: string;
     createdBy?: string;
     createdDate?: DateTime;
-    description?: JSONObject;
+    description?: JSON;
     lastUpdatedBy?: string;
     lastUpdatedDate?: DateTime;
     type: PropertyType;
     dimensions?: DimensionsInput;
+    location?: GeoJSONPointScalar;
 }
 
 export class Option {
@@ -91,7 +92,7 @@ export class Dimensions {
 export class ListingDTO {
     _id: string;
     property?: PropertyDTO[];
-    description?: JSONObject;
+    description?: JSON;
     createdBy?: string;
     createdDate?: DateTime;
     lastUpdatedBy?: string;
@@ -104,12 +105,13 @@ export class PropertyDTO {
     address?: AddressOutput;
     createdBy?: string;
     createdDate?: DateTime;
-    description?: JSONObject;
+    description?: JSON;
     dimensions?: Dimensions;
     facilities?: PropertyFacility[];
     lastUpdatedBy?: string;
     lastUpdatedDate?: DateTime;
     qualifications?: PropertyQualification[];
+    location?: GeoJSONPointScalar;
     type: PropertyType;
 }
 
@@ -144,16 +146,17 @@ export abstract class IMutation {
 }
 
 export class PropertyFacility {
-    description?: JSONObject;
+    description?: JSON;
     subType: FacilitySubtype;
     type: Facility;
 }
 
 export class PropertyQualification {
-    description?: JSONObject;
+    description?: JSON;
     type: PropertyQualificationType;
     value: string;
 }
 
 export type DateTime = any;
-export type JSONObject = any;
+export type JSON = any;
+export type GeoJSONPointScalar = any;

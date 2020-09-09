@@ -7,11 +7,15 @@
 
   &__label {
     display: block;
-    @include type-header-xs;
+    @include type-caption-xs;
     text-transform: uppercase;
     font-weight: 600;
-    margin-bottom: var(--spacing-s);
+    margin-bottom: var(--spacing-m);
 
-    margin-left: var(--spacing-s);
+    margin-left: var(--spacing-xs);
+  }
+
+  &__error {
+    margin-top: var(--spacing-m);
   }
 }

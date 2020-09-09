@@ -16,6 +16,7 @@ type MultiTierDropdownItemProps = {
   children?: any;
   onItemChange?: (value?: string, index?: number) => void;
   onGroupChange?: (index: number) => void;
+  onComplete?: () => void;
 };
 
 const MultiTierDropdownItem = ({
@@ -27,6 +28,7 @@ const MultiTierDropdownItem = ({
   label,
   onItemChange,
   onGroupChange,
+  onComplete,
   children,
 }: MultiTierDropdownItemProps) => {
   const [isActive, setIsActive] = useState(false);
@@ -90,6 +92,10 @@ const MultiTierDropdownItem = ({
     onItemChange(childValue, childIndex);
   };
 
+  const onChildComplete = () => {
+    onComplete();
+  };
+
   return (
     <div className="multi-dd__item">
       <header onClick={handleTriggerClick} className="multi-dd__item-trigger">
@@ -113,6 +119,7 @@ const MultiTierDropdownItem = ({
           (child, itemIndex) => {
             return React.cloneElement(child as any, {
               onItemChange: onChildItemChange,
+              onComplete: onChildComplete,
               activeItem,
               itemIndex,
               modelValue,

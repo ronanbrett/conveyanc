@@ -59,6 +59,10 @@ const MultiTierDropdown = <T extends any>({
     setActiveGroupIndex(-1);
   };
 
+  const onComplete = () => {
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     setModelValue(field.value);
 
@@ -82,6 +86,7 @@ const MultiTierDropdown = <T extends any>({
       <div className={`multi-dd__content ${isOpen ? "" : "hidden"}`}>
         {mapChildren(children, (child, index) =>
           React.cloneElement(child as any, {
+            onComplete,
             groupIndex: index,
             onGroupChange,
             onItemChange,

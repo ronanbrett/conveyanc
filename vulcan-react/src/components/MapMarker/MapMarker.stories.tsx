@@ -1,16 +1,16 @@
 import React from 'react';
 
-import Select from './Select';
+import MapMarker from './MapMarker';
 
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'Components/Select',
+  title: 'Components/MapMarker',
   decorators: [],
-  component: Select,
+  component: MapMarker,
 };
 
 
 export const Default = (props) => (
-  <Select {...props}></Select>
+  <MapMarker {...props}></MapMarker>
 );

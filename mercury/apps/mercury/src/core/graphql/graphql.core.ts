@@ -6,6 +6,9 @@ import { GraphqlConfig } from '../config/graphql.config';
 
 const config: GraphqlConfig = get('Graphql');
 
+import GraphQLJSON from 'graphql-type-json';
+import { Point } from 'graphql-geojson-scalar-types';
+
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -14,6 +17,7 @@ const config: GraphqlConfig = get('Graphql');
 
       // sortSchema: true,
       typePaths: [join(process.cwd(), './**/*.graphql')],
+      resolvers: { JSON: GraphQLJSON, Point },
       definitions: {
         path: join(process.cwd(), 'schemas/graphql.ts'),
         outputAs: 'class',

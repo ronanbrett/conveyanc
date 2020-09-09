@@ -1,4 +1,5 @@
 import { addFieldValidationClasses } from "@core/utils/field.utils";
+import TextInput from "components/TextInput";
 import {
   FieldConfig,
   FieldInputProps,
@@ -25,7 +26,7 @@ type InputTypes =
 
 type InputProps<T> = {
   type?: InputTypes;
-  autocomplete?: string;
+  autoComplete?: string;
   children?: any;
   size?: "large" | "small";
   id?: string;
@@ -34,27 +35,17 @@ type InputProps<T> = {
 };
 
 const Input = <T extends any>({
-  type,
-  autocomplete,
   size,
   ...props
 }: InputProps<T> & FieldConfig) => {
   const [field, meta, helpers] = useField(props);
 
-  return (
-    <input
-      className={`Input Input-${size} ${addFieldValidationClasses(meta)}`}
-      type={type}
-      autoComplete={autocomplete}
-      {...field}
-      {...props}
-    />
-  );
+  return <TextInput {...field} meta={meta} {...props}></TextInput>;
 };
 
 Input.defaultProps = {
   type: "text",
-  autocomplete: "off",
+  autoComplete: "off",
   size: "large",
 };
 

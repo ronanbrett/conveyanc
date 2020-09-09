@@ -9,8 +9,9 @@ export type Scalars = {
   Float: number;
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
-  /** The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSONObject: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: any;
+  GeoJSONPointScalar: any;
 };
 
 export type Option = {
@@ -64,7 +65,7 @@ export type ListingDto = {
   __typename?: 'ListingDTO';
   _id: Scalars['ID'];
   property?: Maybe<Array<Maybe<PropertyDto>>>;
-  description?: Maybe<Scalars['JSONObject']>;
+  description?: Maybe<Scalars['JSON']>;
   createdBy?: Maybe<Scalars['String']>;
   createdDate?: Maybe<Scalars['DateTime']>;
   lastUpdatedBy?: Maybe<Scalars['String']>;
@@ -76,11 +77,12 @@ export type PropertyInputArgs = {
   createdBy?: Maybe<Scalars['String']>;
   createdDate?: Maybe<Scalars['DateTime']>;
   /** Rich text JSON of the Property description */
-  description?: Maybe<Scalars['JSONObject']>;
+  description?: Maybe<Scalars['JSON']>;
   lastUpdatedBy?: Maybe<Scalars['String']>;
   lastUpdatedDate?: Maybe<Scalars['DateTime']>;
   type: PropertyType;
   dimensions?: Maybe<DimensionsInput>;
+  location?: Maybe<Scalars['GeoJSONPointScalar']>;
 };
 
 export type PropertyDto = {
@@ -91,12 +93,13 @@ export type PropertyDto = {
   createdBy?: Maybe<Scalars['String']>;
   createdDate?: Maybe<Scalars['DateTime']>;
   /** Rich text JSON of the Property description */
-  description?: Maybe<Scalars['JSONObject']>;
+  description?: Maybe<Scalars['JSON']>;
   dimensions?: Maybe<Dimensions>;
   facilities?: Maybe<Array<Maybe<PropertyFacility>>>;
   lastUpdatedBy?: Maybe<Scalars['String']>;
   lastUpdatedDate?: Maybe<Scalars['DateTime']>;
   qualifications?: Maybe<Array<Maybe<PropertyQualification>>>;
+  location?: Maybe<Scalars['GeoJSONPointScalar']>;
   /** Type of Property */
   type: PropertyType;
 };
@@ -178,7 +181,7 @@ export enum FacilitySubtype {
 export type PropertyFacility = {
   __typename?: 'PropertyFacility';
   /** Rich text JSON of the Property Qualification */
-  description?: Maybe<Scalars['JSONObject']>;
+  description?: Maybe<Scalars['JSON']>;
   subType: FacilitySubtype;
   type: Facility;
 };
@@ -186,7 +189,7 @@ export type PropertyFacility = {
 export type PropertyQualification = {
   __typename?: 'PropertyQualification';
   /** Rich text JSON of the Property Qualification */
-  description?: Maybe<Scalars['JSONObject']>;
+  description?: Maybe<Scalars['JSON']>;
   type: PropertyQualificationType;
   value: Scalars['String'];
 };
@@ -195,5 +198,6 @@ export enum PropertyQualificationType {
   BerRatingIe = 'BER_RATING_IE',
   TaxDesignationIe = 'TAX_DESIGNATION_IE'
 }
+
 
 

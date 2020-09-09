@@ -12,6 +12,16 @@ export const RETRIEVE_PROPERTY_INFO = gql`
   }
 `;
 
+export const CREATE_PROPERTY = gql`
+  mutation CreateProperty($type: PropertyType!, $description: JSON) {
+    createProperty(property: { type: $type, description: $description }) {
+      propertyId
+      type
+      description
+    }
+  }
+`;
+
 export const RETRIEVE_PROPERTIES = gql`
   query {
     properties {

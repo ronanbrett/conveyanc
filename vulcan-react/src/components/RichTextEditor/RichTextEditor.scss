@@ -1,0 +1,18 @@
+@import "src/styles/vars";
+
+.RichTextEditor {
+  h1 {
+    @include type-header-l;
+  }
+
+  p {
+    @include type-body;
+    margin-bottom: var(--spacing-m);
+  }
+
+  blockquote {
+    padding: var(--spacing-s) 0 var(--spacing-s) var(--spacing-m);
+    border-left: 5px solid var(--highlight-color);
+    margin-bottom: var(--spacing-m);
+  }
+}

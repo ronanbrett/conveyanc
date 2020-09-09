@@ -6,13 +6,14 @@ input PropertyInputArgs {
   """
   Rich text JSON of the Property description
   """
-  description: JSONObject
+  description: JSON
   lastUpdatedBy: String
 
   lastUpdatedDate: DateTime
   type: PropertyType!
 
   dimensions: DimensionsInput
+  location: Point
 }
 
 type PropertyDTO {
@@ -26,12 +27,13 @@ type PropertyDTO {
   """
   Rich text JSON of the Property description
   """
-  description: JSONObject
+  description: JSON
   dimensions: Dimensions
   facilities: [PropertyFacility]
   lastUpdatedBy: String
   lastUpdatedDate: DateTime
   qualifications: [PropertyQualification]
+  location: Point
   """
   Type of Property
   """

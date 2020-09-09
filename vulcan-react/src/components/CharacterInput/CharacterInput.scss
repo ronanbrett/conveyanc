@@ -1,0 +1,35 @@
+@import "src/styles/vars";
+
+.CharacterInput {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .TextInput--single {
+    margin-right: var(--spacing-xs);
+    margin-bottom: var(--spacing-s);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 64px;
+    padding: 0;
+    flex: 0 0 50px;
+
+    input {
+      padding: 0;
+      text-align: center;
+    }
+
+    @include mq($until: wide) {
+      width: 24px;
+      flex: 0 0 50px;
+    }
+
+    &:nth-of-type(3) {
+      margin-right: var(--spacing-l);
+    }
+  }
+}

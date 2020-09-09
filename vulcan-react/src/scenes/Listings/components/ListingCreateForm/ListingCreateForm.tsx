@@ -3,29 +3,75 @@ import {
   MultiTierDropdown,
   MultiTierDropdownItem,
   MultiTierDropdownOption,
+  RichTextEditor,
+  CharacterInputWrapper,
+  RichTextEditorWrapper,
+  TopNavPortal,
+  Button,
 } from "@components";
 import { PropertyInfo } from "@core/api/graphql";
-import { ErrorMessage, Field, FieldProps, Form, Formik } from "formik";
+import {
+  ErrorMessage,
+  Form,
+  Formik,
+  FormikState,
+  FormikContextType,
+} from "formik";
 import { groupBy } from "lodash-es";
-import React, { FC, ReactElement } from "react";
+import React, {
+  FC,
+  ReactElement,
+  useEffect,
+  useState,
+  useRef,
+  MutableRefObject,
+} from "react";
+import { object, string } from "yup";
 import styles from "./ListingCreateForm.module.scss";
 
-import { object, string } from "yup";
+import { getGeoCoding, GeocodeResult } from "services/google.service";
+import { FormikEffect } from "@core/utils";
 
 const ListingCreateFormSchema = object().shape({
   propertyType: string().required("You must select a type"),
-  name: string().required("You must add a name"),
+  eircode: string().required("You must enter an eircode").min(7),
+  address: string().required("Please enter the first line of your address"),
 });
 
+export interface ListingCreateFormValues {
+  description?: string;
+  propertyType?: string;
+  address?: string;
+  geocode?: GeocodeResult;
+  eircode?: string;
+}
+
+const initialValues = {
+  propertyType: "",
+  address: "",
+  eircode: "",
+};
+
 interface ListingCreateFormProps {
+  formRef: MutableRefObject<any>;
+  onFormSubmit: (formValue: ListingCreateFormValues) => void;
+  onGeocodeUpdate: (geocode: GeocodeResult) => void;
   fieldData?: PropertyInfo;
   children?: any;
 }
 
 const ListingCreateForm: FC<ListingCreateFormProps> = ({
+  onFormSubmit,
+  formRef,
+  onGeocodeUpdate,
   fieldData,
   ...props
 }) => {
+  const [address, setAddress] = useState<string>();
+  const [geocode, setGeocode] = useState<GeocodeResult>();
+  const [eircode, setEircode] = useState<string>();
+  const [eirCodeErrors, setEircodeErrors] = useState<string[]>();
+
   const propertyTypeOptions = groupBy(fieldData?.propertyType, "group");
 
   const getPropertyTypeOptions = (items: any[]) => {
@@ -54,45 +100,131 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
     return content;
   };
 
+  const onChange = ({
+    values,
+    errors,
+  }: FormikContextType<ListingCreateFormValues>) => {
+    console.log("throttled");
+    if (!errors.eircode && values.eircode.length === 7) {
+      setEircode(values.eircode);
+    }
+  };
+
+  useEffect(() => {
+    const getGeocodedAddress = async () => {
+      setEircodeErrors(null);
+      setGeocode(null);
+      setAddress(null);
+      const newCoordinates = await getGeoCoding(eircode).toPromise();
+
+      if (newCoordinates.length === 0) {
+        return setEircodeErrors(["missing eircode"]);
+      }
+      setGeocode(newCoordinates[0]);
+      onGeocodeUpdate(newCoordinates[0]);
+      setAddress(newCoordinates[0].formatted_address);
+    };
+
+    if (eircode) {
+      getGeocodedAddress();
+    }
+  }, [eircode]);
+
   const onSubmit = (formValues: any) => {
-    console.log(formValues);
+    onFormSubmit({ ...formValues, geocode });
   };
 
   return (
-    <div className={styles.ListingCreateForm}>
-      <Formik
+    <div className={`${styles.ListingCreateForm}`}>
+      <h1 className="title">Property Details</h1>
+      <Formik<ListingCreateFormValues>
+        innerRef={formRef}
         validationSchema={ListingCreateFormSchema}
         onSubmit={onSubmit}
-        initialValues={{ propertyType: "DUPLEX", name: "" }}
+        initialValues={initialValues}
       >
         <Form className="form">
+          <FormikEffect<ListingCreateFormValues>
+            onChange={onChange}
+          ></FormikEffect>
+
+          <TopNavPortal>
+            <Button onClick={() => formRef?.current?.handleSubmit()}>
+              Save
+            </Button>
+          </TopNavPortal>
+
           <div className="field__container">
             <label className="field__label" htmlFor="propertyType">
-              Name
+              Type of Property
             </label>
+
             <MultiTierDropdown
               placeholder="Select Property Type"
               name="propertyType"
             >
               {getPropertyTypeItems()}
             </MultiTierDropdown>
-            <ErrorMessage name="propertyType">
+
+            <ErrorMessage className="field__error" name="propertyType">
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
           </div>
 
           <div className="field__container">
-            <label className="field__label" htmlFor="propertyType">
-              Name
+            <label className="field__label" htmlFor="eircode">
+              Eircode
             </label>
 
-            <Input id="name" name="name" placeholder="John" />
+            <CharacterInputWrapper
+              errors={eirCodeErrors}
+              size={7}
+              name="eircode"
+            />
 
-            <ErrorMessage name="name">{(msg) => <div>{msg}</div>}</ErrorMessage>
+            <ErrorMessage className="field__error" name="eircode">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
+
+            {eirCodeErrors ? (
+              <div className="field__error">
+                No Address found for this eircode
+              </div>
+            ) : (
+              <></>
+            )}
+
+            {address ? (
+              <div className="field__error">{geocode.formatted_address}</div>
+            ) : (
+              <></>
+            )}
           </div>
 
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
+          <div className="field__container">
+            <label className="field__label" htmlFor="propertyType">
+              Address
+            </label>
+
+            <Input
+              id="name"
+              name="address"
+              placeholder="Enter the first line of your address"
+            />
+
+            <ErrorMessage className="field__error" name="address">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
+          </div>
+
+          <div className="field__container">
+            <div className="field__label">Description</div>
+
+            <RichTextEditorWrapper
+              name="description"
+              placeholder="Tell us about the Property"
+            ></RichTextEditorWrapper>
+          </div>
         </Form>
       </Formik>
     </div>

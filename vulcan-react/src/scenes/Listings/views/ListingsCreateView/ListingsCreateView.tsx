@@ -1,12 +1,19 @@
 import { PropertyInfo, PropertyType } from "@core/api/graphql";
 import { getQueryRXJS } from "@core/utils/rxjs.utils";
+import { ListingCreateAssistantPanel } from "@scenes/Listings/components";
 import ListingCreateForm from "@scenes/Listings/components/ListingCreateForm";
-import { RETRIEVE_PROPERTY_INFO } from "@scenes/Listings/Listings.queries";
-import { TopNavPortal, Button } from "components";
-import React, { useEffect, useState } from "react";
+import { ListingCreateFormValues } from "@scenes/Listings/components/ListingCreateForm/ListingCreateForm";
+import {
+  CREATE_PROPERTY,
+  RETRIEVE_PROPERTY_INFO,
+} from "@scenes/Listings/Listings.queries";
+import { GeocodeResult } from "@services/google.service";
+import { FormikHandlers } from "formik";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { map, take } from "rxjs/operators";
-
 import styles from "./ListingsCreateView.module.scss";
+import { PropertyInputArgs } from "@core/api/graphql";
 
 interface ListingsCreateViewProps {
   children?: any;
@@ -17,14 +24,16 @@ interface ListingCreateViewState extends PropertyInfo {
 }
 
 const ListingsCreateView = (props: ListingsCreateViewProps) => {
+  const history = useHistory();
+
   const [fieldData, setFieldData] = useState<ListingCreateViewState>({
     propertyType: [],
     isReady: false,
   });
 
-  function activateLasers() {
-    console.log("The link was clicked.");
-  }
+  const formRef = useRef<FormikHandlers>();
+
+  const [geocode, setGeocode] = useState<GeocodeResult>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,18 +50,47 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
     fetchData();
   }, []);
 
-  //
+  const setForm = async ({
+    description,
+    propertyType,
+    address,
+    geocode,
+  }: ListingCreateFormValues) => {
+    const { group } = fieldData.propertyType.find(
+      (x) => x.value === propertyType
+    );
+
+    const vars: PropertyInputArgs = {
+      type: group as PropertyType,
+      description,
+      location: [geocode.geometry.location.lng, geocode.geometry.location.lat],
+    };
+
+    const result = await getQueryRXJS(CREATE_PROPERTY, {
+      ...vars,
+    })
+      .pipe(take(1))
+      .toPromise();
+
+    console.log(result);
+    history.push("/listings");
+  };
 
   return (
-    <div className={`${styles.ListingsCreateView} page`}>
-      <TopNavPortal>
-        <Button onClick={activateLasers}>Save</Button>
-      </TopNavPortal>
+    <div className={`${styles.ListingsCreateView}`}>
       {fieldData.isReady ? (
-        <ListingCreateForm fieldData={fieldData}></ListingCreateForm>
+        <ListingCreateForm
+          formRef={formRef}
+          onFormSubmit={setForm}
+          onGeocodeUpdate={setGeocode}
+          fieldData={fieldData}
+        ></ListingCreateForm>
       ) : (
         <></>
       )}
+      <ListingCreateAssistantPanel
+        geocode={geocode}
+      ></ListingCreateAssistantPanel>
     </div>
   );
 };

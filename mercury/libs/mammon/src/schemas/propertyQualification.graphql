@@ -2,7 +2,7 @@ type PropertyQualification {
   """
   Rich text JSON of the Property Qualification
   """
-  description: JSONObject
+  description: JSON
   type: PropertyQualificationType!
   value: String!
 }

@@ -20,7 +20,7 @@ type PropertyFacility {
   """
   Rich text JSON of the Property Qualification
   """
-  description: JSONObject
+  description: JSON
   subType: FacilitySubtype!
   type: Facility!
 }

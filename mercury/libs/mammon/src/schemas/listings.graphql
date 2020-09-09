@@ -3,7 +3,7 @@ type ListingDTO {
 
   property: [PropertyDTO]
 
-  description: JSONObject
+  description: JSON
 
   createdBy: String
   createdDate: DateTime

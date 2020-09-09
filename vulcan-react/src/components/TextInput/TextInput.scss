@@ -1,0 +1,93 @@
+@import "src/styles/vars";
+
+.TextInput,
+.SelectInput {
+  &__input {
+    width: 100%;
+    padding: var(--spacing-m) var(--spacing-m);
+    border: none;
+    font-size: 1em;
+
+    &:focus {
+      outline: none;
+      // border-color: var(--highlight-color);
+    }
+
+    &-large {
+      @include type-header-m;
+    }
+
+    &.field--invalid {
+      border: 2px solid var(--warn-color);
+    }
+  }
+
+  &__drop__container {
+    max-height: 300px;
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      width: 100%;
+    }
+    overflow: auto;
+  }
+  &__input__container {
+    position: relative;
+    width: 100%;
+    border: 2px solid var(--border-color);
+
+    &.field--invalid {
+      border: 2px solid var(--warn-color);
+    }
+  }
+  &__placeholder {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+  &__icon {
+    position: absolute;
+    display: flex;
+    justify: center;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  &__suggestions {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__suggestion {
+    display: flex;
+    padding: var(--spacing-s);
+    align-content: flex-start;
+  }
+
+  &--single {
+    width: 50px;
+  }
+}
+
+.SelectInput {
+  &__input {
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-family: inherit;
+    appearance: none;
+    background: transparent;
+    color: inherit;
+    width: 100%;
+    padding: 11px;
+    font-weight: 600;
+    margin: 0px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+  }
+}

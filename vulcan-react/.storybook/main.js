@@ -1,4 +1,5 @@
 const path = require("path");
+const ConfigWebpackPlugin = require("config-webpack");
 
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -14,11 +15,14 @@ module.exports = {
 
     // Make whatever fine-grained changes you need
 
+    config.plugins.push(new ConfigWebpackPlugin());
+
     config.resolve.alias = {
       // Add the aliases for all the top-level folders in the `src/` folder.
       "@core": `${path.resolve(__dirname, "../src/core/")}`,
       "@components": `${path.resolve(__dirname, "../src/components/")}`,
       "@scenes": `${path.resolve(__dirname, "../src/scenes/")}`,
+      "@services": `${path.resolve(__dirname, "../src/services/")}`,
       "@hooks": `${path.resolve(__dirname, "../src/hooks/")}`,
       // Another example for using a wildcard character
       "~": `${path.resolve(__dirname, "../src/")}/`,

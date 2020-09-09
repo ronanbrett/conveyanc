@@ -13,7 +13,6 @@ const REDIS_CLIENT_PROVIDER = {
   provide: 'REDIS_CLIENT',
   useFactory: (): redis.Redis => {
     return new redis(config.port, config.host, {
-      keyPrefix: config.keyPrefix,
       password: config.password,
     });
   },

@@ -52,6 +52,7 @@ export class PropertyResolver {
   async createProperty(
     @Args('property') property: PropertyInputArgs,
   ): Promise<PropertyDTO> {
-    return this.propertyService.save(property, property.propertyId);
+    console.log(property);
+    return this.propertyService.saveProperty(property);
   }
 }

@@ -13,7 +13,7 @@ export interface ListingStoreState {
   error: string;
 }
 
-const initialState = {
+const initialState: ListingStoreState = {
   status: "",
   data: [],
   newDataCount: 0,
@@ -25,7 +25,7 @@ let state: ListingStoreState = initialState;
 export const ListingStore = {
   init: async () => {
     const data: PropertyPaged = await getQueryRXJS(RETRIEVE_PROPERTIES_PAGED, {
-      first: 4,
+      first: 10,
       after: null,
     })
       .pipe(map((x) => x.propertiesPaged))
