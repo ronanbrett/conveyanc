@@ -32,6 +32,7 @@
     "@graphql-codegen/typescript": "^1.17.9",
     "@simplewebauthn/browser": "^0.8.2",
     "animejs": "^3.2.0",
+    "aws-amplify": "^3.1.1",
     "classnames": "^2.2.6",
     "config": "^3.3.1",
     "cra-template-typescript": "1.0.3",

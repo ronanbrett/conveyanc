@@ -129,6 +129,7 @@ export class PropertyPaged {
 
 export class PropertyInfo {
     propertyType?: Option[];
+    uploadUrl?: string;
 }
 
 export abstract class IQuery {

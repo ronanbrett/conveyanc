@@ -1,16 +1,16 @@
+import { get } from 'config';
 import { S3 } from '@aws-sdk/client-s3';
 import { Module } from '@nestjs/common';
 import { S3StorageService } from './s3-storage.service';
+import { AWSConfig } from 'apps/mercury/src/core/config/aws.config';
+
+const config: AWSConfig = get('AWS');
 
 export const S3_CLIENT = 'S3_CLIENT';
 
 const s3Client = new S3({
-  credentials: {
-    accessKeyId: '123',
-    secretAccessKey: '123',
-  },
-  region: 'us-east-1',
-  endpoint: 'http://localhost:4572',
+  region: config.region,
+  // endpoint: 'http://localhost:4572',
 });
 
 const S3_CLIENT_PROVIDER = {

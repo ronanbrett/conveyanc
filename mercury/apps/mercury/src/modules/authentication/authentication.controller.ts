@@ -7,6 +7,11 @@ import {
 import { Request } from 'express';
 import { User } from '../identification/identification.model';
 import { WebauthnService } from './webauthn/webauthn.service';
+import {
+  cognitoClient,
+  generateCognitoToken,
+} from '../../core/aws/cognito-aws.core';
+import { Logger } from 'nestjs-pino';
 
 /**
  * TODO
@@ -17,7 +22,10 @@ import { WebauthnService } from './webauthn/webauthn.service';
 
 @Controller('auth')
 export class AuthenticationController {
-  constructor(private readonly webauthnService: WebauthnService) {}
+  constructor(
+    private logger: Logger,
+    private readonly webauthnService: WebauthnService,
+  ) {}
 
   @Get('register/user')
   async registerUser(
@@ -77,6 +85,16 @@ export class AuthenticationController {
       req.session.user = user;
     }
 
+    try {
+      const awsToken = await cognitoClient.getOpenIdTokenForDeveloperIdentity(
+        generateCognitoToken('ro', credential.id),
+      );
+      console.log(awsToken);
+      user.aws = awsToken;
+    } catch (err) {
+      this.logger.error(err);
+    }
+
     return { verified, user };
   }
 
@@ -84,8 +102,8 @@ export class AuthenticationController {
   async logout(@Req() req: Request): Promise<boolean> {
     const username = req.session.user.username;
     req.session.destroy(err => {
-      console.log(err);
+      this.logger.error(err);
     });
-    return await this.webauthnService.logout(username);
+    return true;
   }
 }

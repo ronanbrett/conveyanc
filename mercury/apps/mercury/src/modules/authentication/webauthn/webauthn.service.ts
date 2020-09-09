@@ -22,6 +22,7 @@ import { IdentificationService } from '../../identification/identification.servi
 
 @Injectable()
 export class WebauthnService {
+  protected readonly TIMEOUT = 60000;
   readonly config: WebauthnConfig = get('Webauthn');
 
   constructor(
@@ -56,7 +57,7 @@ export class WebauthnService {
       userID: _id,
       userDisplayName: username,
       userName: username,
-      timeout: 60000,
+      timeout: this.TIMEOUT,
       attestationType: 'direct',
       /**
        * Passing in a user's list of already-registered authenticator IDs here prevents users from
@@ -76,7 +77,7 @@ export class WebauthnService {
     });
 
     await this.client.set(`CHALLENGE_${username}`, options.challenge);
-    await this.client.expire(`CHALLENGE_${username}`, 60000);
+    await this.client.expire(`CHALLENGE_${username}`, this.TIMEOUT);
 
     return options;
   }
@@ -136,7 +137,7 @@ export class WebauthnService {
   ): Promise<PublicKeyCredentialRequestOptionsJSON> {
     const user = await this.identificationService.findOne(username);
     const options = generateAssertionOptions({
-      timeout: 60000,
+      timeout: this.TIMEOUT,
       allowedCredentialIDs: user.devices.map(data => data.credentialID),
       /**
        * This optional value controls whether or not the authenticator needs be able to uniquely
@@ -146,7 +147,7 @@ export class WebauthnService {
     });
 
     await this.client.set(`CHALLENGE_${username}`, options.challenge);
-    await this.client.expire(`CHALLENGE_${username}`, 60000);
+    await this.client.expire(`CHALLENGE_${username}`, this.TIMEOUT);
 
     return options;
   }
@@ -196,7 +197,11 @@ export class WebauthnService {
   }
 
   async logout(username: string): Promise<boolean> {
-    await this.client.del(`CHALLENGE_${username}`);
+    try {
+      await this.client.del(`CHALLENGE_${username}`);
+    } catch (err) {
+      this.logger.error(err);
+    }
 
     return true;
   }
