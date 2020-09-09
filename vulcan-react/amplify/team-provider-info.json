@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vulcan-dev-233738-authRole",
+      "UnauthRoleArn": "arn:aws:iam::936959792442:role/amplify-vulcan-dev-233738-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::936959792442:role/amplify-vulcan-dev-233738-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-vulcan-dev-233738-deployment",
+      "UnauthRoleName": "amplify-vulcan-dev-233738-unauthRole",
+      "StackName": "amplify-vulcan-dev-233738",
+      "StackId": "arn:aws:cloudformation:eu-west-1:936959792442:stack/amplify-vulcan-dev-233738/11429a90-f2ed-11ea-a5dd-0224adcab7c8",
+      "AmplifyAppId": "d200asac796ka0"
+    }
+  }
+}
