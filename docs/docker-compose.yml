@@ -1,5 +1,15 @@
 version: "3.8"
 services:
+  nginx:
+    build: $PWD/../nginx
+    volumes:
+      - $PWD/../vulcan-react/build:/usr/share/nginx/html:ro
+      - $PWD/../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /$PWD/../vulcan-react/certs:/etc/nginx/certs
+    ports:
+      - "80:80"
+      - "443:443/tcp"
+      - "443:443/udp"
   redis:
     image: redis:alpine
     command: redis-server --requirepass INSECURE
