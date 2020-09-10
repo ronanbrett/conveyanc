@@ -16,8 +16,34 @@ db.createUser(
     user: "mercury",
     pwd: "INSECURE",
     roles: [
+       { role: "readWrite", db: "geography" },
+    ]
+  }
+)
+
+db.updateUser(
+  "mercury",
+  {
+    pwd: "INSECURE",
+    roles: [
        { role: "readWrite", db: "users" },
+       { role: "readWrite", db: "geography" },
        { role: "readWrite", db: "property" }
+    ]
+  }
+)
+```
+
+## Create DB Mercury User
+
+```
+use [DB]
+db.createUser(
+  {
+    user: "mercury",
+    pwd: "INSECURE",
+    roles: [
+       { role: "readWrite", db: "geography" },
     ]
   }
 )

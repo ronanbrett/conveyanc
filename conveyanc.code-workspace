@@ -14,6 +14,12 @@
     },
     {
       "path": "vulcan-react"
+    },
+    {
+      "path": "nginx"
+    },
+    {
+      "path": "seeds"
     }
   ],
   "settings": {
