@@ -1,0 +1,48 @@
+@import "src/styles/vars";
+
+.ImageUploader {
+  &__drop {
+    width: 100%;
+    height: 200px;
+    background: transparent;
+    border: 2px dashed var(--border-color);
+    margin-bottom: var(--spacing-m);
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  &__image {
+    position: relative;
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+
+  &--PENDING {
+    opacity: 0.4;
+  }
+
+  &--FAILED {
+    border: 2px solid red;
+    opacity: 0.4;
+  }
+
+  &__image-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+
+    button {
+      color: white;
+    }
+  }
+}

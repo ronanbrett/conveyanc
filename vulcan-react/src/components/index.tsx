@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+import ImageUploader from './ImageUploader';
 import { RichTextEditor, RichTextEditorWrapper } from "./RichTextEditor";
 import Icon from "./Icon";
 import MapMarker from "./MapMarker";
@@ -26,6 +27,7 @@ import TheTopNav from "./TheTopNav";
 
 export {
   /* PLOP_INJECT_EXPORT */
+	ImageUploader,
   RichTextEditorWrapper,
   RichTextEditor,
   Icon,

@@ -31,6 +31,7 @@ import styles from "./ListingCreateForm.module.scss";
 
 import { getGeoCoding, GeocodeResult } from "services/google.service";
 import { FormikEffect } from "@core/utils";
+import ImageUploader from "components/ImageUploader";
 
 const ListingCreateFormSchema = object().shape({
   propertyType: string().required("You must select a type"),
@@ -224,6 +225,10 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
               name="description"
               placeholder="Tell us about the Property"
             ></RichTextEditorWrapper>
+          </div>
+
+          <div className="field__container">
+            <ImageUploader></ImageUploader>
           </div>
         </Form>
       </Formik>

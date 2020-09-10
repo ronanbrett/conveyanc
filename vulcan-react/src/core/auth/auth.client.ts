@@ -1,4 +1,5 @@
 import { startAssertion, startAttestation } from "@simplewebauthn/browser";
+import { Auth, Storage } from "@services/aws.service";
 import { User } from "./auth.state";
 
 export class AuthClient {
@@ -66,11 +67,27 @@ export class AuthClient {
     const resp = await fetch("/api/health");
     const body = await resp.json();
 
+    const { aws, username } = body.user;
+    Auth.signOut();
+    Auth.federatedSignIn(
+      "developer",
+      {
+        token: aws.Token,
+        identity_id: aws.IdentityId,
+        expires_at: undefined,
+      },
+      { name: username, identityId: aws.IdentityId } as any
+    );
+    Storage.configure({ identityId: aws.IdentityId });
+
     return body as User;
   }
 
   async logout() {
     const resp = await fetch("/api/auth/logout");
+    Auth.signOut();
+    Storage.configure({ identityId: null });
+
     return resp;
   }
 }

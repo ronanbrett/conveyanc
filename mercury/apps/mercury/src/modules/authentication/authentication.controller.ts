@@ -87,9 +87,8 @@ export class AuthenticationController {
 
     try {
       const awsToken = await cognitoClient.getOpenIdTokenForDeveloperIdentity(
-        generateCognitoToken('ro', credential.id),
+        generateCognitoToken(username, credential.id),
       );
-      console.log(awsToken);
       user.aws = awsToken;
     } catch (err) {
       this.logger.error(err);

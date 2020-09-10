@@ -3,6 +3,4 @@ import { S3_CLIENT } from './s3-storage.module';
 import { S3 } from '@aws-sdk/client-s3';
 
 @Injectable()
-export class S3StorageService {
-  constructor(@Inject(S3_CLIENT) private s3Client: S3) {}
-}
+export class S3StorageService {}
