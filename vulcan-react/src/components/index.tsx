@@ -1,10 +1,9 @@
 /* PLOP_INJECT_IMPORT */
-import ImageUploader from './ImageUploader';
+import ImageUploader from "./ImageUploader";
 import { RichTextEditor, RichTextEditorWrapper } from "./RichTextEditor";
 import Icon from "./Icon";
 import MapMarker from "./MapMarker";
 import { CharacterInput, CharacterInputWrapper } from "./CharacterInput";
-import AddressGeocodeSearch from "./AddressGeocodeSearch";
 import TextInput from "./TextInput";
 import FocusedContainer from "./FocusedContainer";
 import Drop from "./Drop";
@@ -27,14 +26,13 @@ import TheTopNav from "./TheTopNav";
 
 export {
   /* PLOP_INJECT_EXPORT */
-	ImageUploader,
+  ImageUploader,
   RichTextEditorWrapper,
   RichTextEditor,
   Icon,
   MapMarker,
   CharacterInput,
   CharacterInputWrapper,
-  AddressGeocodeSearch,
   TextInput,
   FocusedContainer,
   Drop,

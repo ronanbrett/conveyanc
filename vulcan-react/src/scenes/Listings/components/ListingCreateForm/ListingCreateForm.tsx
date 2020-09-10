@@ -9,7 +9,7 @@ import {
   TopNavPortal,
   Button,
 } from "@components";
-import { PropertyInfo } from "@core/api/graphql";
+import { PropertyInfo, S3Object, S3ObjectArgs } from "@core/api/graphql";
 import {
   ErrorMessage,
   Form,
@@ -45,6 +45,7 @@ export interface ListingCreateFormValues {
   address?: string;
   geocode?: GeocodeResult;
   eircode?: string;
+  images?: S3ObjectArgs[];
 }
 
 const initialValues = {
@@ -105,7 +106,6 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
     values,
     errors,
   }: FormikContextType<ListingCreateFormValues>) => {
-    console.log("throttled");
     if (!errors.eircode && values.eircode.length === 7) {
       setEircode(values.eircode);
     }
@@ -228,7 +228,10 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
           </div>
 
           <div className="field__container">
-            <ImageUploader></ImageUploader>
+            <label className="field__label" htmlFor="propertyType">
+              Images
+            </label>
+            <ImageUploader name="images"></ImageUploader>
           </div>
         </Form>
       </Formik>

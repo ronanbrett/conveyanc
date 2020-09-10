@@ -13,11 +13,26 @@ export const RETRIEVE_PROPERTY_INFO = gql`
 `;
 
 export const CREATE_PROPERTY = gql`
-  mutation CreateProperty($type: PropertyType!, $description: JSON) {
-    createProperty(property: { type: $type, description: $description }) {
+  mutation CreateProperty(
+    $type: PropertyType!
+    $description: JSON
+    $images: [S3ObjectArgs]
+    $location: GeoJSONPointScalar
+  ) {
+    createProperty(
+      property: {
+        type: $type
+        description: $description
+        images: $images
+        location: $location
+      }
+    ) {
       propertyId
       type
       description
+      images {
+        url
+      }
     }
   }
 `;
@@ -29,6 +44,9 @@ export const RETRIEVE_PROPERTIES = gql`
       propertyId
       type
       description
+      images {
+        url
+      }
       address {
         formattedAddress
       }
@@ -44,6 +62,9 @@ export const RETRIEVE_PROPERTIES_PAGED = gql`
         createdDate
         _id
         propertyId
+        images {
+          url
+        }
         description
         address {
           formattedAddress

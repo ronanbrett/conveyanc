@@ -30,7 +30,7 @@ const ListingsView = (props: ListingsViewProps) => {
         </Link>
       </TopNavPortal>
       {listingState.data.map((listing: PropertyDto) => (
-        <ListingCard key={listing._id} />
+        <ListingCard property={listing} key={listing._id} />
       ))}
     </div>
   );

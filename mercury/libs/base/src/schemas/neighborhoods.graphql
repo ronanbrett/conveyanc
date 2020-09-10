@@ -1,0 +1,5 @@
+type Neighborhood {
+  geometry: GeoJSONPolygonScalar
+  countryCode: String
+  name: String
+}

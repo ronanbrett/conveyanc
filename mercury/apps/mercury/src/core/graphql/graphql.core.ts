@@ -4,10 +4,13 @@ import { get } from 'config';
 import { join } from 'path';
 import { GraphqlConfig } from '../config/graphql.config';
 
+import { CODES as ISO_CURRENCY_CODES } from 'graphql-iso-enums/types/ISOCurrency';
+import { CODES as ISO_COUNTRY_CODES } from 'graphql-iso-enums/types/ISOTerritory';
+
 const config: GraphqlConfig = get('Graphql');
 
 import GraphQLJSON from 'graphql-type-json';
-import { Point } from 'graphql-geojson-scalar-types';
+import { Point, Polygon } from 'graphql-geojson-scalar-types';
 
 @Module({
   imports: [
@@ -17,7 +20,13 @@ import { Point } from 'graphql-geojson-scalar-types';
 
       // sortSchema: true,
       typePaths: [join(process.cwd(), './**/*.graphql')],
-      resolvers: { JSON: GraphQLJSON, Point },
+      resolvers: {
+        ISOCountry: ISO_COUNTRY_CODES,
+        ISOCurrency: ISO_CURRENCY_CODES,
+        JSON: GraphQLJSON,
+        GeoJSONPointScalar: Point,
+        GeoJSONPolygonScalar: Polygon,
+      },
       definitions: {
         path: join(process.cwd(), 'schemas/graphql.ts'),
         outputAs: 'class',

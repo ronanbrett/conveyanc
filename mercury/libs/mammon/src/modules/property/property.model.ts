@@ -5,6 +5,9 @@ import {
   PropertyFacility,
   PropertyDTO,
   PropertyType,
+  GeoJSONPointScalar,
+  S3Object,
+  S3ObjectArgs,
 } from '@schemas/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { BaseModel } from '@utils/base';
@@ -29,6 +32,12 @@ export class PropertyDocument extends Document
 
   @Prop()
   facilities?: PropertyFacility[];
+
+  @Prop()
+  location?: GeoJSONPointScalar;
+
+  @Prop()
+  images?: S3ObjectArgs[];
 }
 
 export const PropertySchema = SchemaFactory.createForClass(PropertyDocument);

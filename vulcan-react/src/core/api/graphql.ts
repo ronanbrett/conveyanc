@@ -27,6 +27,30 @@ export type PageInfo = {
   endCursor?: Maybe<Scalars['ID']>;
 };
 
+export enum S3Level {
+  Public = 'PUBLIC',
+  Protected = 'PROTECTED',
+  Private = 'PRIVATE'
+}
+
+export type S3Object = {
+  __typename?: 'S3Object';
+  key: Scalars['String'];
+  bucket: Scalars['String'];
+  directory?: Maybe<Scalars['String']>;
+  level: S3Level;
+  region: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
+};
+
+export type S3ObjectArgs = {
+  key: Scalars['String'];
+  bucket: Scalars['String'];
+  directory?: Maybe<Scalars['String']>;
+  level: S3Level;
+  region: Scalars['String'];
+};
+
 export type AddressComponentOutput = {
   __typename?: 'AddressComponentOutput';
   types: Array<Scalars['String']>;
@@ -83,6 +107,7 @@ export type PropertyInputArgs = {
   type: PropertyType;
   dimensions?: Maybe<DimensionsInput>;
   location?: Maybe<Scalars['GeoJSONPointScalar']>;
+  images?: Maybe<Array<Maybe<S3ObjectArgs>>>;
 };
 
 export type PropertyDto = {
@@ -102,6 +127,7 @@ export type PropertyDto = {
   location?: Maybe<Scalars['GeoJSONPointScalar']>;
   /** Type of Property */
   type: PropertyType;
+  images?: Maybe<Array<Maybe<S3Object>>>;
 };
 
 export enum PropertyType {
@@ -129,6 +155,7 @@ export type PropertyPaged = {
 export type PropertyInfo = {
   __typename?: 'PropertyInfo';
   propertyType?: Maybe<Array<Maybe<Option>>>;
+  uploadUrl?: Maybe<Scalars['String']>;
 };
 
 export type Query = {

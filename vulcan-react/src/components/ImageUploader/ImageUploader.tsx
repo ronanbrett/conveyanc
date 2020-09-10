@@ -1,49 +1,69 @@
+import { S3Level, S3ObjectArgs } from "@core/api/graphql";
 import { Storage } from "@services/aws.service";
 import classNames from "classnames";
 import IconButton from "components/IconButton";
-import React, { FC, useEffect, useMemo, useState } from "react";
-import ImageUploading from "react-images-uploading";
+import { FieldConfig, useField } from "formik";
+import { reduce } from "lodash-es";
+import React, { FC, useEffect, useState } from "react";
 import { empty, forkJoin, from, Subject } from "rxjs";
-import { catchError, map, switchMap } from "rxjs/operators";
-import { v4 } from "uuid";
+import { catchError, map, scan, switchMap } from "rxjs/operators";
+import ImageUploading from "./ImageUploader.base";
 import "./ImageUploader.scss";
 
-interface ImageI {
+interface ImageI extends Partial<S3ObjectArgs> {
   data_url?: string;
   file?: File;
   id?: string;
   index?: number;
   failed?: boolean;
+  pending?: boolean;
+  complete?: boolean;
 }
 
 interface ImageUploaderProps {
   children?: any;
 }
 
-const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
+const ImageUploader: FC<ImageUploaderProps & FieldConfig> = ({ ...props }) => {
+  const [field, meta, helpers] = useField(props);
+
   const [images, setImages] = React.useState([]);
-  const [uploadState, setUploadState] = React.useState<any>([]);
-  const [complete, setComplete] = React.useState<any>([]);
+  const [imageUploadMap, setImageUploadMap] = useState<any>({});
 
   const [uploadQueue$] = useState(() => {
     // Arrow function is used to init Singleton Subject. (in a scope of a current component)
     return new Subject<any>();
   });
 
-  useMemo(() => {
-    setUploadState([...uploadState, ...complete]);
-  }, [complete]);
+  useEffect(() => {
+    console.log(images);
+    const completedImages = reduce(
+      images,
+      (accum: ImageI[], image: ImageI) => {
+        const mappedImg = imageUploadMap[image.id];
+        if (mappedImg && mappedImg.complete) {
+          const { key, level, directory, bucket, region } = mappedImg;
+          const img = { key, level, directory, bucket, region };
+          accum.push(img);
+        }
+        return accum;
+      },
+      []
+    );
+
+    helpers.setValue(completedImages);
+  }, [images, imageUploadMap]);
 
   useEffect(() => {
+    const DIRECTORY = "property";
     const subscription = uploadQueue$
       .pipe(
         switchMap((images: ImageI[]) =>
           forkJoin(
             images.map((image) =>
               from(
-                Storage.put(v4(), image.file, {
+                Storage.put(`${DIRECTORY}/${image.id}`, image.file, {
                   level: "public",
-                  customPrefix: "property",
                 }).catch((err) => {
                   image.failed = true;
                   return image;
@@ -51,7 +71,11 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
               ).pipe(
                 map((res) => ({
                   ...res,
-                  ...image,
+                  id: image.id,
+                  key: `${DIRECTORY}/${image.id}`,
+                  level: S3Level.Public,
+                  region: CONFIG.AWS.REGION,
+                  bucket: CONFIG.AWS.S3.BUCKET,
                   pending: false,
                   complete: true,
                 })),
@@ -61,10 +85,24 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
               )
             )
           )
-        )
+        ),
+        scan((accum: any, images: ImageI[]) => {
+          const statusMap = reduce(
+            images,
+            (accum: any, image, index) => {
+              accum[image.id] = image;
+              return accum;
+            },
+            {}
+          );
+
+          accum = { ...accum, ...statusMap };
+
+          return accum;
+        }, {})
       )
-      .subscribe((image: any) => {
-        setComplete(image);
+      .subscribe((images: ImageI[]) => {
+        setImageUploadMap(images);
       });
 
     return () => {
@@ -79,7 +117,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
     // data for submit
     setImages(imageList);
 
-    if (addUpdateIndex.length) {
+    if (addUpdateIndex?.length) {
       uploadQueue$.next(
         addUpdateIndex.map((index) => ({ ...imageList[index], index }))
       );
@@ -118,9 +156,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
 
             <div className="ImageUploader__images">
               {imageList.map((image: any, index) => {
-                const state = uploadState.find(
-                  (image: ImageI) => image.index === index
-                ) ?? { pending: true };
+                const state = imageUploadMap[image.id] ?? { pending: true };
 
                 const cx = classNames({
                   ImageUploader__image: true,

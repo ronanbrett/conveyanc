@@ -82,6 +82,7 @@ export class AuthenticationController {
 
     if (verified) {
       req.session.isLoggedIn = true;
+      req.session.credId = credential.id;
       req.session.user = user;
     }
 
@@ -90,6 +91,7 @@ export class AuthenticationController {
         generateCognitoToken(username, credential.id),
       );
       user.aws = awsToken;
+      user.aws.expiresIn = 86400;
     } catch (err) {
       this.logger.error(err);
     }
@@ -99,7 +101,6 @@ export class AuthenticationController {
 
   @Get('logout')
   async logout(@Req() req: Request): Promise<boolean> {
-    const username = req.session.user.username;
     req.session.destroy(err => {
       this.logger.error(err);
     });

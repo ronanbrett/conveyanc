@@ -3,7 +3,10 @@ import React, { useEffect, useReducer, useState } from "react";
 import { AuthClient } from "./auth.client";
 import { AuthContext } from "./auth.context";
 import { reducer } from "./auth.reducer";
-import { initialAuthState } from "./auth.state";
+import { initialAuthState, User } from "./auth.state";
+import { interval, of, empty } from "rxjs";
+import { switchMap, catchError } from "rxjs/operators";
+
 export interface AuthProviderOptions {
   children?: React.ReactNode;
 }

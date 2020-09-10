@@ -10,7 +10,7 @@ import React, {
   useState,
 } from "react";
 
-import styles from "./DropButton.module.scss";
+import "./DropButton.module.scss";
 
 export interface DropButtonProps {
   a11yTitle: string;
@@ -50,7 +50,6 @@ const DropButton = forwardRef(
     }: DropButtonProps,
     ref
   ) => {
-
     console.log(dropAlign);
 
     const buttonRef = useForwardedRef(ref) as MutableRefObject<any>;

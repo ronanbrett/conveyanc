@@ -1,18 +1,17 @@
 import { TextInput } from "@components";
+import { FormContext } from "@core/contexts/FormContext";
 import Keyboard from "components/Keyboard";
 import { motion, useAnimation } from "framer-motion";
 import React, {
   FC,
   SyntheticEvent,
-  useEffect,
-  useState,
   useContext,
-  ChangeEvent,
+  useEffect,
   useMemo,
+  useState,
 } from "react";
 import { SyntheticEventData } from "react-dom/test-utils";
 import "./CharacterInput.scss";
-import { FormContext } from "@core/contexts/FormContext";
 
 export interface CharacterInputProps {
   name?: string;
@@ -50,6 +49,7 @@ const CharacterInput: FC<CharacterInputProps> = ({
     }
 
     setParts(valueProp.split(""));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useMemo(() => {
@@ -58,17 +58,25 @@ const CharacterInput: FC<CharacterInputProps> = ({
     }
   }, [valueProp, size]);
 
-  useEffect(() => {
-    const value = parts.join("");
-    setValue(value);
-    onUpdate(value);
-  }, [parts]);
+  useEffect(
+    () => {
+      const value = parts.join("");
+      setValue(value);
+      onUpdate(value);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [parts]
+  );
 
-  useEffect(() => {
-    if (errors?.length > 0) {
-      triggerErrors();
-    }
-  }, [errors]);
+  useEffect(
+    () => {
+      if (errors?.length > 0) {
+        triggerErrors();
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [errors]
+  );
 
   const validate = (char: string, index: number) => {
     const match = RegExp(/A-Za-z0-9/);
@@ -89,8 +97,6 @@ const CharacterInput: FC<CharacterInputProps> = ({
   };
 
   const onKeyPress = (e: any, index: number) => {
-    const value = e.target.value as string;
-
     if (elRefs && elRefs.current[index + 1]) {
       setTimeout(() => {
         elRefs.current[index + 1].focus();

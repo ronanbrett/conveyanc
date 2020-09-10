@@ -53,6 +53,7 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
   const setForm = async ({
     description,
     propertyType,
+    images,
     address,
     geocode,
   }: ListingCreateFormValues) => {
@@ -63,7 +64,14 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
     const vars: PropertyInputArgs = {
       type: group as PropertyType,
       description,
-      location: [geocode.geometry.location.lng, geocode.geometry.location.lat],
+      images,
+      location: {
+        type: "Point",
+        coordinates: [
+          geocode.geometry.location.lng,
+          geocode.geometry.location.lat,
+        ],
+      },
     };
 
     const result = await getQueryRXJS(CREATE_PROPERTY, {

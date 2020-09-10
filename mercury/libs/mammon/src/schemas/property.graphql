@@ -13,7 +13,9 @@ input PropertyInputArgs {
   type: PropertyType!
 
   dimensions: DimensionsInput
-  location: Point
+  location: GeoJSONPointScalar
+
+  images: [S3ObjectArgs]
 }
 
 type PropertyDTO {
@@ -33,11 +35,12 @@ type PropertyDTO {
   lastUpdatedBy: String
   lastUpdatedDate: DateTime
   qualifications: [PropertyQualification]
-  location: Point
+  location: GeoJSONPointScalar
   """
   Type of Property
   """
   type: PropertyType!
+  images: [S3Object]
 }
 
 enum PropertyType {

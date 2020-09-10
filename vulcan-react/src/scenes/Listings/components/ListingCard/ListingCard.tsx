@@ -3,18 +3,21 @@ import React from "react";
 
 import styles from "./ListingCard.module.scss";
 import img from "./property-1.jpg";
+import { PropertyDto } from "@core/api/graphql";
+import { property } from "lodash-es";
 
 interface ListingCardProps {
+  property?: PropertyDto;
   children?: any;
 }
 
-const ListingCard = (props: ListingCardProps) => {
+const ListingCard = ({ property }: ListingCardProps) => {
   return (
     <div className={styles.ListingCard}>
       <div className="card__container">
         <article className="card">
           <header className="card__header">
-            <img src={img} alt="Logo" />
+            <img src={property.images[0].url} alt="Logo" />
 
             <div className="card__actions">
               <IconButton icon="favorite" />

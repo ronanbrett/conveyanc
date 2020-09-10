@@ -1,0 +1,24 @@
+enum S3Level {
+  PUBLIC
+  PROTECTED
+  PRIVATE
+}
+
+type S3Object {
+  key: String!
+  bucket: String!
+  directory: String
+  level: S3Level!
+  region: String!
+  userId: String
+  url: String
+}
+
+input S3ObjectArgs {
+  key: String!
+  bucket: String!
+  directory: String
+  level: S3Level!
+  region: String!
+  userId: String
+}

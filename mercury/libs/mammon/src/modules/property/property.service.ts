@@ -1,10 +1,11 @@
 import { S3 } from '@aws-sdk/client-s3';
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { PropertyInputArgs } from '@schemas/graphql';
+import { PropertyInputArgs, PropertyDTO } from '@schemas/graphql';
 import { Cacheable, CacheClear } from '@type-cacheable/core';
 import { BaseRepository } from '@utils/base/classes/base-respository.class';
 import { Pagination } from '@utils/base/interfaces/pagination.interface';
+import { getS3Url } from '@utils/base/utils';
 import { S3_CLIENT } from '@utils/s3-storage';
 import { Model } from 'mongoose';
 import { PropertyDocument } from './property.model';
@@ -48,6 +49,12 @@ export class PropertyService extends BaseRepository<
     hashKey: 'PROP',
   })
   async saveProperty(property: PropertyInputArgs): Promise<PropertyDocument> {
-    return this.save(property, property.propertyId);
+    const mProperty: PropertyInputArgs = {
+      ...property,
+      images: property.images
+        ? property.images.map(image => getS3Url(image))
+        : [],
+    };
+    return this.save(mProperty, property.propertyId);
   }
 }
