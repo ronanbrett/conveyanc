@@ -1,36 +1,18 @@
-import React, { FC, useEffect, useState } from "react";
-import ImageUploading from "react-images-uploading";
-
 import { Storage } from "@services/aws.service";
-
-import "./ImageUploader.scss";
-import IconButton from "components/IconButton";
 import classNames from "classnames";
-
+import IconButton from "components/IconButton";
+import React, { FC, useEffect, useMemo, useState } from "react";
+import ImageUploading from "react-images-uploading";
+import { empty, forkJoin, from, Subject } from "rxjs";
+import { catchError, map, switchMap } from "rxjs/operators";
 import { v4 } from "uuid";
-import { Subject, from, of, forkJoin, empty } from "rxjs";
-import {
-  mergeMap,
-  map,
-  switchMap,
-  tap,
-  zip,
-  toArray,
-  scan,
-  bufferCount,
-  zipAll,
-  combineLatest,
-  mergeAll,
-  combineAll,
-  catchError,
-} from "rxjs/operators";
-import { flatMap } from "lodash-es";
+import "./ImageUploader.scss";
 
 interface ImageI {
   data_url?: string;
   file?: File;
   id?: string;
-  index?: string;
+  index?: number;
   failed?: boolean;
 }
 
@@ -48,11 +30,11 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
     return new Subject<any>();
   });
 
-  useEffect(() => {
-    // Effect that will be initialized once on a react component init.
-    // Define your pipe here.
+  useMemo(() => {
+    setUploadState([...uploadState, ...complete]);
+  }, [complete]);
 
-    let queue = 0;
+  useEffect(() => {
     const subscription = uploadQueue$
       .pipe(
         switchMap((images: ImageI[]) =>
@@ -60,7 +42,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
             images.map((image) =>
               from(
                 Storage.put(v4(), image.file, {
-                  level: "protected",
+                  level: "public",
                   customPrefix: "property",
                 }).catch((err) => {
                   image.failed = true;
@@ -74,7 +56,6 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
                   complete: true,
                 })),
                 catchError((err, obs) => {
-                  console.log(err, obs);
                   return empty();
                 })
               )
@@ -83,12 +64,11 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
         )
       )
       .subscribe((image: any) => {
-        setUploadState(image);
+        setComplete(image);
       });
 
     return () => {
       // On Component destroy. notify takeUntil to unsubscribe from current running ajax request
-      uploadQueue$.next("");
       // unsubscribe filter change listener
       subscription.unsubscribe();
     };
@@ -135,14 +115,12 @@ const ImageUploader: FC<ImageUploaderProps> = ({ ...props }) => {
             >
               Click or Drop here
             </button>
-            {/* <button type="button" onClick={onImageRemoveAll}>
-              Remove all images
-            </button> */}
 
             <div className="ImageUploader__images">
               {imageList.map((image: any, index) => {
-                const state = uploadState[index] ?? { pending: true };
-                console.log(state);
+                const state = uploadState.find(
+                  (image: ImageI) => image.index === index
+                ) ?? { pending: true };
 
                 const cx = classNames({
                   ImageUploader__image: true,
