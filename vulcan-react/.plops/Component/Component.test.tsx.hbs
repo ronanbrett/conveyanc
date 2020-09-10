@@ -1,10 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { create } from "react-test-renderer";
 import {{pascalCase name}} from './{{pascalCase name}}';
 
 describe('{{pascalCase name}}', () => {
    it('renders without error', () => {
-      const { asFragment } = render(<{{pascalCase name}} />);
-      expect(asFragment()).toMatchSnapshot();
+      const component = create(<{{pascalCase name}} />);
+      expect(component.toJSON()).toMatchSnapshot();
    });
 });

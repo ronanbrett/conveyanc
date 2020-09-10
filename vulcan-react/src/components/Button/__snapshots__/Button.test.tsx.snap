@@ -3,7 +3,8 @@
 exports[`Button renders without error 1`] = `
 <DocumentFragment>
   <button
-    class="Button"
+    aria-label="Button"
+    class="Button Button--primary Button--medium focus"
     type="button"
   />
 </DocumentFragment>

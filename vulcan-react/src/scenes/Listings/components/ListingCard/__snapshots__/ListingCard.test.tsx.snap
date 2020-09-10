@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ListingCard renders without error 1`] = `
-<DocumentFragment>
+<div>
   <div
     class="ListingCard"
   >
@@ -16,7 +16,7 @@ exports[`ListingCard renders without error 1`] = `
         >
           <img
             alt="Logo"
-            src="property-1.jpg"
+            src="test"
           />
           <div
             class="card__actions"
@@ -42,7 +42,10 @@ exports[`ListingCard renders without error 1`] = `
         </header>
         <div
           class="card__info property-list-card"
-          v-check-in-viewport="{ callback: visibilityChanged, once: true, }"
+          v-check-in-viewport="{
+            callback: visibilityChanged,
+            once: true,
+          }"
         >
           <h1>
             Bellingham, Mountrath Road
@@ -54,5 +57,5 @@ exports[`ListingCard renders without error 1`] = `
       </article>
     </div>
   </div>
-</DocumentFragment>
+</div>
 `;

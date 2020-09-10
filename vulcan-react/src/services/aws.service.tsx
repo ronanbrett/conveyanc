@@ -9,7 +9,6 @@ Amplify.configure({
 
     refreshHandlers: {
       developer: async () => {
-        console.log("checkRefresh");
         const authClient = new AuthClient();
         const { aws } = await authClient.checkLogin();
 

@@ -1,6 +1,6 @@
 import { TheSideNav, TheTopNav } from "@components";
-import { ROUTES, RouteWithSubRoutes } from "core/routes/routes.config";
-import { GlobalStyleProvider } from "core/theme/light.theme";
+import { ROUTES, RouteWithSubRoutes } from "@core/routes/routes.config";
+import { GlobalStyleProvider } from "@core/theme/light.theme";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 

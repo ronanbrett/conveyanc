@@ -1,5 +1,5 @@
 import { GeocodeResult } from "@services/google.service";
-import MapMarkers from "components/MapMarker/MapMarker";
+import { MapMarkers } from "@components";
 import React, { FC, useEffect, useState } from "react";
 import MapGL, { FlyToInterpolator } from "react-map-gl";
 import styles from "./ListingCreateAssistantPanel.module.scss";

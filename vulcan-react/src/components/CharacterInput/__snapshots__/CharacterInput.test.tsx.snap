@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterInput renders without error 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="propertyType"
+  >
+    Property Type
+  </label>
+  <div>
+    <div
+      className="CharacterInput"
+      style={Object {}}
+    >
+      <div
+        className="TextInput__input__container TextInput--single"
+        style={
+          Object {
+            "borderColor": "var(--border-color)",
+            "transform": "none",
+          }
+        }
+      >
+        <input
+          autoComplete="off"
+          className="TextInput__input TextInput--text"
+          maxLength={1}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyPress={[Function]}
+          onPaste={[Function]}
+          pattern="[A-Za-z0-9]{1}"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="TextInput__input__container TextInput--single"
+        style={
+          Object {
+            "borderColor": "var(--border-color)",
+            "transform": "none",
+          }
+        }
+      >
+        <input
+          autoComplete="off"
+          className="TextInput__input TextInput--text"
+          maxLength={1}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyPress={[Function]}
+          onPaste={[Function]}
+          pattern="[A-Za-z0-9]{1}"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="TextInput__input__container TextInput--single"
+        style={
+          Object {
+            "borderColor": "var(--border-color)",
+            "transform": "none",
+          }
+        }
+      >
+        <input
+          autoComplete="off"
+          className="TextInput__input TextInput--text"
+          maxLength={1}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyPress={[Function]}
+          onPaste={[Function]}
+          pattern="[A-Za-z0-9]{1}"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="TextInput__input__container TextInput--single"
+        style={
+          Object {
+            "borderColor": "var(--border-color)",
+            "transform": "none",
+          }
+        }
+      >
+        <input
+          autoComplete="off"
+          className="TextInput__input TextInput--text"
+          maxLength={1}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyPress={[Function]}
+          onPaste={[Function]}
+          pattern="[A-Za-z0-9]{1}"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</form>
+`;

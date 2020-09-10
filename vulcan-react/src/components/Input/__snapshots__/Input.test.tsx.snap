@@ -11,15 +11,22 @@ exports[`Input renders without error 1`] = `
   >
     Property Type
   </label>
-  <input
-    autoComplete="off"
-    className="Input Input-large field--valid"
-    id="name"
-    name="name"
-    onBlur={[Function]}
-    onChange={[Function]}
-    placeholder="John"
-    type="text"
-  />
+  <div
+    className="TextInput__input__container TextInput--medium"
+    style={Object {}}
+  >
+    <input
+      autoComplete="off"
+      className="TextInput__input TextInput--text"
+      id="name"
+      name="name"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      placeholder="John"
+      type="text"
+    />
+  </div>
 </form>
 `;

@@ -1,5 +1,5 @@
 import { useBreadcrumbs } from "@hooks/useBreadcrumbs";
-import { ROUTES } from "core/routes/routes.config";
+import { ROUTES } from "@core/routes/routes.config";
 import React from "react";
 import styles from "./TheTopNav.module.scss"; // Import css modules stylesheet as styles
 

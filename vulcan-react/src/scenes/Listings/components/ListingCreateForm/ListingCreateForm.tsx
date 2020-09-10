@@ -1,37 +1,28 @@
 import {
+  Button,
+  CharacterInputWrapper,
+  ImageUploader,
   Input,
   MultiTierDropdown,
   MultiTierDropdownItem,
   MultiTierDropdownOption,
-  RichTextEditor,
-  CharacterInputWrapper,
   RichTextEditorWrapper,
   TopNavPortal,
-  Button,
 } from "@components";
-import { PropertyInfo, S3Object, S3ObjectArgs } from "@core/api/graphql";
-import {
-  ErrorMessage,
-  Form,
-  Formik,
-  FormikState,
-  FormikContextType,
-} from "formik";
+import { PropertyInfo, S3ObjectArgs } from "@core/api/graphql";
+import { FormikEffect } from "@core/utils";
+import { ErrorMessage, Form, Formik, FormikContextType } from "formik";
 import { groupBy } from "lodash-es";
 import React, {
   FC,
+  MutableRefObject,
   ReactElement,
   useEffect,
   useState,
-  useRef,
-  MutableRefObject,
 } from "react";
+import { GeocodeResult, getGeoCoding } from "@services/google.service";
 import { object, string } from "yup";
 import styles from "./ListingCreateForm.module.scss";
-
-import { getGeoCoding, GeocodeResult } from "services/google.service";
-import { FormikEffect } from "@core/utils";
-import ImageUploader from "components/ImageUploader";
 
 const ListingCreateFormSchema = object().shape({
   propertyType: string().required("You must select a type"),

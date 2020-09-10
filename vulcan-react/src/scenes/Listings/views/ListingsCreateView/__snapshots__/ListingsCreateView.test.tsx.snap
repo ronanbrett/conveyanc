@@ -3,7 +3,42 @@
 exports[`ListingsCreateView renders without error 1`] = `
 <DocumentFragment>
   <div
-    class="ListingsCreateView page"
-  />
+    class="ListingsCreateView"
+  >
+    <div
+      class="ListingCreateAssistantPanel"
+    >
+      <div
+        style="position: relative; width: 100%; height: 100%; cursor: grab; outline: none;"
+        tabindex="0"
+      >
+        <div
+          style="position: relative; width: 100%; height: 100%;"
+        >
+          <div
+            class=""
+            style="position: absolute; width: 100%; height: 100%; overflow: hidden; visibility: inherit;"
+          />
+          <div
+            style="overflow: visible; height: 0px; width: 0px;"
+          />
+          <div
+            class="resize-triggers"
+          >
+            <div
+              class="expand-trigger"
+            >
+              <div
+                style="width: 1px; height: 1px;"
+              />
+            </div>
+            <div
+              class="contract-trigger"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </DocumentFragment>
 `;

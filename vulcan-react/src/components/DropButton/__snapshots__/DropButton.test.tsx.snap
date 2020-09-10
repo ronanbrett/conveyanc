@@ -3,7 +3,7 @@
 exports[`DropButton close by clicking outside 1`] = `
 <button
   aria-label="Open Drop"
-  class="Button"
+  class="Button Button--primary Button--medium focus"
   type="button"
 >
   Dropper
@@ -21,7 +21,7 @@ exports[`DropButton close by clicking outside 2`] = `
 exports[`DropButton closed 1`] = `
 <button
   aria-label="Open Drop"
-  className="Button"
+  className="Button Button--primary Button--medium focus"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -34,7 +34,7 @@ exports[`DropButton closed 1`] = `
 exports[`DropButton disabled 1`] = `
 <button
   aria-label="Open Drop"
-  class="Button"
+  class="Button Button--primary Button--medium focus"
   disabled=""
   type="button"
 >
@@ -45,7 +45,7 @@ exports[`DropButton disabled 1`] = `
 exports[`DropButton open and close 1`] = `
 <button
   aria-label="Open Drop"
-  class="Button"
+  class="Button Button--primary Button--medium focus"
   type="button"
 >
   Dropper
@@ -63,7 +63,7 @@ exports[`DropButton open and close 2`] = `
 exports[`DropButton opened 1`] = `
 <button
   aria-label="Open Drop"
-  className="Button"
+  className="Button Button--primary Button--medium focus"
   id="123"
   onBlur={[Function]}
   onClick={[Function]}
@@ -79,7 +79,7 @@ exports[`DropButton opened 1`] = `
 exports[`DropButton opened ref 1`] = `
 <button
   aria-label="Open Drop"
-  class="Button"
+  class="Button Button--primary Button--medium focus"
   type="button"
 >
   Dropper
@@ -97,7 +97,7 @@ exports[`DropButton opened ref 2`] = `
 exports[`DropButton ref function 1`] = `
 <button
   aria-label="Open Drop"
-  class="Button"
+  class="Button Button--primary Button--medium focus"
   type="button"
 >
   Dropper
@@ -115,7 +115,7 @@ exports[`DropButton ref function 2`] = `
 exports[`DropButton should have no accessibility violations 1`] = `
 <button
   aria-label="test"
-  class="Button"
+  class="Button Button--primary Button--medium focus"
   type="button"
 />
 `;

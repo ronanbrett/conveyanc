@@ -1,4 +1,4 @@
-import { InfiniteScroll, Keyboard,  Button } from "@components";
+import { InfiniteScroll, Keyboard, Button } from "@components";
 import { setFocusWithoutScroll } from "@core/utils/dom.utils";
 import React, {
   forwardRef,
@@ -8,10 +8,9 @@ import React, {
   useState,
 } from "react";
 import { applyKey } from "./select.utils";
-import { SelectProps } from './Select';
+import { SelectProps } from "./Select";
 import { isArray, isFunction, isObject } from "lodash-es";
-import TextInput from "components/TextInput";
-import IconButton from "components/IconButton";
+import { TextInput, IconButton } from "@components";
 
 type SelectContainerProps = {
   children: any;
@@ -110,7 +109,7 @@ const SelectContainer = forwardRef(
 
     const getValueKeyArr = (value: any, key: any) => {
       return value[key];
-    }
+    };
 
     const isDisabled = useCallback(
       (index) => {
@@ -146,20 +145,18 @@ const SelectContainer = forwardRef(
               result = value.indexOf(optionVal) !== -1;
             } else if (valueKey) {
               result = value.some((valueItem: any) => {
-
-                const valueValue = isFunction(valueKey) ? valueKey(valueItem) : valueItem[valueKey as any];
+                const valueValue = isFunction(valueKey)
+                  ? valueKey(valueItem)
+                  : valueItem[valueKey as any];
 
                 return valueValue === optionVal;
               });
             }
           } else if (valueKey && typeof value === "object") {
-
-            let valueValue
-            if(isFunction(valueKey)){
+            let valueValue;
+            if (isFunction(valueKey)) {
               valueValue = valueKey(value);
             } else {
-
-         
               valueValue = getValueKeyArr(value, valueKey);
             }
 
@@ -273,14 +270,14 @@ const SelectContainer = forwardRef(
         >
           {onSearch && (
             <div className="Select__search">
-              <IconButton size="mini" icon="search"  />
+              <IconButton size="mini" icon="search" />
               <TextInput
                 // focusIndicator={!customSearchInput}
                 // size="small"
                 ref={searchRef}
                 type="search"
                 classOverride="Select"
-                value={search || ''}
+                value={search || ""}
                 placeholder={searchPlaceholder}
                 onChange={(event: any) => {
                   const nextSearch = event.target.value;
@@ -289,7 +286,8 @@ const SelectContainer = forwardRef(
                   onSearch(nextSearch);
                 }}
               />
-            </div>)}
+            </div>
+          )}
 
           <div
             role="menubar"
@@ -313,7 +311,6 @@ const SelectContainer = forwardRef(
                   // as an option Button kind property.
                   let child;
 
-
                   if (children)
                     child = children(option, index, options, {
                       active: optionActive,
@@ -323,15 +320,13 @@ const SelectContainer = forwardRef(
                   else
                     child = (
                       <div
-                        className={`Select__option ${optionActive ? "active" : ""} ${
-                          optionSelected ? "selected" : ""
-                        }`}
+                        className={`Select__option ${
+                          optionActive ? "active" : ""
+                        } ${optionSelected ? "selected" : ""}`}
                       >
                         <p>{optionLabel(index)}</p>
                       </div>
                     );
-
-              
 
                   // if we have a child, turn on plain, and hoverIndicator
 
@@ -374,7 +369,7 @@ const SelectContainer = forwardRef(
                 disabled
                 // option={emptySearchMessage}
               >
-                <div >
+                <div>
                   <p>{emptySearchMessage}</p>
                 </div>
               </button>

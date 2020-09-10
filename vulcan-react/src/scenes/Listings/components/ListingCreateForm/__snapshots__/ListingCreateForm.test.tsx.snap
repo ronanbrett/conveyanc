@@ -1,10 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ListingCreateForm renders without error 1`] = `
-<DocumentFragment>
+<div>
   <div
     class="ListingCreateForm"
   >
+    <h1
+      class="title"
+    >
+      Property Details
+    </h1>
     <form
       action="#"
       class="form"
@@ -16,7 +21,7 @@ exports[`ListingCreateForm renders without error 1`] = `
           class="field__label"
           for="propertyType"
         >
-          Name
+          Type of Property
         </label>
         <div
           class="multi-dd field--valid"
@@ -57,31 +62,213 @@ exports[`ListingCreateForm renders without error 1`] = `
       >
         <label
           class="field__label"
+          for="eircode"
+        >
+          Eircode
+        </label>
+        <div>
+          <div
+            class="CharacterInput"
+          >
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="TextInput__input__container TextInput--single"
+              style="transform: none;"
+            >
+              <input
+                autocomplete="off"
+                class="TextInput__input TextInput--text"
+                maxlength="1"
+                pattern="[A-Za-z0-9]{1}"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="field__container"
+      >
+        <label
+          class="field__label"
           for="propertyType"
         >
-          Name
+          Address
         </label>
-        <input
-          autocomplete="off"
-          class="Input Input-large field--valid"
-          id="name"
-          name="name"
-          placeholder="John"
-          type="text"
-          value=""
-        />
+        <div
+          class="TextInput__input__container TextInput--medium"
+        >
+          <input
+            autocomplete="off"
+            class="TextInput__input TextInput--text"
+            id="name"
+            name="address"
+            placeholder="Enter the first line of your address"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
-      <button
-        type="submit"
+      <div
+        class="field__container"
       >
-        Submit
-      </button>
-      <button
-        type="reset"
+        <div
+          class="field__label"
+        >
+          Description
+        </div>
+        <div
+          class="RichTextEditor"
+        >
+          <div
+            contenteditable="true"
+            data-gramm="false"
+            data-slate-editor="true"
+            data-slate-node="value"
+            role="textbox"
+            spellcheck="true"
+            style="outline: none; white-space: pre-wrap; word-wrap: break-word;"
+          >
+            <p
+              data-slate-node="element"
+            >
+              <span
+                data-slate-node="text"
+              >
+                <span
+                  data-slate-leaf="true"
+                >
+                  <span
+                    contenteditable="false"
+                    style="pointer-events: none; display: inline-block; width: 0px; max-width: 100%; white-space: nowrap; opacity: 0.333; user-select: none; font-style: normal; font-weight: normal; text-decoration: none;"
+                  >
+                    Tell us about the Property
+                  </span>
+                  <span
+                    data-slate-length="0"
+                    data-slate-zero-width="n"
+                  >
+                    ﻿
+                    <br />
+                  </span>
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="field__container"
       >
-        Reset
-      </button>
+        <label
+          class="field__label"
+          for="propertyType"
+        >
+          Images
+        </label>
+        <div
+          class="ImageUploader"
+        >
+          <input
+            accept="image/*"
+            multiple=""
+            style="display: none;"
+            type="file"
+          />
+          <div
+            class="ImageUploader__wrapper"
+          >
+            <button
+              class="ImageUploader__drop"
+              type="button"
+            >
+              Click or Drop here
+            </button>
+            <div
+              class="ImageUploader__images"
+            />
+          </div>
+        </div>
+      </div>
     </form>
   </div>
-</DocumentFragment>
+</div>
 `;

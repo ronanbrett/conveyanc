@@ -15,7 +15,7 @@ interface ButtonProps {
 const Button = forwardRef(
   (
     {
-      a11yTitle,
+      a11yTitle = "Button",
       active,
       align = "center",
       buttonType = "primary",

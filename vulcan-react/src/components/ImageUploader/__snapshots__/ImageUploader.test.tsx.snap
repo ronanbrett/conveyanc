@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageUploader renders without error 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="propertyType"
+  >
+    Property Type
+  </label>
+  <div
+    className="ImageUploader"
+  >
+    <input
+      accept="image/*"
+      multiple={true}
+      onChange={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="file"
+    />
+    <div
+      className="ImageUploader__wrapper"
+    >
+      <button
+        className="ImageUploader__drop"
+        onClick={[Function]}
+        onDragEnter={[Function]}
+        onDragLeave={[Function]}
+        onDragOver={[Function]}
+        onDrop={[Function]}
+        style={null}
+        type="button"
+      >
+        Click or Drop here
+      </button>
+      <div
+        className="ImageUploader__images"
+      />
+    </div>
+  </div>
+</form>
+`;

@@ -1,6 +1,16 @@
+import { Button, Drop, InfiniteScroll, Keyboard } from "@components";
+import { AnnounceContext } from "@core/contexts/AnnounceContext";
+import { FormContext } from "@core/contexts/FormContext";
+import {
+  isNodeAfterScroll,
+  isNodeBeforeScroll,
+  useForwardedRef,
+} from "@core/utils";
+import classNames from "classnames";
 import { DropProps } from "components/Drop/DropContainer";
+import { FieldMetaProps } from "formik";
+import { motion, Variants } from "framer-motion";
 import React, {
-  FC,
   forwardRef,
   SyntheticEvent,
   useCallback,
@@ -10,25 +20,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-
 import "./TextInput.scss";
-
-import { motion, Variants } from "framer-motion";
-
-import {
-  isNodeAfterScroll,
-  isNodeBeforeScroll,
-  useForwardedRef,
-} from "@core/utils";
-import { AnnounceContext } from "@core/contexts/AnnounceContext";
-import { FormContext } from "@core/contexts/FormContext";
-import Keyboard from "components/Keyboard";
-import Drop from "components/Drop";
-import InfiniteScroll from "components/InfiniteScroll";
-import Button from "components/Button";
-
-import classNames from "classnames";
-import { FieldMetaProps } from "formik";
 
 const defaultMessages = {
   enterSelect: "(Press Enter to Select)",

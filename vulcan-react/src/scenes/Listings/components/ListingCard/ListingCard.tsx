@@ -1,10 +1,7 @@
 import { IconButton } from "@components";
-import React from "react";
-
-import styles from "./ListingCard.module.scss";
-import img from "./property-1.jpg";
 import { PropertyDto } from "@core/api/graphql";
-import { property } from "lodash-es";
+import React from "react";
+import styles from "./ListingCard.module.scss";
 
 interface ListingCardProps {
   property?: PropertyDto;

@@ -1,3 +1,3 @@
-import MapMarker from './MapMarker';
+import MapMarkers from "./MapMarker";
 
-export default MapMarker;
+export default MapMarkers;

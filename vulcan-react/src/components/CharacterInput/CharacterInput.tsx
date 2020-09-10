@@ -1,6 +1,5 @@
-import { TextInput } from "@components";
+import { TextInput, Keyboard } from "@components";
 import { FormContext } from "@core/contexts/FormContext";
-import Keyboard from "components/Keyboard";
 import { motion, useAnimation } from "framer-motion";
 import React, {
   FC,

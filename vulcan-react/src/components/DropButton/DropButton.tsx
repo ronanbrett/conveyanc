@@ -1,7 +1,5 @@
+import { Button, Drop } from "@components";
 import { useForwardedRef } from "@core/utils/refs.utils";
-import Button from "components/Button";
-import Drop from "components/Drop/Drop";
-import { DropProps } from "components/Drop/DropContainer";
 import React, {
   forwardRef,
   MutableRefObject,
@@ -9,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-
+import { DropProps } from "../Drop/DropContainer";
 import "./DropButton.module.scss";
 
 export interface DropButtonProps {

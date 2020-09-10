@@ -13,6 +13,7 @@
 
 # config
 /config/**.json
+wallaby.js
 
 # misc
 .DS_Store

@@ -12,11 +12,8 @@ import React, {
 
 import "./Select.scss";
 import { SelectContainer } from "./SelectContainer";
-import { Keyboard } from "@components";
+import { Keyboard, DropButton, TextInput, IconButton } from "@components";
 import { applyKey } from "./select.utils";
-import DropButton from "components/DropButton";
-import TextInput from "components/TextInput";
-import IconButton from "components/IconButton";
 import { FormContext } from "@core/contexts/FormContext";
 import { isObject } from "lodash-es";
 
@@ -60,13 +57,12 @@ export interface SelectProps {
   value?: string | JSX.Element | object | (string | object)[];
   valueLabel?: React.ReactNode;
   valueKey?:
-  | string
-  | { key: string; reduce?: boolean }
-  | ((...args: any[]) => any);
+    | string
+    | { key: string; reduce?: boolean }
+    | ((...args: any[]) => any);
 }
 
-const defaultMessages = { multiple: 'multiple' };
-
+const defaultMessages = { multiple: "multiple" };
 
 const Select = forwardRef(
   (
@@ -77,7 +73,7 @@ const Select = forwardRef(
       closeOnChange = true,
       disabled,
       disabledKey,
-      dropAlign = { top: 'bottom', right: 'right' },
+      dropAlign = { top: "bottom", right: "right" },
       dropHeight,
       dropProps,
       dropTarget,
@@ -121,15 +117,14 @@ const Select = forwardRef(
     // valuedValue is the value mapped with any valueKey applied
     const valuedValue = useMemo(() => {
       if (Array.isArray(value))
-        return value.map(v =>
-          valueKey && isObject(valueKey) ? v : applyKey(v, valueKey),
+        return value.map((v) =>
+          valueKey && isObject(valueKey) ? v : applyKey(v, valueKey)
         );
       return valueKey && isObject(valueKey) ? value : applyKey(value, valueKey);
     }, [value, valueKey]);
 
     // the option indexes present in the value
     const optionIndexesInValue = useMemo(() => {
-
       const result: any = [];
       options.forEach((option, index) => {
         if (selected !== undefined) {
@@ -139,7 +134,7 @@ const Select = forwardRef(
             result.push(index);
           }
         } else if (Array.isArray(valuedValue)) {
-          if (valuedValue.some(v => v === applyKey(option, valueKey))) {
+          if (valuedValue.some((v) => v === applyKey(option, valueKey))) {
             result.push(index);
           }
         } else if (valuedValue === applyKey(option, valueKey)) {
@@ -187,10 +182,13 @@ const Select = forwardRef(
         break;
       case true:
       case undefined:
-        SelectIcon =
-          open && <IconButton size="mini" icon="keyboard_arrow_up" />
-            ? <IconButton size="mini" icon="keyboard_arrow_up" />
-            : <IconButton size="mini" icon="keyboard_arrow_down" />
+        SelectIcon = open && (
+          <IconButton size="mini" icon="keyboard_arrow_up" />
+        ) ? (
+          <IconButton size="mini" icon="keyboard_arrow_up" />
+        ) : (
+          <IconButton size="mini" icon="keyboard_arrow_down" />
+        );
         break;
       default:
         SelectIcon = icon;
@@ -213,7 +211,6 @@ const Select = forwardRef(
       }
       return undefined;
     }, [labelKey, messages, optionIndexesInValue, options, selectValue]);
-
 
     return (
       <Keyboard onDown={onRequestOpen} onUp={onRequestOpen}>
@@ -265,12 +262,19 @@ const Select = forwardRef(
               justifyContent: "space-between",
             }}
           >
-            <div style={{ display: "flex", flexDirection: 'row', flexBasis: 'auto' }} >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexBasis: "auto",
+              }}
+            >
               {selectValue || (
                 <TextInput
                   a11yTitle={
                     a11yTitle &&
-                    `${a11yTitle}${value && typeof value === "string" ? `, ${value}` : ""
+                    `${a11yTitle}${
+                      value && typeof value === "string" ? `, ${value}` : ""
                     }`
                   }
                   classOverride="Select"
@@ -296,14 +300,12 @@ const Select = forwardRef(
               )}
             </div>
             {SelectIcon && (
-              <div
-                style={{ minWidth: "auto", flex: 0 }}
-              >
+              <div style={{ minWidth: "auto", flex: 0 }}>
                 {isValidElement(SelectIcon) ? (
                   SelectIcon
                 ) : (
-                    <IconButton icon="home" />
-                  )}
+                  <IconButton icon="home" />
+                )}
               </div>
             )}
           </div>
@@ -312,7 +314,6 @@ const Select = forwardRef(
     );
   }
 );
-
 
 Select.displayName = "Select";
 

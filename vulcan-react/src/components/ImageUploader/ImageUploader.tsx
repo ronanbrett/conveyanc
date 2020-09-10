@@ -1,7 +1,7 @@
 import { S3Level, S3ObjectArgs } from "@core/api/graphql";
 import { Storage } from "@services/aws.service";
 import classNames from "classnames";
-import IconButton from "components/IconButton";
+import { IconButton } from "@components";
 import { FieldConfig, useField } from "formik";
 import { reduce } from "lodash-es";
 import React, { FC, useEffect, useState } from "react";

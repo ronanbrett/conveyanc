@@ -2,7 +2,7 @@
 import ImageUploader from "./ImageUploader";
 import { RichTextEditor, RichTextEditorWrapper } from "./RichTextEditor";
 import Icon from "./Icon";
-import MapMarker from "./MapMarker";
+import MapMarkers from "./MapMarker";
 import { CharacterInput, CharacterInputWrapper } from "./CharacterInput";
 import TextInput from "./TextInput";
 import FocusedContainer from "./FocusedContainer";
@@ -30,7 +30,7 @@ export {
   RichTextEditorWrapper,
   RichTextEditor,
   Icon,
-  MapMarker,
+  MapMarkers,
   CharacterInput,
   CharacterInputWrapper,
   TextInput,

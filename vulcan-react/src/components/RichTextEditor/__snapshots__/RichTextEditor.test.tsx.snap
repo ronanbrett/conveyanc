@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTextEditor renders without error 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <label
+    htmlFor="propertyType"
+  >
+    Property Type
+  </label>
+  <div
+    className="RichTextEditor"
+  >
+    <div
+      contentEditable={true}
+      data-gramm={false}
+      data-slate-editor={true}
+      data-slate-node="value"
+      onBeforeInput={[Function]}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onCompositionEnd={[Function]}
+      onCompositionStart={[Function]}
+      onCopy={[Function]}
+      onCut={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onPaste={[Function]}
+      role="textbox"
+      spellCheck={true}
+      style={
+        Object {
+          "outline": "none",
+          "whiteSpace": "pre-wrap",
+          "wordWrap": "break-word",
+        }
+      }
+      suppressContentEditableWarning={true}
+    >
+      <p
+        data-slate-node="element"
+      >
+        <span
+          data-slate-node="text"
+        >
+          <span
+            data-slate-leaf={true}
+          >
+            <span
+              contentEditable={false}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "maxWidth": "100%",
+                  "opacity": "0.333",
+                  "pointerEvents": "none",
+                  "textDecoration": "none",
+                  "userSelect": "none",
+                  "whiteSpace": "nowrap",
+                  "width": "0",
+                }
+              }
+            >
+              Enter text
+            </span>
+            <span
+              data-slate-length={0}
+              data-slate-zero-width="n"
+            >
+              ﻿
+              <br />
+            </span>
+          </span>
+        </span>
+      </p>
+    </div>
+  </div>
+</form>
+`;

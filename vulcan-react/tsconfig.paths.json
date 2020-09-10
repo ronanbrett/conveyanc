@@ -8,8 +8,7 @@
       "@hooks/*": ["./hooks/*"],
       "@services/*": ["./services/*"],
       "@testutils/*": ["../testing/*"],
-      "@testutils": ["../testing/index"],
-      "~/*": ["src/*"]
+      "@testutils": ["../testing/index"]
     }
   }
 }
