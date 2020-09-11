@@ -3,8 +3,10 @@ import { Request } from 'express';
 import { mocked } from 'ts-jest/utils';
 import { AuthenticationController } from './authentication.controller';
 import { WebauthnService } from './webauthn/webauthn.service';
+import { Logger } from 'nestjs-pino';
 
 jest.mock('./webauthn/webauthn.service');
+jest.mock('nestjs-pino');
 
 describe('Authentication Controller', () => {
   let controller: AuthenticationController;
@@ -15,7 +17,7 @@ describe('Authentication Controller', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [],
       controllers: [AuthenticationController],
-      providers: [WebauthnService],
+      providers: [WebauthnService, Logger],
     }).compile();
 
     controller = module.get<AuthenticationController>(AuthenticationController);

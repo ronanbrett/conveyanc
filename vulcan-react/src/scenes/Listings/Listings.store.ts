@@ -25,7 +25,7 @@ let state: ListingStoreState = initialState;
 export const ListingStore = {
   init: async () => {
     const data: PropertyPaged = await getQueryRXJS(RETRIEVE_PROPERTIES_PAGED, {
-      first: 10,
+      first: 100,
       after: null,
     })
       .pipe(map((x) => x.propertiesPaged))
