@@ -2,7 +2,7 @@ use mongodb::bson::{doc, document::Document, oid::ObjectId, Bson};
 use mongodb::error::Result;
 use mongodb::{
     options::{AuthMechanism, ClientOptions, Credential},
-    Client, Collection,
+    Client, Collection, Cursor,
 };
 use std::env;
 
@@ -27,5 +27,20 @@ impl DB {
         Ok(Self {
             client: Client::with_options(client_options)?,
         })
+    }
+
+    pub fn get_collection(&self, dbName: &str, collection: &str) -> Collection {
+        let db = self.client.database(dbName);
+        let collection = db.collection(collection);
+        collection
+    }
+
+    pub async fn find_one(&self, dbName: &str, collection: &str) -> Result<Option<Document>> {
+        let db = self.client.database(dbName);
+        let collection = db.collection(collection);
+
+        let document = collection.find_one(None, None).await?;
+
+        Ok(document)
     }
 }
