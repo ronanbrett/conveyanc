@@ -24,8 +24,8 @@ module.exports = {
       "@scenes": `${path.resolve(__dirname, "../src/scenes/")}`,
       "@services": `${path.resolve(__dirname, "../src/services/")}`,
       "@hooks": `${path.resolve(__dirname, "../src/hooks/")}`,
+      "@testutils": `${path.resolve(__dirname, "../testing")}`,
       // Another example for using a wildcard character
-      "~": `${path.resolve(__dirname, "../src/")}/`,
     };
 
     // Return the altered config

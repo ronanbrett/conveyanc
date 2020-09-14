@@ -1,16 +1,16 @@
 import React from 'react';
 
-import MapMarker from './MapMarker';
+import MapMarkers from './MapMarker';
 
 import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/MapMarker',
   decorators: [],
-  component: MapMarker,
+  component: MapMarkers,
 };
 
 
 export const Default = (props) => (
-  <MapMarker {...props}></MapMarker>
+  <MapMarkers {...props}></MapMarkers>
 );

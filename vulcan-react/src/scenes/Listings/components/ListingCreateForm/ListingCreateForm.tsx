@@ -21,13 +21,14 @@ import React, {
   useState,
 } from "react";
 import { GeocodeResult, getGeoCoding } from "@services/google.service";
-import { object, string } from "yup";
+import { object, string, array } from "yup";
 import styles from "./ListingCreateForm.module.scss";
 
 const ListingCreateFormSchema = object().shape({
   propertyType: string().required("You must select a type"),
   eircode: string().required("You must enter an eircode").min(7),
   address: string().required("Please enter the first line of your address"),
+  images: array().min(1, "You must add at least one image"),
 });
 
 export interface ListingCreateFormValues {
@@ -223,6 +224,10 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
               Images
             </label>
             <ImageUploader name="images"></ImageUploader>
+
+            <ErrorMessage className="field__error" name="images">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
           </div>
         </Form>
       </Formik>

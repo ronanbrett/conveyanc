@@ -2,7 +2,7 @@ import { IconButton } from "@components";
 import { addFieldValidationClasses } from "@core/utils/field.utils";
 import { mapChildren } from "@core/utils/mapChildren.util";
 import { FieldConfig, useField } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./MultiTierDropdown.scss";
 
 export interface MultiTierDropdownState {
@@ -13,6 +13,7 @@ export interface MultiTierDropdownState {
 }
 
 interface MultiTierDropdownProps {
+  closeOnSelect?: string;
   placeholder?: string;
   value?: string;
   children?: any;
@@ -24,6 +25,7 @@ const MultiTierDropdown = <T extends any>({
   children,
   getDisplayValue,
   value,
+  closeOnSelect,
   ...props
 }: MultiTierDropdownProps & FieldConfig) => {
   const [field, meta, helpers] = useField(props);
@@ -33,6 +35,8 @@ const MultiTierDropdown = <T extends any>({
   const [activeGroupIndex, setActiveGroupIndex] = useState(-1);
   const [activeItem, setActiveItem] = useState<string>();
   const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
+
+  const containerRef = useRef<HTMLElement>();
 
   let displayValue = activeItem ? activeItem : placeholder;
   if (getDisplayValue) {
@@ -59,22 +63,26 @@ const MultiTierDropdown = <T extends any>({
     setActiveGroupIndex(-1);
   };
 
-  const onComplete = () => {
-    setIsOpen(false);
+  const onComplete = (force = false) => {
+    if (closeOnSelect || force) {
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
     setModelValue(field.value);
 
     if (field.value === "") {
-      console.log("reset!");
       setIsOpen(false);
       reset();
     }
   }, [field.value]);
 
   return (
-    <div className={`multi-dd ${addFieldValidationClasses(meta)}`}>
+    <div
+      ref={containerRef as any}
+      className={`multi-dd ${addFieldValidationClasses(meta)}`}
+    >
       <header onClick={swapIsOpen} className="multi-dd__trigger">
         <div className="multi-dd__trigger-content">{displayValue}</div>
         <IconButton

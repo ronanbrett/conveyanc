@@ -9,12 +9,13 @@ interface ListingCardProps {
 }
 
 const ListingCard = ({ property }: ListingCardProps) => {
+  const mainImage = property?.images.length ? property.images[0].url : null;
   return (
     <div className={styles.ListingCard}>
       <div className="card__container">
         <article className="card">
           <header className="card__header">
-            <img src={property.images[0].url} alt="Logo" />
+            <img src={mainImage} alt="Logo" />
 
             <div className="card__actions">
               <IconButton icon="favorite" />

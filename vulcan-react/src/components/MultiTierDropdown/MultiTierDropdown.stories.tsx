@@ -162,3 +162,65 @@ export const MultiTierDropDownWithCustomDisplayValue = (props) => {
     </Formik>
   );
 };
+
+export const MultiTierDropDownWithScrolling = (props) => {
+  const getDisplayValue = (activeItem: string) => {
+    return `${activeItem} Transformed`;
+  };
+
+  return (
+    <Formik
+      initialValues={{ propertyType: "" }}
+      onSubmit={(x) => console.log(x)}
+    >
+      <Form style={{ minWidth: "500px" }}>
+        <label htmlFor="propertyType">Property Type</label>
+        <Field name="propertyType">
+          {({
+            field, // { name, value, onChange, onBlur }
+            form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+            meta,
+          }) => (
+            <MultiTierDropdown
+              placeholder="Select Property Type"
+              getDisplayValue={getDisplayValue}
+              {...field}
+              {...form}
+            >
+              <MultiTierDropdownItem value="Group2" label="test">
+                <MultiTierDropdownOption value="TestA">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestF">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestB">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestC">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestD">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestE">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestI">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestG">
+                  Test
+                </MultiTierDropdownOption>
+                <MultiTierDropdownOption value="TestH">
+                  Test
+                </MultiTierDropdownOption>
+              </MultiTierDropdownItem>
+            </MultiTierDropdown>
+          )}
+        </Field>
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
+  );
+};

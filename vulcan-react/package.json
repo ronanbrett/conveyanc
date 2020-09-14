@@ -7,7 +7,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "DEBUG=docgen:* start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "generate-api": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
@@ -45,6 +45,7 @@
     "lodash-es": "^4.17.15",
     "observable-hooks": "^3.1.2",
     "react": "^16.13.1",
+    "react-docgen-typescript": "^1.20.4",
     "react-dom": "^16.13.1",
     "react-images-uploading": "^3.0.1",
     "react-magnetic-di": "^2.2.6",

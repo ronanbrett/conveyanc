@@ -1,6 +1,5 @@
-import Amplify, { Auth, Storage, StorageClass } from "aws-amplify";
-
 import { AuthClient } from "@core/auth/auth.client";
+import Amplify, { Auth, Storage } from "aws-amplify";
 
 Amplify.configure({
   Auth: {

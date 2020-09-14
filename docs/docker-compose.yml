@@ -1,18 +1,19 @@
 version: "3.8"
 services:
-  nginx:
-    build: $PWD/../nginx
-    volumes:
-      - $PWD/../vulcan-react/build:/usr/share/nginx/html:ro
-      - $PWD/../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /$PWD/../vulcan-react/certs:/etc/nginx/certs
-    ports:
-      - "80:80"
-      - "443:443/tcp"
-      - "443:443/udp"
+  # nginx:
+  #   build: $PWD/../nginx
+  #   volumes:
+  #     - $PWD/../vulcan-react/build:/usr/share/nginx/html:ro
+  #     - $PWD/../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - /$PWD/../vulcan-react/certs:/etc/nginx/certs
+  #   ports:
+  #     - "80:80"
+  #     - "443:443/tcp"
+  #     - "443:443/udp"
   redis:
     image: redis:alpine
-    command: redis-server --requirepass INSECURE
+    # command: redis-server --requirepass INSECURE
+    command: redis-server
     ports:
       - "6379:6379"
     volumes:
@@ -29,13 +30,32 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=INSECURE
     volumes:
       - $PWD/../mongo/data:/data/db
-  mongo-express:
-    image: mongo-express
-    depends_on:
-      - mongo
-    restart: always
+  nats-ui:
+    image: sphqxe/nats-webui:latest
     ports:
-      - 8085:8081
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongoadmin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=INSECURE
+      - "8087:80"
+    networks: ["nats"]
+    depends_on: ["nats"]
+  nats:
+    image: nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    networks: ["nats"]
+  nats-1:
+    image: nats
+    command: "--cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222"
+    networks: ["nats"]
+    depends_on: ["nats"]
+  nats-2:
+    image: nats
+    command: "--cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats:6222"
+    networks: ["nats"]
+    depends_on: ["nats"]
+  nats-streaming:
+    image: nats-streaming
+    networks: ["nats"]
+
+networks:
+  nats:
+    name: nats

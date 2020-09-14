@@ -80,7 +80,6 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
       .pipe(take(1))
       .toPromise();
 
-    console.log(result);
     history.push("/listings");
   };
 
