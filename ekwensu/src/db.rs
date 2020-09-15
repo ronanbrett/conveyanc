@@ -29,14 +29,14 @@ impl DB {
         })
     }
 
-    pub fn get_collection(&self, dbName: &str, collection: &str) -> Collection {
-        let db = self.client.database(dbName);
+    pub fn get_collection(&self, db_name: &str, collection: &str) -> Collection {
+        let db = self.client.database(db_name);
         let collection = db.collection(collection);
         collection
     }
 
-    pub async fn find_one(&self, dbName: &str, collection: &str) -> Result<Option<Document>> {
-        let db = self.client.database(dbName);
+    pub async fn find_one(&self, db_name: &str, collection: &str) -> Result<Option<Document>> {
+        let db = self.client.database(db_name);
         let collection = db.collection(collection);
 
         let document = collection.find_one(None, None).await?;

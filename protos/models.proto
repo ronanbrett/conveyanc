@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+message Bids {
+
+  enum BidType {
+    BASIC = 0;
+    MONEY = 1;
+    MIXED = 2;
+  };
+
+  enum BidPrivacy {
+    NO_PRIVACY = 0;
+    NO_BIDS = 1;
+    NO_PERSONAL_INFO = 2;
+    NO_BIDS_PERSONAL_INFO = 3;
+  };
+
+  message BidComponent {
+    BidType type = 1;
+    string value = 2;
+  };
+
+  string bid_id = 1;
+  bytes enc_arr = 2;
+  string bid_amt = 3;
+  BidType type = 4;
+  repeated BidComponent bid_components = 5;
+}
+
+message Auction {
+  string id = 1;
+  enum AuctionType {
+    ENGLISH = 0;
+    DUTCH = 1;
+    OTHER = 2;
+  }
+  AuctionType auctionType = 2;
+  string auctionId = 3;
+  repeated Bids bids = 4;
+}

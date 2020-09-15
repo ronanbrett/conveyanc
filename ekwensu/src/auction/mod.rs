@@ -1,14 +1,15 @@
+mod encrypto;
+
 use super::consts::AUCTION_CREATED;
 use super::db::DB;
 use super::queue::MessagingQueue;
-use crate::protos::models::Auction;
-
-use protobuf::Message;
+use crate::protos::models::{Auction, Auction_AuctionType};
 
 use futures::stream::StreamExt;
+use protobuf::Message;
 
-use mongodb::bson::{self, doc, Bson, Document};
-use mongodb::error::{Error, Result};
+use mongodb::bson::Bson;
+use mongodb::error::Result;
 
 pub fn handle_auction(msg: String, db: &DB) {
     println!("{:?}", msg);
@@ -39,6 +40,7 @@ pub async fn emit_auction_created_event(msg: String, queue: &MessagingQueue) -> 
     let mut msg = Auction::new();
     msg.id = "123".to_string();
     msg.auctionId = "143".to_string();
+    msg.auctionType = Auction_AuctionType::OTHER.into();
 
     queue
         .publish_bytes(AUCTION_CREATED, msg.write_to_bytes().unwrap())

@@ -24,10 +24,634 @@
 // const _PROTOBUF_VERSION_CHECK: () = ::protobuf::VERSION_2_17_0;
 
 #[derive(PartialEq,Clone,Default)]
+pub struct Bids {
+    // message fields
+    pub bid_id: ::std::string::String,
+    pub enc_arr: ::std::vec::Vec<u8>,
+    pub bid_amt: ::std::string::String,
+    pub field_type: Bids_BidType,
+    pub bid_components: ::protobuf::RepeatedField<Bids_BidComponent>,
+    // special fields
+    pub unknown_fields: ::protobuf::UnknownFields,
+    pub cached_size: ::protobuf::CachedSize,
+}
+
+impl<'a> ::std::default::Default for &'a Bids {
+    fn default() -> &'a Bids {
+        <Bids as ::protobuf::Message>::default_instance()
+    }
+}
+
+impl Bids {
+    pub fn new() -> Bids {
+        ::std::default::Default::default()
+    }
+
+    // string bid_id = 1;
+
+
+    pub fn get_bid_id(&self) -> &str {
+        &self.bid_id
+    }
+    pub fn clear_bid_id(&mut self) {
+        self.bid_id.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_bid_id(&mut self, v: ::std::string::String) {
+        self.bid_id = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_bid_id(&mut self) -> &mut ::std::string::String {
+        &mut self.bid_id
+    }
+
+    // Take field
+    pub fn take_bid_id(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.bid_id, ::std::string::String::new())
+    }
+
+    // bytes enc_arr = 2;
+
+
+    pub fn get_enc_arr(&self) -> &[u8] {
+        &self.enc_arr
+    }
+    pub fn clear_enc_arr(&mut self) {
+        self.enc_arr.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_enc_arr(&mut self, v: ::std::vec::Vec<u8>) {
+        self.enc_arr = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_enc_arr(&mut self) -> &mut ::std::vec::Vec<u8> {
+        &mut self.enc_arr
+    }
+
+    // Take field
+    pub fn take_enc_arr(&mut self) -> ::std::vec::Vec<u8> {
+        ::std::mem::replace(&mut self.enc_arr, ::std::vec::Vec::new())
+    }
+
+    // string bid_amt = 3;
+
+
+    pub fn get_bid_amt(&self) -> &str {
+        &self.bid_amt
+    }
+    pub fn clear_bid_amt(&mut self) {
+        self.bid_amt.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_bid_amt(&mut self, v: ::std::string::String) {
+        self.bid_amt = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_bid_amt(&mut self) -> &mut ::std::string::String {
+        &mut self.bid_amt
+    }
+
+    // Take field
+    pub fn take_bid_amt(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.bid_amt, ::std::string::String::new())
+    }
+
+    // .Bids.BidType type = 4;
+
+
+    pub fn get_field_type(&self) -> Bids_BidType {
+        self.field_type
+    }
+    pub fn clear_field_type(&mut self) {
+        self.field_type = Bids_BidType::BASIC;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_field_type(&mut self, v: Bids_BidType) {
+        self.field_type = v;
+    }
+
+    // repeated .Bids.BidComponent bid_components = 5;
+
+
+    pub fn get_bid_components(&self) -> &[Bids_BidComponent] {
+        &self.bid_components
+    }
+    pub fn clear_bid_components(&mut self) {
+        self.bid_components.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_bid_components(&mut self, v: ::protobuf::RepeatedField<Bids_BidComponent>) {
+        self.bid_components = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_bid_components(&mut self) -> &mut ::protobuf::RepeatedField<Bids_BidComponent> {
+        &mut self.bid_components
+    }
+
+    // Take field
+    pub fn take_bid_components(&mut self) -> ::protobuf::RepeatedField<Bids_BidComponent> {
+        ::std::mem::replace(&mut self.bid_components, ::protobuf::RepeatedField::new())
+    }
+}
+
+impl ::protobuf::Message for Bids {
+    fn is_initialized(&self) -> bool {
+        for v in &self.bid_components {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.bid_id)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.enc_arr)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.bid_amt)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 4, &mut self.unknown_fields)?
+                },
+                5 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.bid_components)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if !self.bid_id.is_empty() {
+            my_size += ::protobuf::rt::string_size(1, &self.bid_id);
+        }
+        if !self.enc_arr.is_empty() {
+            my_size += ::protobuf::rt::bytes_size(2, &self.enc_arr);
+        }
+        if !self.bid_amt.is_empty() {
+            my_size += ::protobuf::rt::string_size(3, &self.bid_amt);
+        }
+        if self.field_type != Bids_BidType::BASIC {
+            my_size += ::protobuf::rt::enum_size(4, self.field_type);
+        }
+        for value in &self.bid_components {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        if !self.bid_id.is_empty() {
+            os.write_string(1, &self.bid_id)?;
+        }
+        if !self.enc_arr.is_empty() {
+            os.write_bytes(2, &self.enc_arr)?;
+        }
+        if !self.bid_amt.is_empty() {
+            os.write_string(3, &self.bid_amt)?;
+        }
+        if self.field_type != Bids_BidType::BASIC {
+            os.write_enum(4, ::protobuf::ProtobufEnum::value(&self.field_type))?;
+        }
+        for v in &self.bid_components {
+            os.write_tag(5, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
+    }
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
+    }
+    fn into_any(self: ::std::boxed::Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> Bids {
+        Bids::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::LazyV2::INIT;
+        descriptor.get(|| {
+            let mut fields = ::std::vec::Vec::new();
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                "bid_id",
+                |m: &Bids| { &m.bid_id },
+                |m: &mut Bids| { &mut m.bid_id },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                "enc_arr",
+                |m: &Bids| { &m.enc_arr },
+                |m: &mut Bids| { &mut m.enc_arr },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                "bid_amt",
+                |m: &Bids| { &m.bid_amt },
+                |m: &mut Bids| { &mut m.bid_amt },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Bids_BidType>>(
+                "type",
+                |m: &Bids| { &m.field_type },
+                |m: &mut Bids| { &mut m.field_type },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Bids_BidComponent>>(
+                "bid_components",
+                |m: &Bids| { &m.bid_components },
+                |m: &mut Bids| { &mut m.bid_components },
+            ));
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<Bids>(
+                "Bids",
+                fields,
+                file_descriptor_proto()
+            )
+        })
+    }
+
+    fn default_instance() -> &'static Bids {
+        static instance: ::protobuf::rt::LazyV2<Bids> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(Bids::new)
+    }
+}
+
+impl ::protobuf::Clear for Bids {
+    fn clear(&mut self) {
+        self.bid_id.clear();
+        self.enc_arr.clear();
+        self.bid_amt.clear();
+        self.field_type = Bids_BidType::BASIC;
+        self.bid_components.clear();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for Bids {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for Bids {
+    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
+        ::protobuf::reflect::ReflectValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct Bids_BidComponent {
+    // message fields
+    pub field_type: Bids_BidType,
+    pub value: ::std::string::String,
+    // special fields
+    pub unknown_fields: ::protobuf::UnknownFields,
+    pub cached_size: ::protobuf::CachedSize,
+}
+
+impl<'a> ::std::default::Default for &'a Bids_BidComponent {
+    fn default() -> &'a Bids_BidComponent {
+        <Bids_BidComponent as ::protobuf::Message>::default_instance()
+    }
+}
+
+impl Bids_BidComponent {
+    pub fn new() -> Bids_BidComponent {
+        ::std::default::Default::default()
+    }
+
+    // .Bids.BidType type = 1;
+
+
+    pub fn get_field_type(&self) -> Bids_BidType {
+        self.field_type
+    }
+    pub fn clear_field_type(&mut self) {
+        self.field_type = Bids_BidType::BASIC;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_field_type(&mut self, v: Bids_BidType) {
+        self.field_type = v;
+    }
+
+    // string value = 2;
+
+
+    pub fn get_value(&self) -> &str {
+        &self.value
+    }
+    pub fn clear_value(&mut self) {
+        self.value.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_value(&mut self, v: ::std::string::String) {
+        self.value = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_value(&mut self) -> &mut ::std::string::String {
+        &mut self.value
+    }
+
+    // Take field
+    pub fn take_value(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.value, ::std::string::String::new())
+    }
+}
+
+impl ::protobuf::Message for Bids_BidComponent {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.field_type, 1, &mut self.unknown_fields)?
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.value)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if self.field_type != Bids_BidType::BASIC {
+            my_size += ::protobuf::rt::enum_size(1, self.field_type);
+        }
+        if !self.value.is_empty() {
+            my_size += ::protobuf::rt::string_size(2, &self.value);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        if self.field_type != Bids_BidType::BASIC {
+            os.write_enum(1, ::protobuf::ProtobufEnum::value(&self.field_type))?;
+        }
+        if !self.value.is_empty() {
+            os.write_string(2, &self.value)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
+    }
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
+    }
+    fn into_any(self: ::std::boxed::Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> Bids_BidComponent {
+        Bids_BidComponent::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::MessageDescriptor> = ::protobuf::rt::LazyV2::INIT;
+        descriptor.get(|| {
+            let mut fields = ::std::vec::Vec::new();
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Bids_BidType>>(
+                "type",
+                |m: &Bids_BidComponent| { &m.field_type },
+                |m: &mut Bids_BidComponent| { &mut m.field_type },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                "value",
+                |m: &Bids_BidComponent| { &m.value },
+                |m: &mut Bids_BidComponent| { &mut m.value },
+            ));
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<Bids_BidComponent>(
+                "Bids.BidComponent",
+                fields,
+                file_descriptor_proto()
+            )
+        })
+    }
+
+    fn default_instance() -> &'static Bids_BidComponent {
+        static instance: ::protobuf::rt::LazyV2<Bids_BidComponent> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(Bids_BidComponent::new)
+    }
+}
+
+impl ::protobuf::Clear for Bids_BidComponent {
+    fn clear(&mut self) {
+        self.field_type = Bids_BidType::BASIC;
+        self.value.clear();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for Bids_BidComponent {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for Bids_BidComponent {
+    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
+        ::protobuf::reflect::ReflectValueRef::Message(self)
+    }
+}
+
+#[derive(Clone,PartialEq,Eq,Debug,Hash)]
+pub enum Bids_BidType {
+    BASIC = 0,
+    MONEY = 1,
+    MIXED = 2,
+}
+
+impl ::protobuf::ProtobufEnum for Bids_BidType {
+    fn value(&self) -> i32 {
+        *self as i32
+    }
+
+    fn from_i32(value: i32) -> ::std::option::Option<Bids_BidType> {
+        match value {
+            0 => ::std::option::Option::Some(Bids_BidType::BASIC),
+            1 => ::std::option::Option::Some(Bids_BidType::MONEY),
+            2 => ::std::option::Option::Some(Bids_BidType::MIXED),
+            _ => ::std::option::Option::None
+        }
+    }
+
+    fn values() -> &'static [Self] {
+        static values: &'static [Bids_BidType] = &[
+            Bids_BidType::BASIC,
+            Bids_BidType::MONEY,
+            Bids_BidType::MIXED,
+        ];
+        values
+    }
+
+    fn enum_descriptor_static() -> &'static ::protobuf::reflect::EnumDescriptor {
+        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::EnumDescriptor> = ::protobuf::rt::LazyV2::INIT;
+        descriptor.get(|| {
+            ::protobuf::reflect::EnumDescriptor::new_pb_name::<Bids_BidType>("Bids.BidType", file_descriptor_proto())
+        })
+    }
+}
+
+impl ::std::marker::Copy for Bids_BidType {
+}
+
+impl ::std::default::Default for Bids_BidType {
+    fn default() -> Self {
+        Bids_BidType::BASIC
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for Bids_BidType {
+    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
+        ::protobuf::reflect::ReflectValueRef::Enum(::protobuf::ProtobufEnum::descriptor(self))
+    }
+}
+
+#[derive(Clone,PartialEq,Eq,Debug,Hash)]
+pub enum Bids_BidPrivacy {
+    NO_PRIVACY = 0,
+    NO_BIDS = 1,
+    NO_PERSONAL_INFO = 2,
+    NO_BIDS_PERSONAL_INFO = 3,
+}
+
+impl ::protobuf::ProtobufEnum for Bids_BidPrivacy {
+    fn value(&self) -> i32 {
+        *self as i32
+    }
+
+    fn from_i32(value: i32) -> ::std::option::Option<Bids_BidPrivacy> {
+        match value {
+            0 => ::std::option::Option::Some(Bids_BidPrivacy::NO_PRIVACY),
+            1 => ::std::option::Option::Some(Bids_BidPrivacy::NO_BIDS),
+            2 => ::std::option::Option::Some(Bids_BidPrivacy::NO_PERSONAL_INFO),
+            3 => ::std::option::Option::Some(Bids_BidPrivacy::NO_BIDS_PERSONAL_INFO),
+            _ => ::std::option::Option::None
+        }
+    }
+
+    fn values() -> &'static [Self] {
+        static values: &'static [Bids_BidPrivacy] = &[
+            Bids_BidPrivacy::NO_PRIVACY,
+            Bids_BidPrivacy::NO_BIDS,
+            Bids_BidPrivacy::NO_PERSONAL_INFO,
+            Bids_BidPrivacy::NO_BIDS_PERSONAL_INFO,
+        ];
+        values
+    }
+
+    fn enum_descriptor_static() -> &'static ::protobuf::reflect::EnumDescriptor {
+        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::EnumDescriptor> = ::protobuf::rt::LazyV2::INIT;
+        descriptor.get(|| {
+            ::protobuf::reflect::EnumDescriptor::new_pb_name::<Bids_BidPrivacy>("Bids.BidPrivacy", file_descriptor_proto())
+        })
+    }
+}
+
+impl ::std::marker::Copy for Bids_BidPrivacy {
+}
+
+impl ::std::default::Default for Bids_BidPrivacy {
+    fn default() -> Self {
+        Bids_BidPrivacy::NO_PRIVACY
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for Bids_BidPrivacy {
+    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
+        ::protobuf::reflect::ReflectValueRef::Enum(::protobuf::ProtobufEnum::descriptor(self))
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
 pub struct Auction {
     // message fields
     pub id: ::std::string::String,
+    pub auctionType: Auction_AuctionType,
     pub auctionId: ::std::string::String,
+    pub bids: ::protobuf::RepeatedField<Bids>,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
     pub cached_size: ::protobuf::CachedSize,
@@ -70,7 +694,22 @@ impl Auction {
         ::std::mem::replace(&mut self.id, ::std::string::String::new())
     }
 
-    // string auctionId = 2;
+    // .Auction.AuctionType auctionType = 2;
+
+
+    pub fn get_auctionType(&self) -> Auction_AuctionType {
+        self.auctionType
+    }
+    pub fn clear_auctionType(&mut self) {
+        self.auctionType = Auction_AuctionType::ENGLISH;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_auctionType(&mut self, v: Auction_AuctionType) {
+        self.auctionType = v;
+    }
+
+    // string auctionId = 3;
 
 
     pub fn get_auctionId(&self) -> &str {
@@ -95,10 +734,40 @@ impl Auction {
     pub fn take_auctionId(&mut self) -> ::std::string::String {
         ::std::mem::replace(&mut self.auctionId, ::std::string::String::new())
     }
+
+    // repeated .Bids bids = 4;
+
+
+    pub fn get_bids(&self) -> &[Bids] {
+        &self.bids
+    }
+    pub fn clear_bids(&mut self) {
+        self.bids.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_bids(&mut self, v: ::protobuf::RepeatedField<Bids>) {
+        self.bids = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_bids(&mut self) -> &mut ::protobuf::RepeatedField<Bids> {
+        &mut self.bids
+    }
+
+    // Take field
+    pub fn take_bids(&mut self) -> ::protobuf::RepeatedField<Bids> {
+        ::std::mem::replace(&mut self.bids, ::protobuf::RepeatedField::new())
+    }
 }
 
 impl ::protobuf::Message for Auction {
     fn is_initialized(&self) -> bool {
+        for v in &self.bids {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
         true
     }
 
@@ -110,7 +779,13 @@ impl ::protobuf::Message for Auction {
                     ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.id)?;
                 },
                 2 => {
+                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.auctionType, 2, &mut self.unknown_fields)?
+                },
+                3 => {
                     ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.auctionId)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.bids)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -127,9 +802,16 @@ impl ::protobuf::Message for Auction {
         if !self.id.is_empty() {
             my_size += ::protobuf::rt::string_size(1, &self.id);
         }
-        if !self.auctionId.is_empty() {
-            my_size += ::protobuf::rt::string_size(2, &self.auctionId);
+        if self.auctionType != Auction_AuctionType::ENGLISH {
+            my_size += ::protobuf::rt::enum_size(2, self.auctionType);
         }
+        if !self.auctionId.is_empty() {
+            my_size += ::protobuf::rt::string_size(3, &self.auctionId);
+        }
+        for value in &self.bids {
+            let len = value.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        };
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -139,9 +821,17 @@ impl ::protobuf::Message for Auction {
         if !self.id.is_empty() {
             os.write_string(1, &self.id)?;
         }
-        if !self.auctionId.is_empty() {
-            os.write_string(2, &self.auctionId)?;
+        if self.auctionType != Auction_AuctionType::ENGLISH {
+            os.write_enum(2, ::protobuf::ProtobufEnum::value(&self.auctionType))?;
         }
+        if !self.auctionId.is_empty() {
+            os.write_string(3, &self.auctionId)?;
+        }
+        for v in &self.bids {
+            os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        };
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
     }
@@ -185,10 +875,20 @@ impl ::protobuf::Message for Auction {
                 |m: &Auction| { &m.id },
                 |m: &mut Auction| { &mut m.id },
             ));
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Auction_AuctionType>>(
+                "auctionType",
+                |m: &Auction| { &m.auctionType },
+                |m: &mut Auction| { &mut m.auctionType },
+            ));
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                 "auctionId",
                 |m: &Auction| { &m.auctionId },
                 |m: &mut Auction| { &mut m.auctionId },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Bids>>(
+                "bids",
+                |m: &Auction| { &m.bids },
+                |m: &mut Auction| { &mut m.bids },
             ));
             ::protobuf::reflect::MessageDescriptor::new_pb_name::<Auction>(
                 "Auction",
@@ -207,7 +907,9 @@ impl ::protobuf::Message for Auction {
 impl ::protobuf::Clear for Auction {
     fn clear(&mut self) {
         self.id.clear();
+        self.auctionType = Auction_AuctionType::ENGLISH;
         self.auctionId.clear();
+        self.bids.clear();
         self.unknown_fields.clear();
     }
 }
@@ -224,9 +926,76 @@ impl ::protobuf::reflect::ProtobufValue for Auction {
     }
 }
 
+#[derive(Clone,PartialEq,Eq,Debug,Hash)]
+pub enum Auction_AuctionType {
+    ENGLISH = 0,
+    DUTCH = 1,
+    OTHER = 2,
+}
+
+impl ::protobuf::ProtobufEnum for Auction_AuctionType {
+    fn value(&self) -> i32 {
+        *self as i32
+    }
+
+    fn from_i32(value: i32) -> ::std::option::Option<Auction_AuctionType> {
+        match value {
+            0 => ::std::option::Option::Some(Auction_AuctionType::ENGLISH),
+            1 => ::std::option::Option::Some(Auction_AuctionType::DUTCH),
+            2 => ::std::option::Option::Some(Auction_AuctionType::OTHER),
+            _ => ::std::option::Option::None
+        }
+    }
+
+    fn values() -> &'static [Self] {
+        static values: &'static [Auction_AuctionType] = &[
+            Auction_AuctionType::ENGLISH,
+            Auction_AuctionType::DUTCH,
+            Auction_AuctionType::OTHER,
+        ];
+        values
+    }
+
+    fn enum_descriptor_static() -> &'static ::protobuf::reflect::EnumDescriptor {
+        static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::EnumDescriptor> = ::protobuf::rt::LazyV2::INIT;
+        descriptor.get(|| {
+            ::protobuf::reflect::EnumDescriptor::new_pb_name::<Auction_AuctionType>("Auction.AuctionType", file_descriptor_proto())
+        })
+    }
+}
+
+impl ::std::marker::Copy for Auction_AuctionType {
+}
+
+impl ::std::default::Default for Auction_AuctionType {
+    fn default() -> Self {
+        Auction_AuctionType::ENGLISH
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for Auction_AuctionType {
+    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
+        ::protobuf::reflect::ReflectValueRef::Enum(::protobuf::ProtobufEnum::descriptor(self))
+    }
+}
+
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x0cmodels.proto\"7\n\x07Auction\x12\x0e\n\x02id\x18\x01\x20\x01(\tR\
-    \x02id\x12\x1c\n\tauctionId\x18\x02\x20\x01(\tR\tauctionIdb\x06proto3\
+    \n\x0cmodels.proto\"\xfe\x02\n\x04Bids\x12\x15\n\x06bid_id\x18\x01\x20\
+    \x01(\tR\x05bidId\x12\x17\n\x07enc_arr\x18\x02\x20\x01(\x0cR\x06encArr\
+    \x12\x17\n\x07bid_amt\x18\x03\x20\x01(\tR\x06bidAmt\x12!\n\x04type\x18\
+    \x04\x20\x01(\x0e2\r.Bids.BidTypeR\x04type\x129\n\x0ebid_components\x18\
+    \x05\x20\x03(\x0b2\x12.Bids.BidComponentR\rbidComponents\x1aG\n\x0cBidCo\
+    mponent\x12!\n\x04type\x18\x01\x20\x01(\x0e2\r.Bids.BidTypeR\x04type\x12\
+    \x14\n\x05value\x18\x02\x20\x01(\tR\x05value\"*\n\x07BidType\x12\t\n\x05\
+    BASIC\x10\0\x12\t\n\x05MONEY\x10\x01\x12\t\n\x05MIXED\x10\x02\"Z\n\nBidP\
+    rivacy\x12\x0e\n\nNO_PRIVACY\x10\0\x12\x0b\n\x07NO_BIDS\x10\x01\x12\x14\
+    \n\x10NO_PERSONAL_INFO\x10\x02\x12\x19\n\x15NO_BIDS_PERSONAL_INFO\x10\
+    \x03\"\xbc\x01\n\x07Auction\x12\x0e\n\x02id\x18\x01\x20\x01(\tR\x02id\
+    \x126\n\x0bauctionType\x18\x02\x20\x01(\x0e2\x14.Auction.AuctionTypeR\
+    \x0bauctionType\x12\x1c\n\tauctionId\x18\x03\x20\x01(\tR\tauctionId\x12\
+    \x19\n\x04bids\x18\x04\x20\x03(\x0b2\x05.BidsR\x04bids\"0\n\x0bAuctionTy\
+    pe\x12\x0b\n\x07ENGLISH\x10\0\x12\t\n\x05DUTCH\x10\x01\x12\t\n\x05OTHER\
+    \x10\x02b\x06proto3\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;
