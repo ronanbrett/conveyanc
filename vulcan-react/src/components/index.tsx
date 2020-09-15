@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+import { Wizard, WizardStep } from "./Wizard";
 import ImageUploader from "./ImageUploader";
 import { RichTextEditor, RichTextEditorWrapper } from "./RichTextEditor";
 import Icon from "./Icon";
@@ -26,6 +27,8 @@ import TheTopNav from "./TheTopNav";
 
 export {
   /* PLOP_INJECT_EXPORT */
+  Wizard,
+  WizardStep,
   ImageUploader,
   RichTextEditorWrapper,
   RichTextEditor,
