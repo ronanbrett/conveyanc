@@ -7,7 +7,7 @@ pub struct MessagingQueue {
 }
 
 impl MessagingQueue {
-    pub async fn init() -> Result<Self> {
+    pub async fn new() -> Result<Self> {
         let address = "0.0.0.0:4222";
         let connection = connect(address).await?;
 
@@ -17,6 +17,11 @@ impl MessagingQueue {
     }
 
     pub async fn publish(&self, subject: &str, msg: &str) -> Result<()> {
+        self.connection.publish(subject, msg).await?;
+        Ok(())
+    }
+
+    pub async fn publish_bytes(&self, subject: &str, msg: Vec<u8>) -> Result<()> {
         self.connection.publish(subject, msg).await?;
         Ok(())
     }

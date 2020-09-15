@@ -12,7 +12,7 @@ pub struct DB {
 }
 
 impl DB {
-    pub async fn init() -> Result<Self> {
+    pub async fn new() -> Result<Self> {
         let mut client_options = ClientOptions::parse("mongodb://127.0.0.1:27017").await?;
 
         let cred = Credential::builder()

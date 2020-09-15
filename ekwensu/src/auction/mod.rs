@@ -1,6 +1,9 @@
 use super::consts::AUCTION_CREATED;
 use super::db::DB;
 use super::queue::MessagingQueue;
+use crate::protos::models::Auction;
+
+use protobuf::Message;
 
 use futures::stream::StreamExt;
 
@@ -33,7 +36,13 @@ pub async fn handle_auction_update(msg: String, db: &DB) -> Result<()> {
 }
 
 pub async fn emit_auction_created_event(msg: String, queue: &MessagingQueue) -> Result<()> {
-    queue.publish(AUCTION_CREATED, "This is a message!").await?;
+    let mut msg = Auction::new();
+    msg.id = "123".to_string();
+    msg.auctionId = "143".to_string();
+
+    queue
+        .publish_bytes(AUCTION_CREATED, msg.write_to_bytes().unwrap())
+        .await?;
 
     Ok(())
 }

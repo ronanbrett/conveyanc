@@ -1,6 +1,7 @@
 mod auction;
 mod consts;
 mod db;
+mod protos;
 mod queue;
 
 use auction::*;
@@ -15,8 +16,8 @@ use queue::*;
 pub async fn main() -> Result<()> {
     dotenv().ok();
 
-    let db = DB::init().await?;
-    let queue = MessagingQueue::init().await?;
+    let db = DB::new().await?;
+    let queue = MessagingQueue::new().await?;
 
     let subject = "auctions.*";
     let mut sub = queue.subscribe_to_queue(subject, "auctions").await?;

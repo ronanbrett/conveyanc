@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+
+
+message Auction {
+    string id = 1;
+    string auctionId = 2;
+}
