@@ -1,0 +1,23 @@
+type PropertyListingDTO {
+  dateOfSale: DateTime
+  address: String
+  postCode: String
+  county: String
+  price: Float
+  notFullMarketPrice: Boolean
+  VATExclusive: Boolean
+  description: String
+  propertySize: String
+  formattedAddress: String
+  location: GeoJSONPointScalar
+  addressComponents: [AddressComponentOutput]
+}
+
+type Query {
+  getPropertiesForMonth(
+    fromDate: DateTime
+    toDate: DateTime
+  ): [PropertyListingDTO]
+
+  updateProperties(limit: Int, skip: Int): Boolean
+}

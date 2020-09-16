@@ -19,6 +19,7 @@ import {
   MAX_FILE_SIZE,
 } from "./ImageUploader.consts";
 
+// Todo - Deduplicate + Refactor this and ImageUploaderBase
 const ReactImageUploading: React.FC<ImageUploadingPropsType> = ({
   value = [],
   onChange,

@@ -1,0 +1,93 @@
+@import "src/styles/vars";
+
+.UploadCheckbox {
+  &__container {
+    width: 100%;
+    display: flex;
+    position: relative;
+
+    z-index: 999999;
+    background: white;
+
+    box-shadow: 20px 20px 60px 0 rgba(216, 222, 226, 0.67),
+      -20px -20px 60px 0 rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius);
+
+    border: 1px solid #e4e3e3;
+
+    padding: var(--spacing-m);
+    z-index: 3;
+  }
+
+  &__check {
+    margin: var(--spacing-s) var(--spacing-m) 0 0;
+  }
+
+  &__info {
+    width: 100%;
+    h1 {
+      @include type-header-m;
+    }
+
+    p {
+      @include type-body;
+      margin-top: var(--spacing-m);
+    }
+  }
+  &__info-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h1 {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__info-check {
+    flex: 0 0 45px;
+  }
+
+  &__queue {
+    background-color: var(--border-light-color);
+    min-height: 60px;
+    padding: calc(var(--spacing-mx) + 5px) var(--spacing-mx) var(--spacing-mx)
+      var(--spacing-mx);
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    z-index: 2;
+  }
+
+  &__queue-item {
+    background-color: white;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    flex: 0 0 65px;
+
+    margin-bottom: var(--spacing-m);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    padding: var(--spacing-s) var(--spacing-m);
+  }
+
+  &__upload-icon {
+    margin-right: var(--spacing-s);
+  }
+
+  &__upload-name {
+    @include type-header-xs;
+    flex: 1 1 auto;
+    font-weight: 400;
+  }
+}

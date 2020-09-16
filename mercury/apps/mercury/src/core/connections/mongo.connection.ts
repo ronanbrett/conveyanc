@@ -17,6 +17,11 @@ const config: MongoConfig = configGet('Mongo');
       user: config.user,
       pass: config.password,
     }),
+    MongooseModule.forRoot(`mongodb://${config.host}/geography`, {
+      connectionName: 'geography',
+      user: config.user,
+      pass: config.password,
+    }),
   ],
 })
 export class MongoConnectionModule {}

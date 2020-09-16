@@ -7,6 +7,8 @@ import { RedisConfig } from './config/redis.config';
 
 const config: RedisConfig = configGet('Redis');
 
+console.log(config);
+
 export const REDIS_CLIENT = 'REDIS_CLIENT';
 
 const REDIS_CLIENT_PROVIDER = {

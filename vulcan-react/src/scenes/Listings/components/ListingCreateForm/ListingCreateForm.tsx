@@ -8,6 +8,9 @@ import {
   MultiTierDropdownOption,
   RichTextEditorWrapper,
   TopNavPortal,
+  UploadCheckbox,
+  Wizard,
+  WizardStep,
 } from "@components";
 import { PropertyInfo, S3ObjectArgs } from "@core/api/graphql";
 import { FormikEffect } from "@core/utils";
@@ -129,23 +132,27 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
 
   return (
     <div className={`${styles.ListingCreateForm}`}>
-      <h1 className="title">Property Details</h1>
-      <Formik<ListingCreateFormValues>
-        innerRef={formRef}
-        validationSchema={ListingCreateFormSchema}
+      <Wizard<ListingCreateFormValues>
+        formRef={formRef}
         onSubmit={onSubmit}
+        initialStep={1}
         initialValues={initialValues}
       >
-        <Form className="form">
+        <WizardStep
+          onSubmit={() => console.log("Step1 onSubmit")}
+          validationSchema={ListingCreateFormSchema}
+        >
           <FormikEffect<ListingCreateFormValues>
             onChange={onChange}
           ></FormikEffect>
 
           <TopNavPortal>
             <Button onClick={() => formRef?.current?.handleSubmit()}>
-              Save
+              Next
             </Button>
           </TopNavPortal>
+
+          <h1 className="title">Property Details</h1>
 
           <div className="field__container">
             <label className="field__label" htmlFor="propertyType">
@@ -229,8 +236,47 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
           </div>
+        </WizardStep>
+
+        <WizardStep
+          onSubmit={() => console.log("Step1 onSubmit")}
+          validationSchema={ListingCreateFormSchema}
+        >
+          <FormikEffect<ListingCreateFormValues>
+            onChange={onChange}
+          ></FormikEffect>
+
+          <TopNavPortal>
+            <Button onClick={() => formRef?.current?.handleSubmit()}>
+              Save
+            </Button>
+          </TopNavPortal>
+
+          <h1 className="title">Documents</h1>
+
+          <div className="field__container">
+            <UploadCheckbox
+              title="Title Deeds"
+              subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. "
+              name="upload"
+            ></UploadCheckbox>
+          </div>
+
+          <div className="field__container">
+            <UploadCheckbox title="BER Report" name="upload"></UploadCheckbox>
+          </div>
+        </WizardStep>
+      </Wizard>
+      {/* <Formik<ListingCreateFormValues>
+        innerRef={formRef}
+        validationSchema={ListingCreateFormSchema}
+        onSubmit={onSubmit}
+        initialValues={initialValues}
+      >
+        <Form className="form">
+         
         </Form>
-      </Formik>
+      </Formik> */}
     </div>
   );
 };

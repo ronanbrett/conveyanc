@@ -1,18 +1,22 @@
 import React, { FC, ReactElement, useState } from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, FormikValues } from "formik";
 
 export interface WizardProps {
+  formRef?: any;
   children?: any;
   initialValues?: any;
+  initialStep?: number;
   onSubmit: (values?: any, bag?: any) => void;
 }
 
-export const Wizard: FC<WizardProps> = ({
+export const Wizard = <T extends FormikValues>({
+  formRef,
   children,
   initialValues,
+  initialStep,
   onSubmit,
-}) => {
-  const [stepNumber, setStepNumber] = useState(0);
+}: WizardProps) => {
+  const [stepNumber, setStepNumber] = useState(initialStep ?? 0);
   const steps = React.Children.toArray(children) as ReactElement[];
   const [snapshot, setSnapshot] = useState(initialValues);
 
@@ -43,16 +47,17 @@ export const Wizard: FC<WizardProps> = ({
   };
 
   return (
-    <Formik
+    <Formik<T>
+      innerRef={formRef}
       initialValues={snapshot}
       onSubmit={handleSubmit}
       validationSchema={step.props.validationSchema}
     >
       {(formik) => (
         <Form>
-          <p>
+          {/* <p>
             Step {stepNumber + 1} of {totalSteps}
-          </p>
+          </p> */}
           {step}
           <div style={{ display: "flex" }}>
             {stepNumber > 0 && (
@@ -72,4 +77,9 @@ export const Wizard: FC<WizardProps> = ({
   );
 };
 
-export const WizardStep = ({ children }: { children: any }) => children;
+export const WizardStep = ({
+  children,
+}: {
+  children: any;
+  [param: string]: any;
+}) => children;

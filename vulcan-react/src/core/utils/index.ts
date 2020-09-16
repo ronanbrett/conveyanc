@@ -7,3 +7,4 @@ export * from "./rxjs.utils";
 export * from "./formik-effect.util";
 export * from "./debounce.util";
 export * from "./throttle.util";
+export * from "./mixins";

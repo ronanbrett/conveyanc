@@ -17,8 +17,8 @@ export class HealthController {
       );
 
       user.aws = awsToken;
-      // user.aws.expiresIn = 86400;
-      user.aws.expiresIn = 3600;
+      user.aws.expiresIn = 86400;
+      // user.aws.expiresIn = 3600;
       req.session.user = user;
 
       return {

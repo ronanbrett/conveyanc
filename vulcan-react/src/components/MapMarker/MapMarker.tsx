@@ -20,7 +20,7 @@ export default class MapMarkers extends PureComponent<{
 
     return (
       data &&
-      data.length &&
+      data.length > 0 &&
       data.map((point: GeocodeResult, index: number) => (
         <Marker
           key={`marker-${index}`}

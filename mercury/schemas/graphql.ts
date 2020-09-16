@@ -603,6 +603,10 @@ export abstract class IQuery {
     abstract propertiesPaged(first?: number, after?: string): PropertyPaged | Promise<PropertyPaged>;
 
     abstract propertyInfo(): PropertyInfo | Promise<PropertyInfo>;
+
+    abstract getPropertiesForMonth(fromDate?: DateTime, toDate?: DateTime): PropertyListingDTO[] | Promise<PropertyListingDTO[]>;
+
+    abstract updateProperties(limit?: number, skip?: number): boolean | Promise<boolean>;
 }
 
 export abstract class IMutation {
@@ -613,6 +617,21 @@ export class PropertyFacility {
     description?: JSON;
     subType: FacilitySubtype;
     type: Facility;
+}
+
+export class PropertyListingDTO {
+    dateOfSale?: DateTime;
+    address?: string;
+    postCode?: string;
+    county?: string;
+    price?: number;
+    notFullMarketPrice?: boolean;
+    VATExclusive?: boolean;
+    description?: string;
+    propertySize?: string;
+    formattedAddress?: string;
+    location?: GeoJSONPointScalar;
+    addressComponents?: AddressComponentOutput[];
 }
 
 export class PropertyQualification {

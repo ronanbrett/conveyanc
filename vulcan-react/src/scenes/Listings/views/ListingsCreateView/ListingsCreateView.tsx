@@ -61,6 +61,14 @@ const ListingsCreateView = (props: ListingsCreateViewProps) => {
       (x) => x.value === propertyType
     );
 
+    images = images.map(({ key, directory, bucket, level, region }) => ({
+      key,
+      directory,
+      bucket,
+      level,
+      region,
+    }));
+
     const vars: PropertyInputArgs = {
       type: group as PropertyType,
       description,

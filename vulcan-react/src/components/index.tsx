@@ -1,4 +1,6 @@
 /* PLOP_INJECT_IMPORT */
+import Progress from './Progress';
+import UploadCheckbox from './UploadCheckbox';
 import { Wizard, WizardStep } from "./Wizard";
 import ImageUploader from "./ImageUploader";
 import { RichTextEditor, RichTextEditorWrapper } from "./RichTextEditor";
@@ -27,6 +29,8 @@ import TheTopNav from "./TheTopNav";
 
 export {
   /* PLOP_INJECT_EXPORT */
+	Progress,
+	UploadCheckbox,
   Wizard,
   WizardStep,
   ImageUploader,

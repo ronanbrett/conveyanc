@@ -36,14 +36,44 @@ const ImageUploader: FC<ImageUploaderProps & FieldConfig> = ({ ...props }) => {
   });
 
   useEffect(() => {
-    console.log(images);
+    if (field.value && field.value.length) {
+      const vals = reduce(
+        field.value,
+        (accum: any, field: any) => {
+          accum[field.key] = {
+            ...field,
+            complete: true,
+            id: field.key,
+          };
+          return accum;
+        },
+        {}
+      );
+
+      const images = field.value.map((field: any) => ({
+        ...field,
+        id: field.key,
+      }));
+      setImageUploadMap(vals);
+      setImages(images);
+    }
+  }, []);
+
+  useEffect(() => {
     const completedImages = reduce(
       images,
       (accum: ImageI[], image: ImageI) => {
         const mappedImg = imageUploadMap[image.id];
         if (mappedImg && mappedImg.complete) {
           const { key, level, directory, bucket, region } = mappedImg;
-          const img = { key, level, directory, bucket, region };
+          const img = {
+            key,
+            level,
+            directory,
+            bucket,
+            region,
+            data_url: image.data_url,
+          };
           accum.push(img);
         }
         return accum;
@@ -112,7 +142,7 @@ const ImageUploader: FC<ImageUploaderProps & FieldConfig> = ({ ...props }) => {
     };
   }, []);
 
-  const maxNumber = 69;
+  const maxNumber = 16;
   const onChange = (imageList: ImageI[], addUpdateIndex?: number[]) => {
     // data for submit
     setImages(imageList);

@@ -10,7 +10,7 @@ interface IconProps {
 }
 
 const Icon: FC<IconProps> = forwardRef(({ icon, size, ...props }, ref) => {
-  const clases = classNames({ [`Icon--${size}`]: true });
+  const clases = classNames({ Icon: true, [`Icon--${size}`]: true });
   return (
     <div ref={ref as any} className={clases}>
       <i className="material-icons">{icon}</i>

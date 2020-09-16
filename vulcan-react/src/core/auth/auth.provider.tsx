@@ -25,6 +25,11 @@ export const AuthProvider = (opts: AuthProviderOptions): JSX.Element => {
 
         if (loggedIn) {
           dispatch({ type: "INITIALISED", isAuthenticated: loggedIn, user });
+          dispatch({
+            type: "LOGIN_POPUP_COMPLETE",
+            isAuthenticated: loggedIn,
+            user,
+          });
         }
       } catch (error) {
         dispatch({ type: "LOGOUT" });

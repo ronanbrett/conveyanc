@@ -1,0 +1,23 @@
+@import "src/styles/vars";
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Progress {
+  .animating {
+    transform-origin: center;
+    animation-name: spin;
+    animation-duration: 700ms;
+    animation-iteration-count: infinite;
+    // animation-direction: alternate; /* or: normal */
+
+    animation-timing-function: linear;
+  }
+}

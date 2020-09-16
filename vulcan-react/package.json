@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start:docker": "yarn run start && yarn run storybook",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "storybook": "DEBUG=docgen:* start-storybook -p 6006 -s public",
+    "patch:storybook": "node ./scripts/patch-storybook.mjs",
+    "storybook": "yarn run patch:storybook && start-storybook -p 6006 -s public",
+    "storybook:debug": "DEBUG=docgen:* start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "generate-api": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
