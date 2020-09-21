@@ -73,23 +73,3 @@
     width: 50px;
   }
 }
-
-.SelectInput {
-  &__input {
-    cursor: pointer;
-    box-sizing: border-box;
-    font-size: inherit;
-    font-family: inherit;
-    appearance: none;
-    background: transparent;
-    color: inherit;
-    width: 100%;
-    height: 100%;
-    padding: 11px;
-    font-weight: 600;
-    margin: 0px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-  }
-}

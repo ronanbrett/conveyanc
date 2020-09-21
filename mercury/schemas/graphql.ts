@@ -607,6 +607,8 @@ export abstract class IQuery {
     abstract getPropertiesForMonth(fromDate?: DateTime, toDate?: DateTime): PropertyListingDTO[] | Promise<PropertyListingDTO[]>;
 
     abstract updateProperties(limit?: number, skip?: number): boolean | Promise<boolean>;
+
+    abstract getPropertiesNearPoint(longitude?: number, latitude?: number): PropertyListingDTO[] | Promise<PropertyListingDTO[]>;
 }
 
 export abstract class IMutation {
@@ -632,6 +634,8 @@ export class PropertyListingDTO {
     formattedAddress?: string;
     location?: GeoJSONPointScalar;
     addressComponents?: AddressComponentOutput[];
+    electoralDistrict?: string;
+    electoralDistrictId?: string;
 }
 
 export class PropertyQualification {

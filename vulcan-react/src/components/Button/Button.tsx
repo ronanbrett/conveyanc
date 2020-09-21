@@ -21,6 +21,7 @@ const Button = forwardRef(
       buttonType = "primary",
       color, // munged to avoid styled-components putting it in the DOM
       children,
+      classes,
       disabled,
       icon,
       focusIndicator = true,
@@ -74,14 +75,14 @@ const Button = forwardRef(
       [`Button--${buttonType}`]: true,
       [`Button--${size}`]: true,
       active,
-      focus: "focused",
+      focus,
       hover,
       selected,
     });
 
     return (
       <button
-        className={wrappedClasses}
+        className={`${wrappedClasses} ${classes}`}
         onClick={onClick}
         ref={ref as any}
         aria-label={a11yTitle}

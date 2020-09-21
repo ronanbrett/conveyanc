@@ -27,6 +27,12 @@ module.exports = {
 
     // Make whatever fine-grained changes you need
 
+    console.log(config);
+
+    config.entry.push(
+      "/usr/src/app/node_modules/webpack-hot-middleware/client.js?reload=true&quiet=false&noInfo=true&path=//localhost/storybook/__webpack_hmr"
+    );
+
     config.plugins.push(new ConfigWebpackPlugin());
 
     config.resolve.alias = {

@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { BaseRepository } from '@utils/base/classes/base-respository.class';
-import { Model } from 'mongoose';
-import { PropertyListingDocument } from './property-listings.model';
-import { from, Observable, of } from 'rxjs';
-import fetch from 'node-fetch';
-
-import { mergeMap, tap, map, switchMap, timeout, delay } from 'rxjs/operators';
-
 import { get as configGet } from 'config';
+import { readFileSync } from 'fs';
+import { Model } from 'mongoose';
+import fetch from 'node-fetch';
+import { parse } from 'papaparse';
+import { resolve } from 'path';
+import { from, Observable, of } from 'rxjs';
+import { delay, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { PropertyListingDocument } from './property-listings.model';
+import { chunk } from 'lodash';
 
+import * as md5 from 'md5';
 const config: any = configGet('Google');
 
 // const LOCATION_IQ = (token: string, address: string) =>
@@ -78,6 +81,84 @@ export class PropertyListingsService extends BaseRepository<
     return results;
   }
 
+  async retrievePropertiesNearPoint(): Promise<PropertyListingDocument[]> {
+    const results = await this.model
+      .find({
+        location: {
+          $near: {
+            $geometry: {
+              type: 'Point',
+              coordinates: [-6.333184, 53.342975],
+            },
+            $maxDistance: 1000,
+            $minDistance: 0,
+          },
+        },
+      })
+      .sort({ dateOfSale: -1 })
+      .limit(25);
+
+    return results;
+  }
+  async updataDataPPREncoded() {
+    const file = resolve('./data/ppr_data_encoded.csv');
+
+    const fileStream = readFileSync(file, 'utf-8');
+
+    const results = parse(fileStream, {
+      header: true,
+    }).data;
+
+    const mappedResults = results.map((res: any) => ({
+      ...res,
+      propertyListingId: md5(
+        `${res.sale_date}${res.address?.trim()}${Number(
+          res.price?.replace(/,/g, ''),
+        )}`,
+      ),
+    }));
+
+    from(chunk(mappedResults, 50000))
+      .pipe(
+        // split up array
+        switchMap(async (item: any[]) => {
+          console.log('starting bku');
+          const bku = await this.model.bulkWrite(
+            item.map(item => ({
+              updateOne: {
+                filter: {
+                  propertyListingId: item.propertyListingId,
+                },
+                update: {
+                  location: item.longitude
+                    ? {
+                        type: 'Point',
+                        coordinates: [
+                          Number(item.longitude),
+                          Number(item.latitude),
+                        ],
+                      }
+                    : undefined,
+                  formattedAddress: item.formatted_address,
+                  electoralDistrict: item.electoral_district,
+                  electoralDistrictId: item.electoral_district_id,
+                },
+              },
+            })),
+          );
+
+          console.log(bku);
+
+          return of(true);
+        }),
+      )
+      .subscribe(item => {
+        console.log(item);
+      });
+
+    return true;
+  }
+
   async updateProperties(limit = 20, skip = 0, year = 2020): Promise<boolean> {
     const results = await this.model
       .find({
@@ -101,7 +182,12 @@ export class PropertyListingsService extends BaseRepository<
           const geoCode = await getGeoCoding(address).toPromise();
 
           if (geoCode.length) {
-            x.location = geoCode[0].geometry.location;
+            const { lng, lat } = geoCode[0].geometry.location;
+
+            x.location = {
+              type: 'Point',
+              coordinates: [lng, lat],
+            };
             x.formattedAddress = geoCode[0].formatted_address;
             x.addressComponents = geoCode[0].address_components;
 

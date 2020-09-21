@@ -12,7 +12,7 @@ import React, {
 
 import "./Select.scss";
 import { SelectContainer } from "./SelectContainer";
-import { Keyboard, DropButton, TextInput, IconButton } from "@components";
+import { Keyboard, DropButton, TextInput, IconButton, Icon } from "@components";
 import { applyKey } from "./select.utils";
 import { FormContext } from "@core/contexts/FormContext";
 import { isObject } from "lodash-es";
@@ -182,12 +182,10 @@ const Select = forwardRef(
         break;
       case true:
       case undefined:
-        SelectIcon = open && (
-          <IconButton size="mini" icon="keyboard_arrow_up" />
-        ) ? (
-          <IconButton size="mini" icon="keyboard_arrow_up" />
+        SelectIcon = open && <Icon size="mini" icon="keyboard_arrow_up" /> ? (
+          <Icon size="mini" icon="keyboard_arrow_up" />
         ) : (
-          <IconButton size="mini" icon="keyboard_arrow_down" />
+          <Icon size="mini" icon="keyboard_arrow_down" />
         );
         break;
       default:
@@ -221,7 +219,6 @@ const Select = forwardRef(
           dropAlign={{ top: "bottom", left: "left" }}
           dropTarget={dropTarget}
           open={open}
-          alignSelf={alignSelf}
           focusIndicator={focusIndicator}
           margin={margin}
           onOpen={onRequestOpen}
@@ -264,6 +261,7 @@ const Select = forwardRef(
           >
             <div
               style={{
+                width: "100%",
                 display: "flex",
                 flexDirection: "row",
                 flexBasis: "auto",
@@ -284,7 +282,7 @@ const Select = forwardRef(
                   // We only want to disable the TextInput if the control
                   // button should be disabled which occurs when disabled
                   // equals true.
-                  defaultCursor={disabled === true || undefined}
+                  // defaultCursor={disabled === true || undefined}
                   id={id ? `${id}__input` : undefined}
                   name={name}
                   ref={inputRef}
@@ -301,11 +299,7 @@ const Select = forwardRef(
             </div>
             {SelectIcon && (
               <div style={{ minWidth: "auto", flex: 0 }}>
-                {isValidElement(SelectIcon) ? (
-                  SelectIcon
-                ) : (
-                  <IconButton icon="home" />
-                )}
+                {isValidElement(SelectIcon) ? SelectIcon : <Icon icon="home" />}
               </div>
             )}
           </div>

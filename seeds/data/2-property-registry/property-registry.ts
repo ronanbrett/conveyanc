@@ -9,12 +9,12 @@ const data = json.map((property) => {
   const notFullMarketPrice =
     property.notFullMarketPrice === "Yes" ? true : false;
 
-  const id = md5(`${property.dateOfSale}${property.address}${price}`);
+  const id = md5(`${property.dateOfSale}${property.address.trim()}${price}`);
   const VATExclusive = property.VATExclusive === "Yes" ? true : false;
   return {
     ...property,
     propertyListingId: id,
-    dateOfSale: new Date(dateParts[2], dateParts[1], dateParts[0]),
+    dateOfSale: new Date(dateParts[2], dateParts[1] - 1, dateParts[0]),
     price,
     notFullMarketPrice,
     VATExclusive,

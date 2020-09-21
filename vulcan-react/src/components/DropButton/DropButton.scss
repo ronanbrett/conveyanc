@@ -1,0 +1,15 @@
+@import "src/styles/vars";
+
+.DropButton {
+  border-radius: 0 !important;
+  border-color: var(--border-color) !important;
+
+  &.focus {
+    border-color: var(--highlight-color) !important;
+  }
+  &.opened {
+    border-color: var(--highlight-color) !important;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

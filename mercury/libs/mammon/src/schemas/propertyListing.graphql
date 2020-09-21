@@ -11,6 +11,8 @@ type PropertyListingDTO {
   formattedAddress: String
   location: GeoJSONPointScalar
   addressComponents: [AddressComponentOutput]
+  electoralDistrict: String
+  electoralDistrictId: String
 }
 
 type Query {
@@ -20,4 +22,8 @@ type Query {
   ): [PropertyListingDTO]
 
   updateProperties(limit: Int, skip: Int): Boolean
+  getPropertiesNearPoint(
+    longitude: Float
+    latitude: Float
+  ): [PropertyListingDTO]
 }

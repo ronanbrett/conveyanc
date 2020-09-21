@@ -53,14 +53,18 @@ export const AuthProvider = (opts: AuthProviderOptions): JSX.Element => {
     dispatch({ type: "LOGIN_POPUP_STARTED" });
     try {
       await client.login();
+
+      const { user, loggedIn } = await client.checkLogin();
+      setLoggedIn(loggedIn ? loggedIn : null);
+      dispatch({
+        type: "LOGIN_POPUP_COMPLETE",
+        isAuthenticated: loggedIn,
+        user,
+      });
     } catch (err) {
       dispatch({ type: "ERROR", error: new Error(err) });
-      return;
+      throw new Error("Couldnt login");
     }
-
-    const { user, loggedIn } = await client.checkLogin();
-    setLoggedIn(loggedIn ? loggedIn : null);
-    dispatch({ type: "LOGIN_POPUP_COMPLETE", isAuthenticated: loggedIn, user });
   };
 
   const logout = async (opts: any = {}) => {

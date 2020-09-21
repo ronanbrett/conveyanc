@@ -2,7 +2,13 @@
 
 ### Dev Environment
 
-Start Docker Services
+Start Docker Services w/o mercury & vulcan (good for development)
+
+```
+docker-compose -f docker-compose-dev.yml up -d
+```
+
+Start All Docker Services
 
 ```
 docker-compose up -d

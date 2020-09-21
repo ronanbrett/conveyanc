@@ -7,6 +7,7 @@ import {
   MultiTierDropdownItem,
   MultiTierDropdownOption,
   RichTextEditorWrapper,
+  Select,
   TopNavPortal,
   UploadCheckbox,
   Wizard,
@@ -135,7 +136,7 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
       <Wizard<ListingCreateFormValues>
         formRef={formRef}
         onSubmit={onSubmit}
-        initialStep={1}
+        initialStep={2}
         initialValues={initialValues}
       >
         <WizardStep
@@ -248,7 +249,7 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
 
           <TopNavPortal>
             <Button onClick={() => formRef?.current?.handleSubmit()}>
-              Save
+              Next
             </Button>
           </TopNavPortal>
 
@@ -266,17 +267,41 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
             <UploadCheckbox title="BER Report" name="upload"></UploadCheckbox>
           </div>
         </WizardStep>
+
+        <WizardStep
+          onSubmit={() => console.log("Step2 onSubmit")}
+          validationSchema={ListingCreateFormSchema}
+        >
+          <FormikEffect<ListingCreateFormValues>
+            onChange={onChange}
+          ></FormikEffect>
+
+          <TopNavPortal>
+            <Button onClick={() => formRef?.current?.handleSubmit()}>
+              Save
+            </Button>
+          </TopNavPortal>
+
+          <h1 className="title">Auction</h1>
+
+          <div className="field__container">
+            <label className="field__label" htmlFor="transactionType">
+              Transaction Type
+            </label>
+
+            <Select
+              id="transactionType"
+              name="transactionType"
+              placeholder="Choose a transaction type"
+              options={["Private Treaty", "Auction", "Tender"]}
+            ></Select>
+
+            <ErrorMessage className="field__error" name="propertyType">
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
+          </div>
+        </WizardStep>
       </Wizard>
-      {/* <Formik<ListingCreateFormValues>
-        innerRef={formRef}
-        validationSchema={ListingCreateFormSchema}
-        onSubmit={onSubmit}
-        initialValues={initialValues}
-      >
-        <Form className="form">
-         
-        </Form>
-      </Formik> */}
     </div>
   );
 };

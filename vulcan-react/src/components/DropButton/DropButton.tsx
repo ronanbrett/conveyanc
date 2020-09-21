@@ -8,7 +8,8 @@ import React, {
   useState,
 } from "react";
 import { DropProps } from "../Drop/DropContainer";
-import "./DropButton.module.scss";
+import classNames from "classnames";
+import "./DropButton.scss";
 
 export interface DropButtonProps {
   a11yTitle: string;
@@ -89,10 +90,16 @@ const DropButton = forwardRef(
       [onClick, onClose, onOpen, show]
     );
 
+    const cx = classNames({
+      DropButton: true,
+      opened: open,
+    });
+
     return (
       <>
         <Button
           id={id}
+          classes={cx}
           ref={buttonRef}
           a11yTitle={a11yTitle}
           disabled={disabled}

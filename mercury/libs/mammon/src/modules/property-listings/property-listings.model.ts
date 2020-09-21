@@ -58,6 +58,12 @@ export class PropertyListingDocument extends Document
 
   @Prop()
   location?: GeoJSONPointScalar;
+
+  @Prop()
+  electoralDistrict: string;
+
+  @Prop()
+  electoralDistrictId: string;
 }
 
 export const PropertyListingSchema = SchemaFactory.createForClass(

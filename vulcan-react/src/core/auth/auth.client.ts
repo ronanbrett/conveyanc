@@ -65,8 +65,13 @@ export class AuthClient {
   }
 
   async checkLogin(): Promise<User> {
-    const resp = await fetch("/api/health");
-    const body = await resp.json();
+    let body;
+    try {
+      const resp = await fetch("/api/health");
+      body = await resp.json();
+    } catch (error) {
+      throw error;
+    }
 
     const { aws, username } = body.user;
     Auth.signOut();

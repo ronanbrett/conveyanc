@@ -2,12 +2,13 @@ FROM node:alpine As development
 
 ARG NODE_ENV=docker
 ENV NODE_ENV=${NODE_ENV}
+ENV CHOKIDAR_USEPOLLING=true
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --only=development
+RUN npm install
 
 COPY . .
 
