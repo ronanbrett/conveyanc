@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { MockRouter, createTopNavPortalMock } from "@testutils";
+import { MockRouter, createTopNavPortalMock } from "testing";
 import React from "react";
 import ListingsCreateView from "./ListingsCreateView";
 

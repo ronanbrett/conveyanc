@@ -20,6 +20,7 @@ type InputProps<T> = {
   autoComplete?: string;
   children?: any;
   size?: "large" | "small";
+  style?: "primary" | "secondary" | "plain";
   id?: string;
   placeholder?: string;
   value?: any;

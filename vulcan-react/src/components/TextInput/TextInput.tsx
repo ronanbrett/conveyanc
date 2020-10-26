@@ -1,4 +1,4 @@
-import { Button, Drop, InfiniteScroll, Keyboard } from "@components";
+import { Button, Drop, Icon, InfiniteScroll, Keyboard } from "@components";
 import { AnnounceContext } from "@core/contexts/AnnounceContext";
 import { FormContext } from "@core/contexts/FormContext";
 import {
@@ -62,7 +62,7 @@ type InputTypes =
   | "week";
 
 export interface TextInputProps {
-  a11yTitle: string;
+  a11yTitle?: string;
   type?: InputTypes;
   autoComplete?: string;
   classOverride?: "Text" | "Select";
@@ -76,7 +76,7 @@ export interface TextInputProps {
   dropTarget?: object;
   dropProps?: DropProps;
   focusIndicator?: boolean;
-  icon?: JSX.Element;
+  icon?: string;
   id?: string;
   messages?: {
     enterSelect?: string;
@@ -85,7 +85,7 @@ export interface TextInputProps {
     suggestionIsOpen?: string;
     onSuggestionsClose?: () => void;
   };
-  name: string;
+  name?: string;
   onSelect?: (x: {
     target: React.RefObject<HTMLElement>["current"];
     suggestion: any;
@@ -93,16 +93,29 @@ export interface TextInputProps {
   onSuggestionsOpen?: () => void;
   onSuggestionsClose?: () => void;
   onSuggestionSelect?: () => void;
+  onBlur?: (evt?: any) => void;
+  onFocus?: (evt?: any) => void;
+
+  onPaste?: (evt?: any) => void;
+  onClick?: (evt?: any) => void;
+  onChange?: (evt?: any) => void;
+  onKeyPress?: (evt?: any) => void;
+  onKeyDown?: (evt?: any) => void;
+  maxLength?: number;
+  pattern?: string;
   placeholder?: string;
   reverse?: boolean;
-  readOnly: boolean;
+  readOnly?: boolean;
   size?: "single" | "small" | "medium" | "large" | "xlarge" | string;
   suggestions?: ({ label?: React.ReactNode; value?: any } | string)[];
+  style?: "primary" | "secondary" | "plain";
   value?: string | number;
   defaultValue?: string | number | any;
   meta?: FieldMetaProps<any>;
   children?: any;
-  [param: string]: any;
+  prefix?: string;
+  suffix?: string;
+  tabIndex?: any;
 }
 
 const TextInput = forwardRef(
@@ -115,7 +128,7 @@ const TextInput = forwardRef(
       dropHeight,
       dropTarget,
       dropProps,
-      icon,
+      icon: iconString,
       id,
       messages = defaultMessages,
       meta,
@@ -129,10 +142,10 @@ const TextInput = forwardRef(
       onSuggestionsClose,
       onSuggestionsOpen,
       placeholder,
-      plain,
       readOnly,
       size = "medium",
       type = "text",
+      style = "primary",
       reverse,
       suggestions,
       value: valueProp,
@@ -274,6 +287,7 @@ const TextInput = forwardRef(
       placeholder && typeof placeholder !== "string" && !value;
 
     let drop;
+
     const extraProps = {
       onSelect: handleTextSelect,
     };
@@ -286,6 +300,7 @@ const TextInput = forwardRef(
     const containerClasses = classNames({
       [`${classOverride}Input__input__container`]: true,
       [`${classOverride}Input--${size}`]: true,
+      [`${classOverride}Input--${style}`]: true,
       "field--invalid": meta && meta.touched && meta.error,
       "field--valid": meta && meta.touched && !meta.error,
     });
@@ -346,68 +361,69 @@ const TextInput = forwardRef(
             onEsc={closeDrop}
             {...dropProps}
           >
-            <div ref={suggestionsRef}>
-              <div className={`${classOverride}Input__suggestions`}>
-                <InfiniteScroll items={suggestions} step={20}>
-                  {(suggestion: Suggestion, index: number, itemRef: any) => {
-                    // Determine whether the label is done as a child or
-                    // as an option Button kind property.
-                    const renderedLabel = renderLabel(suggestion);
-                    let child;
-                    if (typeof renderedLabel !== "string")
-                      // must be an element rendered by suggestions.label
-                      child = renderedLabel;
-                    // don't have theme support, need to layout here
-                    else
-                      child = (
-                        <div className={`${classOverride}Input__suggestion`}>
-                          {renderedLabel}
-                        </div>
-                      );
-                    // if we have a child, turn on plain, and hoverIndicator
-
-                    return (
-                      <li
-                        key={`${stringLabel(suggestion)}-${index}`}
-                        ref={itemRef}
-                      >
-                        <Button
-                          active={
-                            activeSuggestionIndex === index ||
-                            selectedSuggestionIndex === index
-                          }
-                          ref={(r) => {
-                            suggestionRefs[index] = r;
-                          }}
-                          fill
-                          plain={!child ? undefined : true}
-                          align="start"
-                          kind={!child ? "option" : undefined}
-                          hoverIndicator={!child ? undefined : "background"}
-                          label={!child ? renderedLabel : undefined}
-                          onClick={(event: SyntheticEvent) => {
-                            // we stole the focus, give it back
-                            inputRef.current.focus();
-                            closeDrop();
-                            if (handleSuggestionSelect) {
-                              event.persist();
-                              const adjustedEvent = event as any;
-                              adjustedEvent.suggestion = suggestion;
-                              adjustedEvent.target = inputRef.current;
-                              handleSuggestionSelect(adjustedEvent);
-                            }
-                            setValue(suggestion);
-                          }}
-                          onMouseOver={() => setActiveSuggestionIndex(index)}
-                          onFocus={() => setActiveSuggestionIndex(index)}
-                        >
-                          {child}
-                        </Button>
-                      </li>
+            <div
+              ref={suggestionsRef}
+              className={`${classOverride}Input__suggestions`}
+            >
+              <InfiniteScroll items={suggestions} step={20}>
+                {(suggestion: Suggestion, index: number, itemRef: any) => {
+                  // Determine whether the label is done as a child or
+                  // as an option Button kind property.
+                  const renderedLabel = renderLabel(suggestion);
+                  let child;
+                  if (typeof renderedLabel !== "string")
+                    // must be an element rendered by suggestions.label
+                    child = renderedLabel;
+                  // don't have theme support, need to layout here
+                  else
+                    child = (
+                      <div className={`${classOverride}Input__suggestion`}>
+                        {renderedLabel}
+                      </div>
                     );
-                  }}
-                </InfiniteScroll>
-              </div>
+                  // if we have a child, turn on plain, and hoverIndicator
+
+                  return (
+                    <li
+                      key={`${stringLabel(suggestion)}-${index}`}
+                      ref={itemRef}
+                    >
+                      <Button
+                        active={
+                          activeSuggestionIndex === index ||
+                          selectedSuggestionIndex === index
+                        }
+                        ref={(r) => {
+                          suggestionRefs[index] = r;
+                        }}
+                        fill
+                        plain={!child ? undefined : true}
+                        align="start"
+                        kind={!child ? "option" : undefined}
+                        hoverIndicator={!child ? undefined : "background"}
+                        label={!child ? renderedLabel : undefined}
+                        onClick={(event: SyntheticEvent) => {
+                          // we stole the focus, give it back
+                          inputRef.current.focus();
+                          closeDrop();
+                          if (handleSuggestionSelect) {
+                            event.persist();
+                            const adjustedEvent = event as any;
+                            adjustedEvent.suggestion = suggestion;
+                            adjustedEvent.target = inputRef.current;
+                            handleSuggestionSelect(adjustedEvent);
+                          }
+                          setValue(suggestion);
+                        }}
+                        onMouseOver={() => setActiveSuggestionIndex(index)}
+                        onFocus={() => setActiveSuggestionIndex(index)}
+                      >
+                        {child}
+                      </Button>
+                    </li>
+                  );
+                }}
+              </InfiniteScroll>
             </div>
           </Drop>
         </Keyboard>
@@ -421,7 +437,13 @@ const TextInput = forwardRef(
             {placeholder}
           </div>
         )}
-        {icon && <div className={`${classOverride}Input__icon`}>{icon}</div>}
+
+        {iconString && (
+          <div className={`${classOverride}Input__icon`}>
+            <Icon size="mini" icon={iconString}></Icon>
+          </div>
+        )}
+
         <Keyboard
           onEnter={(event: SyntheticEvent) => {
             closeDrop();
@@ -482,8 +504,6 @@ const TextInput = forwardRef(
             placeholder={
               typeof placeholder === "string" ? placeholder : undefined
             }
-            // icon={icon}
-            // reverse={reverse}
             // focus={focus}
             {...rest}
             // {...extraProps}

@@ -7,8 +7,8 @@
       "@scenes/*": ["./scenes/*"],
       "@hooks/*": ["./hooks/*"],
       "@services/*": ["./services/*"],
-      "@testutils/*": ["../testing/*"],
-      "@testutils": ["../testing/index"]
+      "@testutils/*": ["./testing/*"],
+      "@testutils": ["./testing/index"]
     }
   }
 }

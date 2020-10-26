@@ -10,24 +10,22 @@ export default {
   component: Input,
 };
 
-export const Default = ({type}) => {
-
+export const Default = ({ type }) => {
   const initialValues = { inputTest: "testing" };
   const onSubmit = (value) => {
     console.log(value);
-    action('onSubmit');
-  }
-
+    action("onSubmit");
+  };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit} >
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form>
         <Input type={type} name="inputTest" />
         <button type="submit">Submit</button>
       </Form>
-    </Formik >
-  )
-}
+    </Formik>
+  );
+};
 
 export const WithFormikField = (props) => {
   return <Input {...props}></Input>;

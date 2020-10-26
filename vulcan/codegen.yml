@@ -1,9 +1,0 @@
-overwrite: true
-schema: 'https://localhost:6001/graphql'
-generates:
-  src/core/api/graphql.ts:
-    plugins:
-      - 'typescript'
-  # ./graphql.schema.json:
-  #   plugins:
-  #     - 'introspection'

@@ -10,7 +10,7 @@ interface UserProfileCardProps {
 
 const UserProfileCard = (props: UserProfileCardProps) => {
   di(useAuth);
-  const { logout, login, isAuthenticated, user } = useAuth();
+  const { logout, login, register, isAuthenticated, user } = useAuth();
   return (
     <div className={styles.UserProfileCard}>
       <section className="media">
@@ -24,6 +24,7 @@ const UserProfileCard = (props: UserProfileCardProps) => {
         ) : (
           <div className="media__content">
             <button onClick={login}>Log in</button>
+            <button onClick={register}>Reg</button>
           </div>
         )}
       </section>

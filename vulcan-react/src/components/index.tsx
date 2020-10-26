@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+import CurrencyInput from './CurrencyInput';
 import Progress from './Progress';
 import UploadCheckbox from './UploadCheckbox';
 import { Wizard, WizardStep } from "./Wizard";
@@ -29,6 +30,7 @@ import TheTopNav from "./TheTopNav";
 
 export {
   /* PLOP_INJECT_EXPORT */
+	CurrencyInput,
 	Progress,
 	UploadCheckbox,
   Wizard,

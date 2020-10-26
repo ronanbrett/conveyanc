@@ -42,7 +42,7 @@ export const AuthProvider = (opts: AuthProviderOptions): JSX.Element => {
 
   const register = async () => {
     try {
-      await register();
+      await client.register();
     } catch (err) {
       dispatch({ type: "ERROR", error: new Error(err) });
       return;

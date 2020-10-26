@@ -60,7 +60,7 @@ module.exports = {
         // Jest module mapper which will detect our absolute imports.
         "^@core(.*)$": "<rootDir>/src/core$1",
         "^@components(.*)$": "<rootDir>/src/components$1",
-        "^@testutils(.*)$": "<rootDir>/testing$1",
+        "^@testutils(.*)$": "<rootDir>/src/testing$1",
         "^@scenes(.*)$": "<rootDir>/src/scenes$1",
         "^@hooks(.*)$": "<rootDir>/src/hooks$1",
         "^@services(.*)$": "<rootDir>/src/services$1",

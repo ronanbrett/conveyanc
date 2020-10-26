@@ -27,10 +27,8 @@ module.exports = {
 
     // Make whatever fine-grained changes you need
 
-    console.log(config);
-
     config.entry.push(
-      "/usr/src/app/node_modules/webpack-hot-middleware/client.js?reload=true&quiet=false&noInfo=true&path=//localhost/storybook/__webpack_hmr"
+      "./node_modules/webpack-hot-middleware/client.js?reload=true&quiet=false&noInfo=true&path=//localhost/storybook/__webpack_hmr"
     );
 
     config.plugins.push(new ConfigWebpackPlugin());
@@ -42,7 +40,7 @@ module.exports = {
       "@scenes": `${path.resolve(__dirname, "../src/scenes/")}`,
       "@services": `${path.resolve(__dirname, "../src/services/")}`,
       "@hooks": `${path.resolve(__dirname, "../src/hooks/")}`,
-      "@testutils": `${path.resolve(__dirname, "../testing")}`,
+      "@testutils": `${path.resolve(__dirname, "../src/testing")}`,
       // Another example for using a wildcard character
     };
 

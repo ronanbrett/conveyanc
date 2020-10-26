@@ -1,5 +1,30 @@
 @import "src/styles/vars";
 
+.TextInput--plain.TextInput,
+.SelectInput--plain.SelectInput {
+  &__input {
+    &.field--invalid {
+      border: none;
+    }
+  }
+}
+
+.TextInput--primary.TextInput,
+.SelectInput--primary.SelectInput {
+  &__input {
+    &.field--invalid {
+      border: 2px solid var(--warn-color);
+    }
+  }
+  &__input__container {
+    border: 2px solid var(--border-color);
+
+    &.field--invalid {
+      border: 2px solid var(--warn-color);
+    }
+  }
+}
+
 .TextInput,
 .SelectInput {
   &__input {
@@ -11,15 +36,6 @@
 
     &:focus {
       outline: none;
-      // border-color: var(--highlight-color);
-    }
-
-    &-large {
-      @include type-header-m;
-    }
-
-    &.field--invalid {
-      border: 2px solid var(--warn-color);
     }
   }
 
@@ -33,11 +49,8 @@
   &__input__container {
     position: relative;
     width: 100%;
-    border: 2px solid var(--border-color);
-
-    &.field--invalid {
-      border: 2px solid var(--warn-color);
-    }
+    display: flex;
+    flex-direction: row;
   }
   &__placeholder {
     position: absolute;
@@ -48,12 +61,13 @@
     pointer-events: none;
   }
   &__icon {
-    position: absolute;
     display: flex;
-    justify: center;
-    top: 50%;
-    transform: translateY(-50%);
+    align-self: center;
     pointer-events: none;
+  }
+
+  &__icon + &__input {
+    padding-left: 0;
   }
   &__suggestions {
     border-top-left-radius: 0;

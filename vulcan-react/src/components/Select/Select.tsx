@@ -289,8 +289,8 @@ const Select = forwardRef(
                   {...rest}
                   tabIndex="-1"
                   type="text"
+                  style="plain"
                   placeholder={placeholder}
-                  plain
                   readOnly
                   value={inputValue}
                   size={size}

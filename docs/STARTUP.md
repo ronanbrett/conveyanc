@@ -26,3 +26,7 @@ SERVICES=s3 localstack start
 docker exec -it docs_redis_1 sh
 redis-cli -a INSECURE
 ```
+
+### Certs
+
+Use mkcert to generate Certs - https://github.com/FiloSottile/mkcert

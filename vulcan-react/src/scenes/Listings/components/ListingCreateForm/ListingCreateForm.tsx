@@ -300,6 +300,13 @@ const ListingCreateForm: FC<ListingCreateFormProps> = ({
               {(msg) => <div>{msg}</div>}
             </ErrorMessage>
           </div>
+
+          <div className="field__container">
+            <label className="field__label" htmlFor="transactionType">
+              Guide Price
+            </label>
+            <Input id="name" name="guidePrice" placeholder="Guide Price" />
+          </div>
         </WizardStep>
       </Wizard>
     </div>
